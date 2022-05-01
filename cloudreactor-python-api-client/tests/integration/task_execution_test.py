@@ -15,7 +15,7 @@ def test_start_task_execution(api_client: AuthenticatedClient,
         sample_task_name: str):
     task_name = sample_task_name
 
-    task_dict = { 'name': task_name }
+    task_dict = {'name': task_name}
 
     te = TaskExecution.from_dict({
         'task': task_dict, 'status': TaskExecutionStatus.MANUALLY_STARTED

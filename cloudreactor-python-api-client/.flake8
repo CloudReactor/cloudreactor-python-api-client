@@ -2,7 +2,7 @@
 # Code generated files shouldn't be subject to linting
 exclude = cloudreactor_python_api_client
 
-max-line-length = 88
+max-line-length = 120
 
 # We use 2 indents for continuation lines, so:
 # E126 continuation line over-indented for hanging indent
