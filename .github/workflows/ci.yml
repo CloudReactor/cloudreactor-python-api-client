@@ -64,7 +64,7 @@ jobs:
         run: poetry run pytest --cov=./ --cov-report=xml
         working-directory: ${{ env.working-directory }}
         env:
-          CLOUREACTOR_API_BASE_URL: ${{ secrets.CLOUDREACTOR_API_BASE_URL }}
+          CLOUDREACTOR_API_BASE_URL: ${{ secrets.CLOUDREACTOR_API_BASE_URL }}
           CLOUDREACTOR_API_KEY: ${{ secrets.CLOUDREACTOR_API_KEY }}
           CLOUDREACTOR_SAMPLE_RUN_ENVIRONMENT_NAME:  ${{ secrets.CLOUDREACTOR_SAMPLE_RUN_ENVIRONMENT_NAME }}
           CLOUDREACTOR_SAMPLE_TASK_NAME: aws-ecs-cloudreactor-deployer-sample_smoke_staging
