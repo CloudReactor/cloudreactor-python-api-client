@@ -28,7 +28,7 @@ include = ["CHANGELOG.md", "cloudreactor_python_api_client/py.typed"]
 "Bug Tracker" = "https://github.com/CloudReactor/cloudreactor-python-api-client/issues"
 
 [tool.poetry.dependencies]
-python = "^3.9"
+python = "^3.7"
 httpx = ">=0.15.4,<0.23.0"
 attrs = ">=21.3.0"
 python-dateutil = "^2.8.0"
