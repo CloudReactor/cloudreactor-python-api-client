@@ -11,8 +11,6 @@ def _get_kwargs(
     uuid: str,
     *,
     client: AuthenticatedClient,
-    form_data: Workflow,
-    multipart_data: Workflow,
     json_body: Workflow,
 ) -> Dict[str, Any]:
     url = "{}/workflows/{uuid}/".format(client.base_url, uuid=uuid)
@@ -20,9 +18,7 @@ def _get_kwargs(
     headers: Dict[str, str] = client.get_headers()
     cookies: Dict[str, Any] = client.get_cookies()
 
-    json_body.to_dict()
-
-    multipart_data.to_multipart()
+    json_json_body = json_body.to_dict()
 
     return {
         "method": "put",
@@ -30,7 +26,7 @@ def _get_kwargs(
         "headers": headers,
         "cookies": cookies,
         "timeout": client.get_timeout(),
-        "data": form_data.to_dict(),
+        "json": json_json_body,
     }
 
 
@@ -55,17 +51,11 @@ def sync_detailed(
     uuid: str,
     *,
     client: AuthenticatedClient,
-    form_data: Workflow,
-    multipart_data: Workflow,
     json_body: Workflow,
 ) -> Response[Workflow]:
     """
     Args:
         uuid (str):
-        multipart_data (Workflow): Workflows are Tasks arranged in a directed graph. Configured
-            Tasks
-            are held by WorkflowTaskInstances, and WorkflowTransitions connect
-            WorkflowTaskInstances together.
         json_body (Workflow): Workflows are Tasks arranged in a directed graph. Configured Tasks
             are held by WorkflowTaskInstances, and WorkflowTransitions connect
             WorkflowTaskInstances together.
@@ -77,8 +67,6 @@ def sync_detailed(
     kwargs = _get_kwargs(
         uuid=uuid,
         client=client,
-        form_data=form_data,
-        multipart_data=multipart_data,
         json_body=json_body,
     )
 
@@ -94,17 +82,11 @@ def sync(
     uuid: str,
     *,
     client: AuthenticatedClient,
-    form_data: Workflow,
-    multipart_data: Workflow,
     json_body: Workflow,
 ) -> Optional[Workflow]:
     """
     Args:
         uuid (str):
-        multipart_data (Workflow): Workflows are Tasks arranged in a directed graph. Configured
-            Tasks
-            are held by WorkflowTaskInstances, and WorkflowTransitions connect
-            WorkflowTaskInstances together.
         json_body (Workflow): Workflows are Tasks arranged in a directed graph. Configured Tasks
             are held by WorkflowTaskInstances, and WorkflowTransitions connect
             WorkflowTaskInstances together.
@@ -116,8 +98,6 @@ def sync(
     return sync_detailed(
         uuid=uuid,
         client=client,
-        form_data=form_data,
-        multipart_data=multipart_data,
         json_body=json_body,
     ).parsed
 
@@ -126,17 +106,11 @@ async def asyncio_detailed(
     uuid: str,
     *,
     client: AuthenticatedClient,
-    form_data: Workflow,
-    multipart_data: Workflow,
     json_body: Workflow,
 ) -> Response[Workflow]:
     """
     Args:
         uuid (str):
-        multipart_data (Workflow): Workflows are Tasks arranged in a directed graph. Configured
-            Tasks
-            are held by WorkflowTaskInstances, and WorkflowTransitions connect
-            WorkflowTaskInstances together.
         json_body (Workflow): Workflows are Tasks arranged in a directed graph. Configured Tasks
             are held by WorkflowTaskInstances, and WorkflowTransitions connect
             WorkflowTaskInstances together.
@@ -148,8 +122,6 @@ async def asyncio_detailed(
     kwargs = _get_kwargs(
         uuid=uuid,
         client=client,
-        form_data=form_data,
-        multipart_data=multipart_data,
         json_body=json_body,
     )
 
@@ -163,17 +135,11 @@ async def asyncio(
     uuid: str,
     *,
     client: AuthenticatedClient,
-    form_data: Workflow,
-    multipart_data: Workflow,
     json_body: Workflow,
 ) -> Optional[Workflow]:
     """
     Args:
         uuid (str):
-        multipart_data (Workflow): Workflows are Tasks arranged in a directed graph. Configured
-            Tasks
-            are held by WorkflowTaskInstances, and WorkflowTransitions connect
-            WorkflowTaskInstances together.
         json_body (Workflow): Workflows are Tasks arranged in a directed graph. Configured Tasks
             are held by WorkflowTaskInstances, and WorkflowTransitions connect
             WorkflowTaskInstances together.
@@ -186,8 +152,6 @@ async def asyncio(
         await asyncio_detailed(
             uuid=uuid,
             client=client,
-            form_data=form_data,
-            multipart_data=multipart_data,
             json_body=json_body,
         )
     ).parsed

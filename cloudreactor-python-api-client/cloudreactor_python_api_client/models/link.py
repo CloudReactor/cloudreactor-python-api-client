@@ -15,18 +15,18 @@ class Link:
         uuid (str):
         name (str):
         link_url_template (str):
-        link_url (str):
         icon_url (str):
         rank (int):
+        link_url (Union[Unset, str]):
         description (Union[Unset, str]):
     """
 
     uuid: str
     name: str
     link_url_template: str
-    link_url: str
     icon_url: str
     rank: int
+    link_url: Union[Unset, str] = UNSET
     description: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = attr.ib(init=False, factory=dict)
 
@@ -34,9 +34,9 @@ class Link:
         uuid = self.uuid
         name = self.name
         link_url_template = self.link_url_template
-        link_url = self.link_url
         icon_url = self.icon_url
         rank = self.rank
+        link_url = self.link_url
         description = self.description
 
         field_dict: Dict[str, Any] = {}
@@ -46,11 +46,12 @@ class Link:
                 "uuid": uuid,
                 "name": name,
                 "link_url_template": link_url_template,
-                "link_url": link_url,
                 "icon_url": icon_url,
                 "rank": rank,
             }
         )
+        if link_url is not UNSET:
+            field_dict["link_url"] = link_url
         if description is not UNSET:
             field_dict["description"] = description
 
@@ -65,11 +66,11 @@ class Link:
 
         link_url_template = d.pop("link_url_template")
 
-        link_url = d.pop("link_url")
-
         icon_url = d.pop("icon_url")
 
         rank = d.pop("rank")
+
+        link_url = d.pop("link_url", UNSET)
 
         description = d.pop("description", UNSET)
 
@@ -77,9 +78,9 @@ class Link:
             uuid=uuid,
             name=name,
             link_url_template=link_url_template,
-            link_url=link_url,
             icon_url=icon_url,
             rank=rank,
+            link_url=link_url,
             description=description,
         )
 

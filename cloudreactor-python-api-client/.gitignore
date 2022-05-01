@@ -10,6 +10,7 @@ dist/
 # Environments
 .env
 .venv
+.env.test.local
 
 # mypy
 .mypy_cache/

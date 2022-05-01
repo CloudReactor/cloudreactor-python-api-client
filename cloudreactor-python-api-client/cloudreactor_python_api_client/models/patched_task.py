@@ -1,6 +1,5 @@
 import datetime
-import json
-from typing import Any, Dict, List, Tuple, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 import attr
 from dateutil.parser import isoparse
@@ -55,8 +54,9 @@ class PatchedTask:
             execution_method_capability (Union[AwsEcsExecutionMethodCapability, UnknownExecutionMethodCapability, Unset]):
             alert_methods (Union[Unset, List[NameAndUuid]]):
             other_metadata (Union[Unset, None, PatchedTaskOtherMetadata]):
-            latest_task_execution (Union[Unset, TaskExecution]): A Task Execution is an execution / run instance of a Task.
-            current_service_info (Union[Unset, CurrentServiceInfo]):
+            latest_task_execution (Union[Unset, None, TaskExecution]): A Task Execution is an execution / run instance of a
+                Task.
+            current_service_info (Union[Unset, None, CurrentServiceInfo]):
             created_by_user (Union[Unset, str]): Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
             created_by_group (Union[Unset, Group]):
             was_auto_created (Union[Unset, None, bool]):
@@ -93,8 +93,8 @@ class PatchedTask:
     execution_method_capability: Union[AwsEcsExecutionMethodCapability, UnknownExecutionMethodCapability, Unset] = UNSET
     alert_methods: Union[Unset, List[NameAndUuid]] = UNSET
     other_metadata: Union[Unset, None, PatchedTaskOtherMetadata] = UNSET
-    latest_task_execution: Union[Unset, TaskExecution] = UNSET
-    current_service_info: Union[Unset, CurrentServiceInfo] = UNSET
+    latest_task_execution: Union[Unset, None, TaskExecution] = UNSET
+    current_service_info: Union[Unset, None, CurrentServiceInfo] = UNSET
     created_by_user: Union[Unset, str] = UNSET
     created_by_group: Union[Unset, Group] = UNSET
     was_auto_created: Union[Unset, None, bool] = UNSET
@@ -161,13 +161,13 @@ class PatchedTask:
         if not isinstance(self.other_metadata, Unset):
             other_metadata = self.other_metadata.to_dict() if self.other_metadata else None
 
-        latest_task_execution: Union[Unset, Dict[str, Any]] = UNSET
+        latest_task_execution: Union[Unset, None, Dict[str, Any]] = UNSET
         if not isinstance(self.latest_task_execution, Unset):
-            latest_task_execution = self.latest_task_execution.to_dict()
+            latest_task_execution = self.latest_task_execution.to_dict() if self.latest_task_execution else None
 
-        current_service_info: Union[Unset, Dict[str, Any]] = UNSET
+        current_service_info: Union[Unset, None, Dict[str, Any]] = UNSET
         if not isinstance(self.current_service_info, Unset):
-            current_service_info = self.current_service_info.to_dict()
+            current_service_info = self.current_service_info.to_dict() if self.current_service_info else None
 
         created_by_user = self.created_by_user
         created_by_group: Union[Unset, Dict[str, Any]] = UNSET
@@ -187,271 +187,6 @@ class PatchedTask:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if url is not UNSET:
-            field_dict["url"] = url
-        if uuid is not UNSET:
-            field_dict["uuid"] = uuid
-        if name is not UNSET:
-            field_dict["name"] = name
-        if description is not UNSET:
-            field_dict["description"] = description
-        if dashboard_url is not UNSET:
-            field_dict["dashboard_url"] = dashboard_url
-        if infrastructure_website_url is not UNSET:
-            field_dict["infrastructure_website_url"] = infrastructure_website_url
-        if max_manual_start_delay_before_alert_seconds is not UNSET:
-            field_dict["max_manual_start_delay_before_alert_seconds"] = max_manual_start_delay_before_alert_seconds
-        if max_manual_start_delay_before_abandonment_seconds is not UNSET:
-            field_dict[
-                "max_manual_start_delay_before_abandonment_seconds"
-            ] = max_manual_start_delay_before_abandonment_seconds
-        if heartbeat_interval_seconds is not UNSET:
-            field_dict["heartbeat_interval_seconds"] = heartbeat_interval_seconds
-        if max_heartbeat_lateness_before_alert_seconds is not UNSET:
-            field_dict["max_heartbeat_lateness_before_alert_seconds"] = max_heartbeat_lateness_before_alert_seconds
-        if max_heartbeat_lateness_before_abandonment_seconds is not UNSET:
-            field_dict[
-                "max_heartbeat_lateness_before_abandonment_seconds"
-            ] = max_heartbeat_lateness_before_abandonment_seconds
-        if schedule is not UNSET:
-            field_dict["schedule"] = schedule
-        if scheduled_instance_count is not UNSET:
-            field_dict["scheduled_instance_count"] = scheduled_instance_count
-        if is_service is not UNSET:
-            field_dict["is_service"] = is_service
-        if service_instance_count is not UNSET:
-            field_dict["service_instance_count"] = service_instance_count
-        if min_service_instance_count is not UNSET:
-            field_dict["min_service_instance_count"] = min_service_instance_count
-        if max_concurrency is not UNSET:
-            field_dict["max_concurrency"] = max_concurrency
-        if max_age_seconds is not UNSET:
-            field_dict["max_age_seconds"] = max_age_seconds
-        if default_max_retries is not UNSET:
-            field_dict["default_max_retries"] = default_max_retries
-        if project_url is not UNSET:
-            field_dict["project_url"] = project_url
-        if log_query is not UNSET:
-            field_dict["log_query"] = log_query
-        if logs_url is not UNSET:
-            field_dict["logs_url"] = logs_url
-        if links is not UNSET:
-            field_dict["links"] = links
-        if run_environment is not UNSET:
-            field_dict["run_environment"] = run_environment
-        if execution_method_capability is not UNSET:
-            field_dict["execution_method_capability"] = execution_method_capability
-        if alert_methods is not UNSET:
-            field_dict["alert_methods"] = alert_methods
-        if other_metadata is not UNSET:
-            field_dict["other_metadata"] = other_metadata
-        if latest_task_execution is not UNSET:
-            field_dict["latest_task_execution"] = latest_task_execution
-        if current_service_info is not UNSET:
-            field_dict["current_service_info"] = current_service_info
-        if created_by_user is not UNSET:
-            field_dict["created_by_user"] = created_by_user
-        if created_by_group is not UNSET:
-            field_dict["created_by_group"] = created_by_group
-        if was_auto_created is not UNSET:
-            field_dict["was_auto_created"] = was_auto_created
-        if passive is not UNSET:
-            field_dict["passive"] = passive
-        if enabled is not UNSET:
-            field_dict["enabled"] = enabled
-        if created_at is not UNSET:
-            field_dict["created_at"] = created_at
-        if updated_at is not UNSET:
-            field_dict["updated_at"] = updated_at
-
-        return field_dict
-
-    def to_multipart(self) -> Dict[str, Any]:
-        url = self.url if isinstance(self.url, Unset) else (None, str(self.url).encode(), "text/plain")
-        uuid = self.uuid if isinstance(self.uuid, Unset) else (None, str(self.uuid).encode(), "text/plain")
-        name = self.name if isinstance(self.name, Unset) else (None, str(self.name).encode(), "text/plain")
-        description = (
-            self.description
-            if isinstance(self.description, Unset)
-            else (None, str(self.description).encode(), "text/plain")
-        )
-        dashboard_url = (
-            self.dashboard_url
-            if isinstance(self.dashboard_url, Unset)
-            else (None, str(self.dashboard_url).encode(), "text/plain")
-        )
-        infrastructure_website_url = (
-            self.infrastructure_website_url
-            if isinstance(self.infrastructure_website_url, Unset)
-            else (None, str(self.infrastructure_website_url).encode(), "text/plain")
-        )
-        max_manual_start_delay_before_alert_seconds = (
-            self.max_manual_start_delay_before_alert_seconds
-            if isinstance(self.max_manual_start_delay_before_alert_seconds, Unset)
-            else (None, str(self.max_manual_start_delay_before_alert_seconds).encode(), "text/plain")
-        )
-        max_manual_start_delay_before_abandonment_seconds = (
-            self.max_manual_start_delay_before_abandonment_seconds
-            if isinstance(self.max_manual_start_delay_before_abandonment_seconds, Unset)
-            else (None, str(self.max_manual_start_delay_before_abandonment_seconds).encode(), "text/plain")
-        )
-        heartbeat_interval_seconds = (
-            self.heartbeat_interval_seconds
-            if isinstance(self.heartbeat_interval_seconds, Unset)
-            else (None, str(self.heartbeat_interval_seconds).encode(), "text/plain")
-        )
-        max_heartbeat_lateness_before_alert_seconds = (
-            self.max_heartbeat_lateness_before_alert_seconds
-            if isinstance(self.max_heartbeat_lateness_before_alert_seconds, Unset)
-            else (None, str(self.max_heartbeat_lateness_before_alert_seconds).encode(), "text/plain")
-        )
-        max_heartbeat_lateness_before_abandonment_seconds = (
-            self.max_heartbeat_lateness_before_abandonment_seconds
-            if isinstance(self.max_heartbeat_lateness_before_abandonment_seconds, Unset)
-            else (None, str(self.max_heartbeat_lateness_before_abandonment_seconds).encode(), "text/plain")
-        )
-        schedule = (
-            self.schedule if isinstance(self.schedule, Unset) else (None, str(self.schedule).encode(), "text/plain")
-        )
-        scheduled_instance_count = (
-            self.scheduled_instance_count
-            if isinstance(self.scheduled_instance_count, Unset)
-            else (None, str(self.scheduled_instance_count).encode(), "text/plain")
-        )
-        is_service = (
-            self.is_service
-            if isinstance(self.is_service, Unset)
-            else (None, str(self.is_service).encode(), "text/plain")
-        )
-        service_instance_count = (
-            self.service_instance_count
-            if isinstance(self.service_instance_count, Unset)
-            else (None, str(self.service_instance_count).encode(), "text/plain")
-        )
-        min_service_instance_count = (
-            self.min_service_instance_count
-            if isinstance(self.min_service_instance_count, Unset)
-            else (None, str(self.min_service_instance_count).encode(), "text/plain")
-        )
-        max_concurrency = (
-            self.max_concurrency
-            if isinstance(self.max_concurrency, Unset)
-            else (None, str(self.max_concurrency).encode(), "text/plain")
-        )
-        max_age_seconds = (
-            self.max_age_seconds
-            if isinstance(self.max_age_seconds, Unset)
-            else (None, str(self.max_age_seconds).encode(), "text/plain")
-        )
-        default_max_retries = (
-            self.default_max_retries
-            if isinstance(self.default_max_retries, Unset)
-            else (None, str(self.default_max_retries).encode(), "text/plain")
-        )
-        project_url = (
-            self.project_url
-            if isinstance(self.project_url, Unset)
-            else (None, str(self.project_url).encode(), "text/plain")
-        )
-        log_query = (
-            self.log_query if isinstance(self.log_query, Unset) else (None, str(self.log_query).encode(), "text/plain")
-        )
-        logs_url = (
-            self.logs_url if isinstance(self.logs_url, Unset) else (None, str(self.logs_url).encode(), "text/plain")
-        )
-        links: Union[Unset, Tuple[None, bytes, str]] = UNSET
-        if not isinstance(self.links, Unset):
-            _temp_links = []
-            for links_item_data in self.links:
-                links_item = links_item_data.to_dict()
-
-                _temp_links.append(links_item)
-            links = (None, json.dumps(_temp_links).encode(), "application/json")
-
-        run_environment: Union[Unset, Tuple[None, bytes, str]] = UNSET
-        if not isinstance(self.run_environment, Unset):
-            run_environment = (
-                (None, json.dumps(self.run_environment.to_dict()).encode(), "application/json")
-                if self.run_environment
-                else None
-            )
-
-        execution_method_capability: Union[Dict[str, Any], Unset]
-        if isinstance(self.execution_method_capability, Unset):
-            execution_method_capability = UNSET
-
-        elif isinstance(self.execution_method_capability, AwsEcsExecutionMethodCapability):
-            execution_method_capability = (
-                None,
-                json.dumps(self.execution_method_capability.to_dict()).encode(),
-                "application/json",
-            )
-
-        else:
-            execution_method_capability = (
-                None,
-                json.dumps(self.execution_method_capability.to_dict()).encode(),
-                "application/json",
-            )
-
-        alert_methods: Union[Unset, Tuple[None, bytes, str]] = UNSET
-        if not isinstance(self.alert_methods, Unset):
-            _temp_alert_methods = []
-            for alert_methods_item_data in self.alert_methods:
-                alert_methods_item = alert_methods_item_data.to_dict()
-
-                _temp_alert_methods.append(alert_methods_item)
-            alert_methods = (None, json.dumps(_temp_alert_methods).encode(), "application/json")
-
-        other_metadata: Union[Unset, Tuple[None, bytes, str]] = UNSET
-        if not isinstance(self.other_metadata, Unset):
-            other_metadata = (
-                (None, json.dumps(self.other_metadata.to_dict()).encode(), "application/json")
-                if self.other_metadata
-                else None
-            )
-
-        latest_task_execution: Union[Unset, Tuple[None, bytes, str]] = UNSET
-        if not isinstance(self.latest_task_execution, Unset):
-            latest_task_execution = (
-                None,
-                json.dumps(self.latest_task_execution.to_dict()).encode(),
-                "application/json",
-            )
-
-        current_service_info: Union[Unset, Tuple[None, bytes, str]] = UNSET
-        if not isinstance(self.current_service_info, Unset):
-            current_service_info = (None, json.dumps(self.current_service_info.to_dict()).encode(), "application/json")
-
-        created_by_user = (
-            self.created_by_user
-            if isinstance(self.created_by_user, Unset)
-            else (None, str(self.created_by_user).encode(), "text/plain")
-        )
-        created_by_group: Union[Unset, Tuple[None, bytes, str]] = UNSET
-        if not isinstance(self.created_by_group, Unset):
-            created_by_group = (None, json.dumps(self.created_by_group.to_dict()).encode(), "application/json")
-
-        was_auto_created = (
-            self.was_auto_created
-            if isinstance(self.was_auto_created, Unset)
-            else (None, str(self.was_auto_created).encode(), "text/plain")
-        )
-        passive = self.passive if isinstance(self.passive, Unset) else (None, str(self.passive).encode(), "text/plain")
-        enabled = self.enabled if isinstance(self.enabled, Unset) else (None, str(self.enabled).encode(), "text/plain")
-        created_at: Union[Unset, bytes] = UNSET
-        if not isinstance(self.created_at, Unset):
-            created_at = self.created_at.isoformat().encode()
-
-        updated_at: Union[Unset, bytes] = UNSET
-        if not isinstance(self.updated_at, Unset):
-            updated_at = self.updated_at.isoformat().encode()
-
-        field_dict: Dict[str, Any] = {}
-        field_dict.update(
-            {key: (None, str(value).encode(), "text/plain") for key, value in self.additional_properties.items()}
-        )
         field_dict.update({})
         if url is not UNSET:
             field_dict["url"] = url
@@ -637,15 +372,19 @@ class PatchedTask:
             other_metadata = PatchedTaskOtherMetadata.from_dict(_other_metadata)
 
         _latest_task_execution = d.pop("latest_task_execution", UNSET)
-        latest_task_execution: Union[Unset, TaskExecution]
-        if isinstance(_latest_task_execution, Unset):
+        latest_task_execution: Union[Unset, None, TaskExecution]
+        if _latest_task_execution is None:
+            latest_task_execution = None
+        elif isinstance(_latest_task_execution, Unset):
             latest_task_execution = UNSET
         else:
             latest_task_execution = TaskExecution.from_dict(_latest_task_execution)
 
         _current_service_info = d.pop("current_service_info", UNSET)
-        current_service_info: Union[Unset, CurrentServiceInfo]
-        if isinstance(_current_service_info, Unset):
+        current_service_info: Union[Unset, None, CurrentServiceInfo]
+        if _current_service_info is None:
+            current_service_info = None
+        elif isinstance(_current_service_info, Unset):
             current_service_info = UNSET
         else:
             current_service_info = CurrentServiceInfo.from_dict(_current_service_info)

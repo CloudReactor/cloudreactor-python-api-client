@@ -12,8 +12,6 @@ def _get_kwargs(
     uuid: str,
     *,
     client: AuthenticatedClient,
-    form_data: PatchedWorkflowExecution,
-    multipart_data: PatchedWorkflowExecution,
     json_body: PatchedWorkflowExecution,
 ) -> Dict[str, Any]:
     url = "{}/workflow_executions/{uuid}/".format(client.base_url, uuid=uuid)
@@ -21,9 +19,7 @@ def _get_kwargs(
     headers: Dict[str, str] = client.get_headers()
     cookies: Dict[str, Any] = client.get_cookies()
 
-    json_body.to_dict()
-
-    multipart_data.to_multipart()
+    json_json_body = json_body.to_dict()
 
     return {
         "method": "patch",
@@ -31,7 +27,7 @@ def _get_kwargs(
         "headers": headers,
         "cookies": cookies,
         "timeout": client.get_timeout(),
-        "data": form_data.to_dict(),
+        "json": json_json_body,
     }
 
 
@@ -56,15 +52,13 @@ def sync_detailed(
     uuid: str,
     *,
     client: AuthenticatedClient,
-    form_data: PatchedWorkflowExecution,
-    multipart_data: PatchedWorkflowExecution,
     json_body: PatchedWorkflowExecution,
 ) -> Response[WorkflowExecution]:
     """
     Args:
         uuid (str):
-        multipart_data (PatchedWorkflowExecution):
-        json_body (PatchedWorkflowExecution):
+        json_body (PatchedWorkflowExecution): A WorkflowExecution holds data on a specific
+            execution (run) of a Workflow.
 
     Returns:
         Response[WorkflowExecution]
@@ -73,8 +67,6 @@ def sync_detailed(
     kwargs = _get_kwargs(
         uuid=uuid,
         client=client,
-        form_data=form_data,
-        multipart_data=multipart_data,
         json_body=json_body,
     )
 
@@ -90,15 +82,13 @@ def sync(
     uuid: str,
     *,
     client: AuthenticatedClient,
-    form_data: PatchedWorkflowExecution,
-    multipart_data: PatchedWorkflowExecution,
     json_body: PatchedWorkflowExecution,
 ) -> Optional[WorkflowExecution]:
     """
     Args:
         uuid (str):
-        multipart_data (PatchedWorkflowExecution):
-        json_body (PatchedWorkflowExecution):
+        json_body (PatchedWorkflowExecution): A WorkflowExecution holds data on a specific
+            execution (run) of a Workflow.
 
     Returns:
         Response[WorkflowExecution]
@@ -107,8 +97,6 @@ def sync(
     return sync_detailed(
         uuid=uuid,
         client=client,
-        form_data=form_data,
-        multipart_data=multipart_data,
         json_body=json_body,
     ).parsed
 
@@ -117,15 +105,13 @@ async def asyncio_detailed(
     uuid: str,
     *,
     client: AuthenticatedClient,
-    form_data: PatchedWorkflowExecution,
-    multipart_data: PatchedWorkflowExecution,
     json_body: PatchedWorkflowExecution,
 ) -> Response[WorkflowExecution]:
     """
     Args:
         uuid (str):
-        multipart_data (PatchedWorkflowExecution):
-        json_body (PatchedWorkflowExecution):
+        json_body (PatchedWorkflowExecution): A WorkflowExecution holds data on a specific
+            execution (run) of a Workflow.
 
     Returns:
         Response[WorkflowExecution]
@@ -134,8 +120,6 @@ async def asyncio_detailed(
     kwargs = _get_kwargs(
         uuid=uuid,
         client=client,
-        form_data=form_data,
-        multipart_data=multipart_data,
         json_body=json_body,
     )
 
@@ -149,15 +133,13 @@ async def asyncio(
     uuid: str,
     *,
     client: AuthenticatedClient,
-    form_data: PatchedWorkflowExecution,
-    multipart_data: PatchedWorkflowExecution,
     json_body: PatchedWorkflowExecution,
 ) -> Optional[WorkflowExecution]:
     """
     Args:
         uuid (str):
-        multipart_data (PatchedWorkflowExecution):
-        json_body (PatchedWorkflowExecution):
+        json_body (PatchedWorkflowExecution): A WorkflowExecution holds data on a specific
+            execution (run) of a Workflow.
 
     Returns:
         Response[WorkflowExecution]
@@ -167,8 +149,6 @@ async def asyncio(
         await asyncio_detailed(
             uuid=uuid,
             client=client,
-            form_data=form_data,
-            multipart_data=multipart_data,
             json_body=json_body,
         )
     ).parsed

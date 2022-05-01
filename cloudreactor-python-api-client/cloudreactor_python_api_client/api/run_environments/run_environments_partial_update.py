@@ -12,8 +12,6 @@ def _get_kwargs(
     uuid: str,
     *,
     client: AuthenticatedClient,
-    form_data: PatchedRunEnvironment,
-    multipart_data: PatchedRunEnvironment,
     json_body: PatchedRunEnvironment,
 ) -> Dict[str, Any]:
     url = "{}/run_environments/{uuid}/".format(client.base_url, uuid=uuid)
@@ -21,9 +19,7 @@ def _get_kwargs(
     headers: Dict[str, str] = client.get_headers()
     cookies: Dict[str, Any] = client.get_cookies()
 
-    json_body.to_dict()
-
-    multipart_data.to_multipart()
+    json_json_body = json_body.to_dict()
 
     return {
         "method": "patch",
@@ -31,7 +27,7 @@ def _get_kwargs(
         "headers": headers,
         "cookies": cookies,
         "timeout": client.get_timeout(),
-        "data": form_data.to_dict(),
+        "json": json_json_body,
     }
 
 
@@ -56,19 +52,11 @@ def sync_detailed(
     uuid: str,
     *,
     client: AuthenticatedClient,
-    form_data: PatchedRunEnvironment,
-    multipart_data: PatchedRunEnvironment,
     json_body: PatchedRunEnvironment,
 ) -> Response[RunEnvironment]:
     """
     Args:
         uuid (str):
-        multipart_data (PatchedRunEnvironment): RunEnvironments contain common settings for
-            running a set of
-            related Tasks. Usually RunEnvironments group Tasks in the same
-            deployment environment (e.g. staging or production).
-            Task and Workflows belong to a RunEnvironment but can override
-            the RunEnvironment's settings.
         json_body (PatchedRunEnvironment): RunEnvironments contain common settings for running a
             set of
             related Tasks. Usually RunEnvironments group Tasks in the same
@@ -83,8 +71,6 @@ def sync_detailed(
     kwargs = _get_kwargs(
         uuid=uuid,
         client=client,
-        form_data=form_data,
-        multipart_data=multipart_data,
         json_body=json_body,
     )
 
@@ -100,19 +86,11 @@ def sync(
     uuid: str,
     *,
     client: AuthenticatedClient,
-    form_data: PatchedRunEnvironment,
-    multipart_data: PatchedRunEnvironment,
     json_body: PatchedRunEnvironment,
 ) -> Optional[RunEnvironment]:
     """
     Args:
         uuid (str):
-        multipart_data (PatchedRunEnvironment): RunEnvironments contain common settings for
-            running a set of
-            related Tasks. Usually RunEnvironments group Tasks in the same
-            deployment environment (e.g. staging or production).
-            Task and Workflows belong to a RunEnvironment but can override
-            the RunEnvironment's settings.
         json_body (PatchedRunEnvironment): RunEnvironments contain common settings for running a
             set of
             related Tasks. Usually RunEnvironments group Tasks in the same
@@ -127,8 +105,6 @@ def sync(
     return sync_detailed(
         uuid=uuid,
         client=client,
-        form_data=form_data,
-        multipart_data=multipart_data,
         json_body=json_body,
     ).parsed
 
@@ -137,19 +113,11 @@ async def asyncio_detailed(
     uuid: str,
     *,
     client: AuthenticatedClient,
-    form_data: PatchedRunEnvironment,
-    multipart_data: PatchedRunEnvironment,
     json_body: PatchedRunEnvironment,
 ) -> Response[RunEnvironment]:
     """
     Args:
         uuid (str):
-        multipart_data (PatchedRunEnvironment): RunEnvironments contain common settings for
-            running a set of
-            related Tasks. Usually RunEnvironments group Tasks in the same
-            deployment environment (e.g. staging or production).
-            Task and Workflows belong to a RunEnvironment but can override
-            the RunEnvironment's settings.
         json_body (PatchedRunEnvironment): RunEnvironments contain common settings for running a
             set of
             related Tasks. Usually RunEnvironments group Tasks in the same
@@ -164,8 +132,6 @@ async def asyncio_detailed(
     kwargs = _get_kwargs(
         uuid=uuid,
         client=client,
-        form_data=form_data,
-        multipart_data=multipart_data,
         json_body=json_body,
     )
 
@@ -179,19 +145,11 @@ async def asyncio(
     uuid: str,
     *,
     client: AuthenticatedClient,
-    form_data: PatchedRunEnvironment,
-    multipart_data: PatchedRunEnvironment,
     json_body: PatchedRunEnvironment,
 ) -> Optional[RunEnvironment]:
     """
     Args:
         uuid (str):
-        multipart_data (PatchedRunEnvironment): RunEnvironments contain common settings for
-            running a set of
-            related Tasks. Usually RunEnvironments group Tasks in the same
-            deployment environment (e.g. staging or production).
-            Task and Workflows belong to a RunEnvironment but can override
-            the RunEnvironment's settings.
         json_body (PatchedRunEnvironment): RunEnvironments contain common settings for running a
             set of
             related Tasks. Usually RunEnvironments group Tasks in the same
@@ -207,8 +165,6 @@ async def asyncio(
         await asyncio_detailed(
             uuid=uuid,
             client=client,
-            form_data=form_data,
-            multipart_data=multipart_data,
             json_body=json_body,
         )
     ).parsed

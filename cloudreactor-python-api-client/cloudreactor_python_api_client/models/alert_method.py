@@ -1,6 +1,5 @@
 import datetime
-import json
-from typing import Any, Dict, List, Tuple, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 import attr
 from dateutil.parser import isoparse
@@ -21,66 +20,61 @@ class AlertMethod:
     conditions are satisfied.
 
         Attributes:
-            url (str):
-            uuid (str):
             name (str):
-            dashboard_url (str):
-            method_details (AlertMethodMethodDetails):
-            created_by_user (str): Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
-            created_by_group (Group):
-            created_at (datetime.datetime):
-            updated_at (datetime.datetime):
+            url (Union[Unset, str]):
+            uuid (Union[Unset, str]):
             description (Union[Unset, str]):
+            dashboard_url (Union[Unset, str]):
             enabled (Union[Unset, bool]):
+            method_details (Union[Unset, AlertMethodMethodDetails]):
             notify_on_success (Union[Unset, bool]):
             notify_on_failure (Union[Unset, bool]):
             notify_on_timeout (Union[Unset, bool]):
             error_severity_on_missing_execution (Union[Unset, NotificationSeverity]):
             error_severity_on_missing_heartbeat (Union[Unset, NotificationSeverity]):
             error_severity_on_service_down (Union[Unset, NotificationSeverity]):
+            created_by_user (Union[Unset, str]): Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
+            created_by_group (Union[Unset, Group]):
             run_environment (Union[Unset, None, NameAndUuid]): Identifies an entity in three ways: 1. UUID; 2. Name; and 3.
                 URL.
                 When used to indentify an entity in a request method body, only one of
                 uuid and name needs to be specified. If both are present, they must
                 refer to the same entity or else the response will be a 400 error.
+            created_at (Union[Unset, datetime.datetime]):
+            updated_at (Union[Unset, datetime.datetime]):
     """
 
-    url: str
-    uuid: str
     name: str
-    dashboard_url: str
-    method_details: AlertMethodMethodDetails
-    created_by_user: str
-    created_by_group: Group
-    created_at: datetime.datetime
-    updated_at: datetime.datetime
+    url: Union[Unset, str] = UNSET
+    uuid: Union[Unset, str] = UNSET
     description: Union[Unset, str] = UNSET
+    dashboard_url: Union[Unset, str] = UNSET
     enabled: Union[Unset, bool] = UNSET
+    method_details: Union[Unset, AlertMethodMethodDetails] = UNSET
     notify_on_success: Union[Unset, bool] = UNSET
     notify_on_failure: Union[Unset, bool] = UNSET
     notify_on_timeout: Union[Unset, bool] = UNSET
     error_severity_on_missing_execution: Union[Unset, NotificationSeverity] = UNSET
     error_severity_on_missing_heartbeat: Union[Unset, NotificationSeverity] = UNSET
     error_severity_on_service_down: Union[Unset, NotificationSeverity] = UNSET
+    created_by_user: Union[Unset, str] = UNSET
+    created_by_group: Union[Unset, Group] = UNSET
     run_environment: Union[Unset, None, NameAndUuid] = UNSET
+    created_at: Union[Unset, datetime.datetime] = UNSET
+    updated_at: Union[Unset, datetime.datetime] = UNSET
     additional_properties: Dict[str, Any] = attr.ib(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
+        name = self.name
         url = self.url
         uuid = self.uuid
-        name = self.name
-        dashboard_url = self.dashboard_url
-        method_details = self.method_details.to_dict()
-
-        created_by_user = self.created_by_user
-        created_by_group = self.created_by_group.to_dict()
-
-        created_at = self.created_at.isoformat()
-
-        updated_at = self.updated_at.isoformat()
-
         description = self.description
+        dashboard_url = self.dashboard_url
         enabled = self.enabled
+        method_details: Union[Unset, Dict[str, Any]] = UNSET
+        if not isinstance(self.method_details, Unset):
+            method_details = self.method_details.to_dict()
+
         notify_on_success = self.notify_on_success
         notify_on_failure = self.notify_on_failure
         notify_on_timeout = self.notify_on_timeout
@@ -96,29 +90,42 @@ class AlertMethod:
         if not isinstance(self.error_severity_on_service_down, Unset):
             error_severity_on_service_down = self.error_severity_on_service_down.value
 
+        created_by_user = self.created_by_user
+        created_by_group: Union[Unset, Dict[str, Any]] = UNSET
+        if not isinstance(self.created_by_group, Unset):
+            created_by_group = self.created_by_group.to_dict()
+
         run_environment: Union[Unset, None, Dict[str, Any]] = UNSET
         if not isinstance(self.run_environment, Unset):
             run_environment = self.run_environment.to_dict() if self.run_environment else None
+
+        created_at: Union[Unset, str] = UNSET
+        if not isinstance(self.created_at, Unset):
+            created_at = self.created_at.isoformat()
+
+        updated_at: Union[Unset, str] = UNSET
+        if not isinstance(self.updated_at, Unset):
+            updated_at = self.updated_at.isoformat()
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "url": url,
-                "uuid": uuid,
                 "name": name,
-                "dashboard_url": dashboard_url,
-                "method_details": method_details,
-                "created_by_user": created_by_user,
-                "created_by_group": created_by_group,
-                "created_at": created_at,
-                "updated_at": updated_at,
             }
         )
+        if url is not UNSET:
+            field_dict["url"] = url
+        if uuid is not UNSET:
+            field_dict["uuid"] = uuid
         if description is not UNSET:
             field_dict["description"] = description
+        if dashboard_url is not UNSET:
+            field_dict["dashboard_url"] = dashboard_url
         if enabled is not UNSET:
             field_dict["enabled"] = enabled
+        if method_details is not UNSET:
+            field_dict["method_details"] = method_details
         if notify_on_success is not UNSET:
             field_dict["notify_on_success"] = notify_on_success
         if notify_on_failure is not UNSET:
@@ -131,148 +138,40 @@ class AlertMethod:
             field_dict["error_severity_on_missing_heartbeat"] = error_severity_on_missing_heartbeat
         if error_severity_on_service_down is not UNSET:
             field_dict["error_severity_on_service_down"] = error_severity_on_service_down
+        if created_by_user is not UNSET:
+            field_dict["created_by_user"] = created_by_user
+        if created_by_group is not UNSET:
+            field_dict["created_by_group"] = created_by_group
         if run_environment is not UNSET:
             field_dict["run_environment"] = run_environment
-
-        return field_dict
-
-    def to_multipart(self) -> Dict[str, Any]:
-        url = self.url if isinstance(self.url, Unset) else (None, str(self.url).encode(), "text/plain")
-        uuid = self.uuid if isinstance(self.uuid, Unset) else (None, str(self.uuid).encode(), "text/plain")
-        name = self.name if isinstance(self.name, Unset) else (None, str(self.name).encode(), "text/plain")
-        dashboard_url = (
-            self.dashboard_url
-            if isinstance(self.dashboard_url, Unset)
-            else (None, str(self.dashboard_url).encode(), "text/plain")
-        )
-        method_details = (None, json.dumps(self.method_details.to_dict()).encode(), "application/json")
-
-        created_by_user = (
-            self.created_by_user
-            if isinstance(self.created_by_user, Unset)
-            else (None, str(self.created_by_user).encode(), "text/plain")
-        )
-        created_by_group = (None, json.dumps(self.created_by_group.to_dict()).encode(), "application/json")
-
-        created_at = self.created_at.isoformat().encode()
-
-        updated_at = self.updated_at.isoformat().encode()
-
-        description = (
-            self.description
-            if isinstance(self.description, Unset)
-            else (None, str(self.description).encode(), "text/plain")
-        )
-        enabled = self.enabled if isinstance(self.enabled, Unset) else (None, str(self.enabled).encode(), "text/plain")
-        notify_on_success = (
-            self.notify_on_success
-            if isinstance(self.notify_on_success, Unset)
-            else (None, str(self.notify_on_success).encode(), "text/plain")
-        )
-        notify_on_failure = (
-            self.notify_on_failure
-            if isinstance(self.notify_on_failure, Unset)
-            else (None, str(self.notify_on_failure).encode(), "text/plain")
-        )
-        notify_on_timeout = (
-            self.notify_on_timeout
-            if isinstance(self.notify_on_timeout, Unset)
-            else (None, str(self.notify_on_timeout).encode(), "text/plain")
-        )
-        error_severity_on_missing_execution: Union[Unset, Tuple[None, bytes, str]] = UNSET
-        if not isinstance(self.error_severity_on_missing_execution, Unset):
-            error_severity_on_missing_execution = (
-                None,
-                str(self.error_severity_on_missing_execution.value).encode(),
-                "text/plain",
-            )
-
-        error_severity_on_missing_heartbeat: Union[Unset, Tuple[None, bytes, str]] = UNSET
-        if not isinstance(self.error_severity_on_missing_heartbeat, Unset):
-            error_severity_on_missing_heartbeat = (
-                None,
-                str(self.error_severity_on_missing_heartbeat.value).encode(),
-                "text/plain",
-            )
-
-        error_severity_on_service_down: Union[Unset, Tuple[None, bytes, str]] = UNSET
-        if not isinstance(self.error_severity_on_service_down, Unset):
-            error_severity_on_service_down = (
-                None,
-                str(self.error_severity_on_service_down.value).encode(),
-                "text/plain",
-            )
-
-        run_environment: Union[Unset, Tuple[None, bytes, str]] = UNSET
-        if not isinstance(self.run_environment, Unset):
-            run_environment = (
-                (None, json.dumps(self.run_environment.to_dict()).encode(), "application/json")
-                if self.run_environment
-                else None
-            )
-
-        field_dict: Dict[str, Any] = {}
-        field_dict.update(
-            {key: (None, str(value).encode(), "text/plain") for key, value in self.additional_properties.items()}
-        )
-        field_dict.update(
-            {
-                "url": url,
-                "uuid": uuid,
-                "name": name,
-                "dashboard_url": dashboard_url,
-                "method_details": method_details,
-                "created_by_user": created_by_user,
-                "created_by_group": created_by_group,
-                "created_at": created_at,
-                "updated_at": updated_at,
-            }
-        )
-        if description is not UNSET:
-            field_dict["description"] = description
-        if enabled is not UNSET:
-            field_dict["enabled"] = enabled
-        if notify_on_success is not UNSET:
-            field_dict["notify_on_success"] = notify_on_success
-        if notify_on_failure is not UNSET:
-            field_dict["notify_on_failure"] = notify_on_failure
-        if notify_on_timeout is not UNSET:
-            field_dict["notify_on_timeout"] = notify_on_timeout
-        if error_severity_on_missing_execution is not UNSET:
-            field_dict["error_severity_on_missing_execution"] = error_severity_on_missing_execution
-        if error_severity_on_missing_heartbeat is not UNSET:
-            field_dict["error_severity_on_missing_heartbeat"] = error_severity_on_missing_heartbeat
-        if error_severity_on_service_down is not UNSET:
-            field_dict["error_severity_on_service_down"] = error_severity_on_service_down
-        if run_environment is not UNSET:
-            field_dict["run_environment"] = run_environment
+        if created_at is not UNSET:
+            field_dict["created_at"] = created_at
+        if updated_at is not UNSET:
+            field_dict["updated_at"] = updated_at
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        url = d.pop("url")
-
-        uuid = d.pop("uuid")
-
         name = d.pop("name")
 
-        dashboard_url = d.pop("dashboard_url")
+        url = d.pop("url", UNSET)
 
-        method_details = AlertMethodMethodDetails.from_dict(d.pop("method_details"))
-
-        created_by_user = d.pop("created_by_user")
-
-        created_by_group = Group.from_dict(d.pop("created_by_group"))
-
-        created_at = isoparse(d.pop("created_at"))
-
-        updated_at = isoparse(d.pop("updated_at"))
+        uuid = d.pop("uuid", UNSET)
 
         description = d.pop("description", UNSET)
 
+        dashboard_url = d.pop("dashboard_url", UNSET)
+
         enabled = d.pop("enabled", UNSET)
+
+        _method_details = d.pop("method_details", UNSET)
+        method_details: Union[Unset, AlertMethodMethodDetails]
+        if isinstance(_method_details, Unset):
+            method_details = UNSET
+        else:
+            method_details = AlertMethodMethodDetails.from_dict(_method_details)
 
         notify_on_success = d.pop("notify_on_success", UNSET)
 
@@ -301,6 +200,15 @@ class AlertMethod:
         else:
             error_severity_on_service_down = NotificationSeverity(_error_severity_on_service_down)
 
+        created_by_user = d.pop("created_by_user", UNSET)
+
+        _created_by_group = d.pop("created_by_group", UNSET)
+        created_by_group: Union[Unset, Group]
+        if isinstance(_created_by_group, Unset):
+            created_by_group = UNSET
+        else:
+            created_by_group = Group.from_dict(_created_by_group)
+
         _run_environment = d.pop("run_environment", UNSET)
         run_environment: Union[Unset, None, NameAndUuid]
         if _run_environment is None:
@@ -310,25 +218,39 @@ class AlertMethod:
         else:
             run_environment = NameAndUuid.from_dict(_run_environment)
 
+        _created_at = d.pop("created_at", UNSET)
+        created_at: Union[Unset, datetime.datetime]
+        if isinstance(_created_at, Unset):
+            created_at = UNSET
+        else:
+            created_at = isoparse(_created_at)
+
+        _updated_at = d.pop("updated_at", UNSET)
+        updated_at: Union[Unset, datetime.datetime]
+        if isinstance(_updated_at, Unset):
+            updated_at = UNSET
+        else:
+            updated_at = isoparse(_updated_at)
+
         alert_method = cls(
+            name=name,
             url=url,
             uuid=uuid,
-            name=name,
-            dashboard_url=dashboard_url,
-            method_details=method_details,
-            created_by_user=created_by_user,
-            created_by_group=created_by_group,
-            created_at=created_at,
-            updated_at=updated_at,
             description=description,
+            dashboard_url=dashboard_url,
             enabled=enabled,
+            method_details=method_details,
             notify_on_success=notify_on_success,
             notify_on_failure=notify_on_failure,
             notify_on_timeout=notify_on_timeout,
             error_severity_on_missing_execution=error_severity_on_missing_execution,
             error_severity_on_missing_heartbeat=error_severity_on_missing_heartbeat,
             error_severity_on_service_down=error_severity_on_service_down,
+            created_by_user=created_by_user,
+            created_by_group=created_by_group,
             run_environment=run_environment,
+            created_at=created_at,
+            updated_at=updated_at,
         )
 
         alert_method.additional_properties = d

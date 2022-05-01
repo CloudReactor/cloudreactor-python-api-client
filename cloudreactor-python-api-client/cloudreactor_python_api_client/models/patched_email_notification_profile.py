@@ -1,6 +1,5 @@
 import datetime
-import json
-from typing import Any, Dict, List, Tuple, Type, TypeVar, Union, cast
+from typing import Any, Dict, List, Type, TypeVar, Union, cast
 
 import attr
 from dateutil.parser import isoparse
@@ -104,118 +103,6 @@ class PatchedEmailNotificationProfile:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if url is not UNSET:
-            field_dict["url"] = url
-        if uuid is not UNSET:
-            field_dict["uuid"] = uuid
-        if name is not UNSET:
-            field_dict["name"] = name
-        if description is not UNSET:
-            field_dict["description"] = description
-        if dashboard_url is not UNSET:
-            field_dict["dashboard_url"] = dashboard_url
-        if created_by_user is not UNSET:
-            field_dict["created_by_user"] = created_by_user
-        if created_by_group is not UNSET:
-            field_dict["created_by_group"] = created_by_group
-        if run_environment is not UNSET:
-            field_dict["run_environment"] = run_environment
-        if created_at is not UNSET:
-            field_dict["created_at"] = created_at
-        if updated_at is not UNSET:
-            field_dict["updated_at"] = updated_at
-        if to_addresses is not UNSET:
-            field_dict["to_addresses"] = to_addresses
-        if cc_addresses is not UNSET:
-            field_dict["cc_addresses"] = cc_addresses
-        if bcc_addresses is not UNSET:
-            field_dict["bcc_addresses"] = bcc_addresses
-        if subject_template is not UNSET:
-            field_dict["subject_template"] = subject_template
-        if body_template is not UNSET:
-            field_dict["body_template"] = body_template
-
-        return field_dict
-
-    def to_multipart(self) -> Dict[str, Any]:
-        url = self.url if isinstance(self.url, Unset) else (None, str(self.url).encode(), "text/plain")
-        uuid = self.uuid if isinstance(self.uuid, Unset) else (None, str(self.uuid).encode(), "text/plain")
-        name = self.name if isinstance(self.name, Unset) else (None, str(self.name).encode(), "text/plain")
-        description = (
-            self.description
-            if isinstance(self.description, Unset)
-            else (None, str(self.description).encode(), "text/plain")
-        )
-        dashboard_url = (
-            self.dashboard_url
-            if isinstance(self.dashboard_url, Unset)
-            else (None, str(self.dashboard_url).encode(), "text/plain")
-        )
-        created_by_user = (
-            self.created_by_user
-            if isinstance(self.created_by_user, Unset)
-            else (None, str(self.created_by_user).encode(), "text/plain")
-        )
-        created_by_group: Union[Unset, Tuple[None, bytes, str]] = UNSET
-        if not isinstance(self.created_by_group, Unset):
-            created_by_group = (None, json.dumps(self.created_by_group.to_dict()).encode(), "application/json")
-
-        run_environment: Union[Unset, Tuple[None, bytes, str]] = UNSET
-        if not isinstance(self.run_environment, Unset):
-            run_environment = (
-                (None, json.dumps(self.run_environment.to_dict()).encode(), "application/json")
-                if self.run_environment
-                else None
-            )
-
-        created_at: Union[Unset, bytes] = UNSET
-        if not isinstance(self.created_at, Unset):
-            created_at = self.created_at.isoformat().encode()
-
-        updated_at: Union[Unset, bytes] = UNSET
-        if not isinstance(self.updated_at, Unset):
-            updated_at = self.updated_at.isoformat().encode()
-
-        to_addresses: Union[Unset, Tuple[None, bytes, str]] = UNSET
-        if not isinstance(self.to_addresses, Unset):
-            if self.to_addresses is None:
-                to_addresses = None
-            else:
-                _temp_to_addresses = self.to_addresses
-                to_addresses = (None, json.dumps(_temp_to_addresses).encode(), "application/json")
-
-        cc_addresses: Union[Unset, Tuple[None, bytes, str]] = UNSET
-        if not isinstance(self.cc_addresses, Unset):
-            if self.cc_addresses is None:
-                cc_addresses = None
-            else:
-                _temp_cc_addresses = self.cc_addresses
-                cc_addresses = (None, json.dumps(_temp_cc_addresses).encode(), "application/json")
-
-        bcc_addresses: Union[Unset, Tuple[None, bytes, str]] = UNSET
-        if not isinstance(self.bcc_addresses, Unset):
-            if self.bcc_addresses is None:
-                bcc_addresses = None
-            else:
-                _temp_bcc_addresses = self.bcc_addresses
-                bcc_addresses = (None, json.dumps(_temp_bcc_addresses).encode(), "application/json")
-
-        subject_template = (
-            self.subject_template
-            if isinstance(self.subject_template, Unset)
-            else (None, str(self.subject_template).encode(), "text/plain")
-        )
-        body_template = (
-            self.body_template
-            if isinstance(self.body_template, Unset)
-            else (None, str(self.body_template).encode(), "text/plain")
-        )
-
-        field_dict: Dict[str, Any] = {}
-        field_dict.update(
-            {key: (None, str(value).encode(), "text/plain") for key, value in self.additional_properties.items()}
-        )
         field_dict.update({})
         if url is not UNSET:
             field_dict["url"] = url

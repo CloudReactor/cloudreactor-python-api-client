@@ -1,8 +1,10 @@
 import datetime
-from typing import Any, Dict, List, Optional, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 import attr
 from dateutil.parser import isoparse
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="CurrentServiceInfo")
 
@@ -11,50 +13,55 @@ T = TypeVar("T", bound="CurrentServiceInfo")
 class CurrentServiceInfo:
     """
     Attributes:
-        type (str):
-        service_arn (str):
-        service_infrastructure_website_url (Optional[str]):
-        service_arn_updated_at (Optional[datetime.datetime]):
+        type (Union[Unset, str]):
+        service_arn (Union[Unset, None, str]):
+        service_infrastructure_website_url (Union[Unset, None, str]):
+        service_arn_updated_at (Union[Unset, None, datetime.datetime]):
     """
 
-    type: str
-    service_arn: str
-    service_infrastructure_website_url: Optional[str]
-    service_arn_updated_at: Optional[datetime.datetime]
+    type: Union[Unset, str] = UNSET
+    service_arn: Union[Unset, None, str] = UNSET
+    service_infrastructure_website_url: Union[Unset, None, str] = UNSET
+    service_arn_updated_at: Union[Unset, None, datetime.datetime] = UNSET
     additional_properties: Dict[str, Any] = attr.ib(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         type = self.type
         service_arn = self.service_arn
         service_infrastructure_website_url = self.service_infrastructure_website_url
-        service_arn_updated_at = self.service_arn_updated_at.isoformat() if self.service_arn_updated_at else None
+        service_arn_updated_at: Union[Unset, None, str] = UNSET
+        if not isinstance(self.service_arn_updated_at, Unset):
+            service_arn_updated_at = self.service_arn_updated_at.isoformat() if self.service_arn_updated_at else None
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "type": type,
-                "service_arn": service_arn,
-                "service_infrastructure_website_url": service_infrastructure_website_url,
-                "service_arn_updated_at": service_arn_updated_at,
-            }
-        )
+        field_dict.update({})
+        if type is not UNSET:
+            field_dict["type"] = type
+        if service_arn is not UNSET:
+            field_dict["service_arn"] = service_arn
+        if service_infrastructure_website_url is not UNSET:
+            field_dict["service_infrastructure_website_url"] = service_infrastructure_website_url
+        if service_arn_updated_at is not UNSET:
+            field_dict["service_arn_updated_at"] = service_arn_updated_at
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        type = d.pop("type")
+        type = d.pop("type", UNSET)
 
-        service_arn = d.pop("service_arn")
+        service_arn = d.pop("service_arn", UNSET)
 
-        service_infrastructure_website_url = d.pop("service_infrastructure_website_url")
+        service_infrastructure_website_url = d.pop("service_infrastructure_website_url", UNSET)
 
-        _service_arn_updated_at = d.pop("service_arn_updated_at")
-        service_arn_updated_at: Optional[datetime.datetime]
+        _service_arn_updated_at = d.pop("service_arn_updated_at", UNSET)
+        service_arn_updated_at: Union[Unset, None, datetime.datetime]
         if _service_arn_updated_at is None:
             service_arn_updated_at = None
+        elif isinstance(_service_arn_updated_at, Unset):
+            service_arn_updated_at = UNSET
         else:
             service_arn_updated_at = isoparse(_service_arn_updated_at)
 

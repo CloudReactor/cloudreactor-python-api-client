@@ -1,6 +1,8 @@
-from typing import Any, Dict, List, Type, TypeVar, cast
+from typing import Any, Dict, List, Type, TypeVar, Union, cast
 
 import attr
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="UnknownExecutionMethodCapability")
 
@@ -13,35 +15,36 @@ class UnknownExecutionMethodCapability:
     values with complex, nested serializations
 
         Attributes:
-            type (str):
-            capabilities (List[str]):
+            type (Union[Unset, str]):
+            capabilities (Union[Unset, List[str]]):
     """
 
-    type: str
-    capabilities: List[str]
+    type: Union[Unset, str] = UNSET
+    capabilities: Union[Unset, List[str]] = UNSET
     additional_properties: Dict[str, Any] = attr.ib(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         type = self.type
-        capabilities = self.capabilities
+        capabilities: Union[Unset, List[str]] = UNSET
+        if not isinstance(self.capabilities, Unset):
+            capabilities = self.capabilities
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "type": type,
-                "capabilities": capabilities,
-            }
-        )
+        field_dict.update({})
+        if type is not UNSET:
+            field_dict["type"] = type
+        if capabilities is not UNSET:
+            field_dict["capabilities"] = capabilities
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        type = d.pop("type")
+        type = d.pop("type", UNSET)
 
-        capabilities = cast(List[str], d.pop("capabilities"))
+        capabilities = cast(List[str], d.pop("capabilities", UNSET))
 
         unknown_execution_method_capability = cls(
             type=type,

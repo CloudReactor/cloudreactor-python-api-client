@@ -15,57 +15,54 @@ class AwsEcsExecutionMethod:
     AWS ECS.
 
         Attributes:
-            type (str):
-            task_definition_infrastructure_website_url (str):
-            cluster_infrastructure_website_url (str):
-            execution_role_infrastructure_website_url (str):
-            task_role_infrastructure_website_url (str):
+            type (Union[Unset, str]):
             task_definition_arn (Union[Unset, str]):
+            task_definition_infrastructure_website_url (Union[Unset, str]):
             allocated_cpu_units (Union[Unset, int]):
             allocated_memory_mb (Union[Unset, int]):
             tags (Optional[AwsEcsExecutionMethodTags]):
             subnets (Union[Unset, List[str]]):
-            subnet_infrastructure_website_urls (Optional[List[Optional[str]]]):
+            subnet_infrastructure_website_urls (Union[Unset, None, List[Optional[str]]]):
             security_groups (Union[Unset, List[str]]):
-            security_group_infrastructure_website_urls (Optional[List[Optional[str]]]):
+            security_group_infrastructure_website_urls (Union[Unset, None, List[Optional[str]]]):
             assign_public_ip (Union[Unset, bool]):
             task_arn (Union[Unset, str]):
             launch_type (Union[Unset, AwsEcsLaunchType]):  Default: AwsEcsLaunchType.FARGATE.
             cluster_arn (Union[Unset, str]):
+            cluster_infrastructure_website_url (Union[Unset, str]):
             execution_role (Union[Unset, str]):
+            execution_role_infrastructure_website_url (Union[Unset, str]):
             task_role (Union[Unset, str]):
+            task_role_infrastructure_website_url (Union[Unset, str]):
             platform_version (Union[Unset, str]):
     """
 
-    type: str
-    task_definition_infrastructure_website_url: str
-    cluster_infrastructure_website_url: str
-    execution_role_infrastructure_website_url: str
-    task_role_infrastructure_website_url: str
     tags: Optional[AwsEcsExecutionMethodTags]
-    subnet_infrastructure_website_urls: Optional[List[Optional[str]]]
-    security_group_infrastructure_website_urls: Optional[List[Optional[str]]]
+    type: Union[Unset, str] = UNSET
     task_definition_arn: Union[Unset, str] = UNSET
+    task_definition_infrastructure_website_url: Union[Unset, str] = UNSET
     allocated_cpu_units: Union[Unset, int] = UNSET
     allocated_memory_mb: Union[Unset, int] = UNSET
     subnets: Union[Unset, List[str]] = UNSET
+    subnet_infrastructure_website_urls: Union[Unset, None, List[Optional[str]]] = UNSET
     security_groups: Union[Unset, List[str]] = UNSET
+    security_group_infrastructure_website_urls: Union[Unset, None, List[Optional[str]]] = UNSET
     assign_public_ip: Union[Unset, bool] = UNSET
     task_arn: Union[Unset, str] = UNSET
     launch_type: Union[Unset, AwsEcsLaunchType] = AwsEcsLaunchType.FARGATE
     cluster_arn: Union[Unset, str] = UNSET
+    cluster_infrastructure_website_url: Union[Unset, str] = UNSET
     execution_role: Union[Unset, str] = UNSET
+    execution_role_infrastructure_website_url: Union[Unset, str] = UNSET
     task_role: Union[Unset, str] = UNSET
+    task_role_infrastructure_website_url: Union[Unset, str] = UNSET
     platform_version: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = attr.ib(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         type = self.type
-        task_definition_infrastructure_website_url = self.task_definition_infrastructure_website_url
-        cluster_infrastructure_website_url = self.cluster_infrastructure_website_url
-        execution_role_infrastructure_website_url = self.execution_role_infrastructure_website_url
-        task_role_infrastructure_website_url = self.task_role_infrastructure_website_url
         task_definition_arn = self.task_definition_arn
+        task_definition_infrastructure_website_url = self.task_definition_infrastructure_website_url
         allocated_cpu_units = self.allocated_cpu_units
         allocated_memory_mb = self.allocated_memory_mb
         tags = self.tags.to_dict() if self.tags else None
@@ -74,19 +71,23 @@ class AwsEcsExecutionMethod:
         if not isinstance(self.subnets, Unset):
             subnets = self.subnets
 
-        if self.subnet_infrastructure_website_urls is None:
-            subnet_infrastructure_website_urls = None
-        else:
-            subnet_infrastructure_website_urls = self.subnet_infrastructure_website_urls
+        subnet_infrastructure_website_urls: Union[Unset, None, List[Optional[str]]] = UNSET
+        if not isinstance(self.subnet_infrastructure_website_urls, Unset):
+            if self.subnet_infrastructure_website_urls is None:
+                subnet_infrastructure_website_urls = None
+            else:
+                subnet_infrastructure_website_urls = self.subnet_infrastructure_website_urls
 
         security_groups: Union[Unset, List[str]] = UNSET
         if not isinstance(self.security_groups, Unset):
             security_groups = self.security_groups
 
-        if self.security_group_infrastructure_website_urls is None:
-            security_group_infrastructure_website_urls = None
-        else:
-            security_group_infrastructure_website_urls = self.security_group_infrastructure_website_urls
+        security_group_infrastructure_website_urls: Union[Unset, None, List[Optional[str]]] = UNSET
+        if not isinstance(self.security_group_infrastructure_website_urls, Unset):
+            if self.security_group_infrastructure_website_urls is None:
+                security_group_infrastructure_website_urls = None
+            else:
+                security_group_infrastructure_website_urls = self.security_group_infrastructure_website_urls
 
         assign_public_ip = self.assign_public_ip
         task_arn = self.task_arn
@@ -95,34 +96,38 @@ class AwsEcsExecutionMethod:
             launch_type = self.launch_type.value
 
         cluster_arn = self.cluster_arn
+        cluster_infrastructure_website_url = self.cluster_infrastructure_website_url
         execution_role = self.execution_role
+        execution_role_infrastructure_website_url = self.execution_role_infrastructure_website_url
         task_role = self.task_role
+        task_role_infrastructure_website_url = self.task_role_infrastructure_website_url
         platform_version = self.platform_version
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "type": type,
-                "task_definition_infrastructure_website_url": task_definition_infrastructure_website_url,
-                "cluster_infrastructure_website_url": cluster_infrastructure_website_url,
-                "execution_role_infrastructure_website_url": execution_role_infrastructure_website_url,
-                "task_role_infrastructure_website_url": task_role_infrastructure_website_url,
                 "tags": tags,
-                "subnet_infrastructure_website_urls": subnet_infrastructure_website_urls,
-                "security_group_infrastructure_website_urls": security_group_infrastructure_website_urls,
             }
         )
+        if type is not UNSET:
+            field_dict["type"] = type
         if task_definition_arn is not UNSET:
             field_dict["task_definition_arn"] = task_definition_arn
+        if task_definition_infrastructure_website_url is not UNSET:
+            field_dict["task_definition_infrastructure_website_url"] = task_definition_infrastructure_website_url
         if allocated_cpu_units is not UNSET:
             field_dict["allocated_cpu_units"] = allocated_cpu_units
         if allocated_memory_mb is not UNSET:
             field_dict["allocated_memory_mb"] = allocated_memory_mb
         if subnets is not UNSET:
             field_dict["subnets"] = subnets
+        if subnet_infrastructure_website_urls is not UNSET:
+            field_dict["subnet_infrastructure_website_urls"] = subnet_infrastructure_website_urls
         if security_groups is not UNSET:
             field_dict["security_groups"] = security_groups
+        if security_group_infrastructure_website_urls is not UNSET:
+            field_dict["security_group_infrastructure_website_urls"] = security_group_infrastructure_website_urls
         if assign_public_ip is not UNSET:
             field_dict["assign_public_ip"] = assign_public_ip
         if task_arn is not UNSET:
@@ -131,10 +136,16 @@ class AwsEcsExecutionMethod:
             field_dict["launch_type"] = launch_type
         if cluster_arn is not UNSET:
             field_dict["cluster_arn"] = cluster_arn
+        if cluster_infrastructure_website_url is not UNSET:
+            field_dict["cluster_infrastructure_website_url"] = cluster_infrastructure_website_url
         if execution_role is not UNSET:
             field_dict["execution_role"] = execution_role
+        if execution_role_infrastructure_website_url is not UNSET:
+            field_dict["execution_role_infrastructure_website_url"] = execution_role_infrastructure_website_url
         if task_role is not UNSET:
             field_dict["task_role"] = task_role
+        if task_role_infrastructure_website_url is not UNSET:
+            field_dict["task_role_infrastructure_website_url"] = task_role_infrastructure_website_url
         if platform_version is not UNSET:
             field_dict["platform_version"] = platform_version
 
@@ -143,17 +154,11 @@ class AwsEcsExecutionMethod:
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        type = d.pop("type")
-
-        task_definition_infrastructure_website_url = d.pop("task_definition_infrastructure_website_url")
-
-        cluster_infrastructure_website_url = d.pop("cluster_infrastructure_website_url")
-
-        execution_role_infrastructure_website_url = d.pop("execution_role_infrastructure_website_url")
-
-        task_role_infrastructure_website_url = d.pop("task_role_infrastructure_website_url")
+        type = d.pop("type", UNSET)
 
         task_definition_arn = d.pop("task_definition_arn", UNSET)
+
+        task_definition_infrastructure_website_url = d.pop("task_definition_infrastructure_website_url", UNSET)
 
         allocated_cpu_units = d.pop("allocated_cpu_units", UNSET)
 
@@ -168,12 +173,14 @@ class AwsEcsExecutionMethod:
 
         subnets = cast(List[str], d.pop("subnets", UNSET))
 
-        subnet_infrastructure_website_urls = cast(List[Optional[str]], d.pop("subnet_infrastructure_website_urls"))
+        subnet_infrastructure_website_urls = cast(
+            List[Optional[str]], d.pop("subnet_infrastructure_website_urls", UNSET)
+        )
 
         security_groups = cast(List[str], d.pop("security_groups", UNSET))
 
         security_group_infrastructure_website_urls = cast(
-            List[Optional[str]], d.pop("security_group_infrastructure_website_urls")
+            List[Optional[str]], d.pop("security_group_infrastructure_website_urls", UNSET)
         )
 
         assign_public_ip = d.pop("assign_public_ip", UNSET)
@@ -189,19 +196,22 @@ class AwsEcsExecutionMethod:
 
         cluster_arn = d.pop("cluster_arn", UNSET)
 
+        cluster_infrastructure_website_url = d.pop("cluster_infrastructure_website_url", UNSET)
+
         execution_role = d.pop("execution_role", UNSET)
 
+        execution_role_infrastructure_website_url = d.pop("execution_role_infrastructure_website_url", UNSET)
+
         task_role = d.pop("task_role", UNSET)
+
+        task_role_infrastructure_website_url = d.pop("task_role_infrastructure_website_url", UNSET)
 
         platform_version = d.pop("platform_version", UNSET)
 
         aws_ecs_execution_method = cls(
             type=type,
-            task_definition_infrastructure_website_url=task_definition_infrastructure_website_url,
-            cluster_infrastructure_website_url=cluster_infrastructure_website_url,
-            execution_role_infrastructure_website_url=execution_role_infrastructure_website_url,
-            task_role_infrastructure_website_url=task_role_infrastructure_website_url,
             task_definition_arn=task_definition_arn,
+            task_definition_infrastructure_website_url=task_definition_infrastructure_website_url,
             allocated_cpu_units=allocated_cpu_units,
             allocated_memory_mb=allocated_memory_mb,
             tags=tags,
@@ -213,8 +223,11 @@ class AwsEcsExecutionMethod:
             task_arn=task_arn,
             launch_type=launch_type,
             cluster_arn=cluster_arn,
+            cluster_infrastructure_website_url=cluster_infrastructure_website_url,
             execution_role=execution_role,
+            execution_role_infrastructure_website_url=execution_role_infrastructure_website_url,
             task_role=task_role,
+            task_role_infrastructure_website_url=task_role_infrastructure_website_url,
             platform_version=platform_version,
         )
 

@@ -1,6 +1,5 @@
 import datetime
-import json
-from typing import Any, Dict, List, Tuple, Type, TypeVar, Union, cast
+from typing import Any, Dict, List, Type, TypeVar, Union, cast
 
 import attr
 from dateutil.parser import isoparse
@@ -105,111 +104,6 @@ class PatchedWorkflowTransition:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if url is not UNSET:
-            field_dict["url"] = url
-        if uuid is not UNSET:
-            field_dict["uuid"] = uuid
-        if description is not UNSET:
-            field_dict["description"] = description
-        if from_workflow_task_instance is not UNSET:
-            field_dict["from_workflow_task_instance"] = from_workflow_task_instance
-        if to_workflow_task_instance is not UNSET:
-            field_dict["to_workflow_task_instance"] = to_workflow_task_instance
-        if rule_type is not UNSET:
-            field_dict["rule_type"] = rule_type
-        if exit_codes is not UNSET:
-            field_dict["exit_codes"] = exit_codes
-        if threshold_property is not UNSET:
-            field_dict["threshold_property"] = threshold_property
-        if custom_expression is not UNSET:
-            field_dict["custom_expression"] = custom_expression
-        if priority is not UNSET:
-            field_dict["priority"] = priority
-        if ui_color is not UNSET:
-            field_dict["ui_color"] = ui_color
-        if ui_line_style is not UNSET:
-            field_dict["ui_line_style"] = ui_line_style
-        if ui_scale is not UNSET:
-            field_dict["ui_scale"] = ui_scale
-        if created_at is not UNSET:
-            field_dict["created_at"] = created_at
-        if updated_at is not UNSET:
-            field_dict["updated_at"] = updated_at
-
-        return field_dict
-
-    def to_multipart(self) -> Dict[str, Any]:
-        url = self.url if isinstance(self.url, Unset) else (None, str(self.url).encode(), "text/plain")
-        uuid = self.uuid if isinstance(self.uuid, Unset) else (None, str(self.uuid).encode(), "text/plain")
-        description = (
-            self.description
-            if isinstance(self.description, Unset)
-            else (None, str(self.description).encode(), "text/plain")
-        )
-        from_workflow_task_instance: Union[Unset, Tuple[None, bytes, str]] = UNSET
-        if not isinstance(self.from_workflow_task_instance, Unset):
-            from_workflow_task_instance = (
-                None,
-                json.dumps(self.from_workflow_task_instance.to_dict()).encode(),
-                "application/json",
-            )
-
-        to_workflow_task_instance: Union[Unset, Tuple[None, bytes, str]] = UNSET
-        if not isinstance(self.to_workflow_task_instance, Unset):
-            to_workflow_task_instance = (
-                None,
-                json.dumps(self.to_workflow_task_instance.to_dict()).encode(),
-                "application/json",
-            )
-
-        rule_type: Union[Unset, Tuple[None, bytes, str]] = UNSET
-        if not isinstance(self.rule_type, Unset):
-            rule_type = (None, str(self.rule_type.value).encode(), "text/plain")
-
-        exit_codes: Union[Unset, Tuple[None, bytes, str]] = UNSET
-        if not isinstance(self.exit_codes, Unset):
-            if self.exit_codes is None:
-                exit_codes = None
-            else:
-                _temp_exit_codes = self.exit_codes
-                exit_codes = (None, json.dumps(_temp_exit_codes).encode(), "application/json")
-
-        threshold_property: Union[Unset, Tuple[None, bytes, str]] = UNSET
-        if not isinstance(self.threshold_property, Unset):
-            threshold_property = (None, str(self.threshold_property.value).encode(), "text/plain")
-
-        custom_expression = (
-            self.custom_expression
-            if isinstance(self.custom_expression, Unset)
-            else (None, str(self.custom_expression).encode(), "text/plain")
-        )
-        priority = (
-            self.priority if isinstance(self.priority, Unset) else (None, str(self.priority).encode(), "text/plain")
-        )
-        ui_color = (
-            self.ui_color if isinstance(self.ui_color, Unset) else (None, str(self.ui_color).encode(), "text/plain")
-        )
-        ui_line_style = (
-            self.ui_line_style
-            if isinstance(self.ui_line_style, Unset)
-            else (None, str(self.ui_line_style).encode(), "text/plain")
-        )
-        ui_scale = (
-            self.ui_scale if isinstance(self.ui_scale, Unset) else (None, str(self.ui_scale).encode(), "text/plain")
-        )
-        created_at: Union[Unset, bytes] = UNSET
-        if not isinstance(self.created_at, Unset):
-            created_at = self.created_at.isoformat().encode()
-
-        updated_at: Union[Unset, bytes] = UNSET
-        if not isinstance(self.updated_at, Unset):
-            updated_at = self.updated_at.isoformat().encode()
-
-        field_dict: Dict[str, Any] = {}
-        field_dict.update(
-            {key: (None, str(value).encode(), "text/plain") for key, value in self.additional_properties.items()}
-        )
         field_dict.update({})
         if url is not UNSET:
             field_dict["url"] = url

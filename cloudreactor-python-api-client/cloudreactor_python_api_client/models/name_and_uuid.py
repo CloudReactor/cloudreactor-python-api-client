@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Optional, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 import attr
 
@@ -16,12 +16,12 @@ class NameAndUuid:
 
         Attributes:
             uuid (Union[Unset, str]):
-            url (Optional[str]):
+            url (Union[Unset, None, str]):
             name (Union[Unset, str]):
     """
 
-    url: Optional[str]
     uuid: Union[Unset, str] = UNSET
+    url: Union[Unset, None, str] = UNSET
     name: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = attr.ib(init=False, factory=dict)
 
@@ -32,13 +32,11 @@ class NameAndUuid:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "url": url,
-            }
-        )
+        field_dict.update({})
         if uuid is not UNSET:
             field_dict["uuid"] = uuid
+        if url is not UNSET:
+            field_dict["url"] = url
         if name is not UNSET:
             field_dict["name"] = name
 
@@ -49,7 +47,7 @@ class NameAndUuid:
         d = src_dict.copy()
         uuid = d.pop("uuid", UNSET)
 
-        url = d.pop("url")
+        url = d.pop("url", UNSET)
 
         name = d.pop("name", UNSET)
 

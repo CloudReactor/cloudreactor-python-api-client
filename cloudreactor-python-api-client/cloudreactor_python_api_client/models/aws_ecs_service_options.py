@@ -15,7 +15,7 @@ class AwsEcsServiceOptions:
     """Options for running a Task as a service in AWS ECS.
 
     Attributes:
-        load_balancers (List[AwsEcsServiceLoadBalancerDetails]):
+        load_balancers (Union[Unset, List[AwsEcsServiceLoadBalancerDetails]]):
         health_check_grace_period_seconds (Union[Unset, int]):
         force_new_deployment (Union[Unset, bool]):
         deploy_minimum_healthy_percent (Union[Unset, int]):
@@ -27,7 +27,7 @@ class AwsEcsServiceOptions:
         tags (Union[Unset, None, AwsEcsServiceOptionsTags]):
     """
 
-    load_balancers: List[AwsEcsServiceLoadBalancerDetails]
+    load_balancers: Union[Unset, List[AwsEcsServiceLoadBalancerDetails]] = UNSET
     health_check_grace_period_seconds: Union[Unset, int] = UNSET
     force_new_deployment: Union[Unset, bool] = UNSET
     deploy_minimum_healthy_percent: Union[Unset, int] = UNSET
@@ -40,11 +40,13 @@ class AwsEcsServiceOptions:
     additional_properties: Dict[str, Any] = attr.ib(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
-        load_balancers = []
-        for load_balancers_item_data in self.load_balancers:
-            load_balancers_item = load_balancers_item_data.to_dict()
+        load_balancers: Union[Unset, List[Dict[str, Any]]] = UNSET
+        if not isinstance(self.load_balancers, Unset):
+            load_balancers = []
+            for load_balancers_item_data in self.load_balancers:
+                load_balancers_item = load_balancers_item_data.to_dict()
 
-            load_balancers.append(load_balancers_item)
+                load_balancers.append(load_balancers_item)
 
         health_check_grace_period_seconds = self.health_check_grace_period_seconds
         force_new_deployment = self.force_new_deployment
@@ -63,11 +65,9 @@ class AwsEcsServiceOptions:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "load_balancers": load_balancers,
-            }
-        )
+        field_dict.update({})
+        if load_balancers is not UNSET:
+            field_dict["load_balancers"] = load_balancers
         if health_check_grace_period_seconds is not UNSET:
             field_dict["health_check_grace_period_seconds"] = health_check_grace_period_seconds
         if force_new_deployment is not UNSET:
@@ -93,8 +93,8 @@ class AwsEcsServiceOptions:
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
         load_balancers = []
-        _load_balancers = d.pop("load_balancers")
-        for load_balancers_item_data in _load_balancers:
+        _load_balancers = d.pop("load_balancers", UNSET)
+        for load_balancers_item_data in _load_balancers or []:
             load_balancers_item = AwsEcsServiceLoadBalancerDetails.from_dict(load_balancers_item_data)
 
             load_balancers.append(load_balancers_item)

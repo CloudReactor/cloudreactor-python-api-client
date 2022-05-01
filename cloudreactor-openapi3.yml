@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: CloudReactor API
-  version: 0.2.0
+  version: 0.3.0
   description: CloudReactor API Documentation
   contact:
     name: Jeff Tsay
@@ -12,46 +12,46 @@ paths:
     get:
       operationId: alert_methods_list
       parameters:
-        - in: query
-          name: created_by_group__id
-          schema:
-            type: integer
-        - name: limit
-          required: false
-          in: query
-          description: Number of results to return per page.
-          schema:
-            type: integer
-        - in: query
-          name: name
-          schema:
-            type: string
-        - name: offset
-          required: false
-          in: query
-          description: The initial index from which to return the results.
-          schema:
-            type: integer
-        - name: ordering
-          required: false
-          in: query
-          description: Which field to use when ordering the results.
-          schema:
-            type: string
-        - in: query
-          name: run_environment__uuid
-          schema:
-            type: string
-        - name: search
-          required: false
-          in: query
-          description: A search term.
-          schema:
-            type: string
+      - in: query
+        name: created_by_group__id
+        schema:
+          type: integer
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - in: query
+        name: name
+        schema:
+          type: string
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - in: query
+        name: run_environment__uuid
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
       tags:
-        - alert_methods
+      - alert_methods
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -62,21 +62,15 @@ paths:
     post:
       operationId: alert_methods_create
       tags:
-        - alert_methods
+      - alert_methods
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/AlertMethod'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/AlertMethod'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/AlertMethod'
         required: true
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '201':
           content:
@@ -88,16 +82,16 @@ paths:
     get:
       operationId: alert_methods_retrieve
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - alert_methods
+      - alert_methods
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -108,28 +102,22 @@ paths:
     put:
       operationId: alert_methods_update
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - alert_methods
+      - alert_methods
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/AlertMethod'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/AlertMethod'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/AlertMethod'
         required: true
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -140,27 +128,21 @@ paths:
     patch:
       operationId: alert_methods_partial_update
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - alert_methods
+      - alert_methods
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/PatchedAlertMethod'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedAlertMethod'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/PatchedAlertMethod'
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -171,16 +153,16 @@ paths:
     delete:
       operationId: alert_methods_destroy
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - alert_methods
+      - alert_methods
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '204':
           description: No response body
@@ -188,28 +170,22 @@ paths:
     post:
       operationId: alert_methods_clone_create
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - alert_methods
+      - alert_methods
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/AlertMethod'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/AlertMethod'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/AlertMethod'
         required: true
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -221,46 +197,46 @@ paths:
     get:
       operationId: email_notification_profiles_list
       parameters:
-        - in: query
-          name: created_by_group__id
-          schema:
-            type: integer
-        - name: limit
-          required: false
-          in: query
-          description: Number of results to return per page.
-          schema:
-            type: integer
-        - in: query
-          name: name
-          schema:
-            type: string
-        - name: offset
-          required: false
-          in: query
-          description: The initial index from which to return the results.
-          schema:
-            type: integer
-        - name: ordering
-          required: false
-          in: query
-          description: Which field to use when ordering the results.
-          schema:
-            type: string
-        - in: query
-          name: run_environment__uuid
-          schema:
-            type: string
-        - name: search
-          required: false
-          in: query
-          description: A search term.
-          schema:
-            type: string
+      - in: query
+        name: created_by_group__id
+        schema:
+          type: integer
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - in: query
+        name: name
+        schema:
+          type: string
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - in: query
+        name: run_environment__uuid
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
       tags:
-        - email_notification_profiles
+      - email_notification_profiles
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -271,21 +247,15 @@ paths:
     post:
       operationId: email_notification_profiles_create
       tags:
-        - email_notification_profiles
+      - email_notification_profiles
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/EmailNotificationProfile'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/EmailNotificationProfile'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/EmailNotificationProfile'
         required: true
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '201':
           content:
@@ -297,16 +267,16 @@ paths:
     get:
       operationId: email_notification_profiles_retrieve
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - email_notification_profiles
+      - email_notification_profiles
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -317,28 +287,22 @@ paths:
     put:
       operationId: email_notification_profiles_update
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - email_notification_profiles
+      - email_notification_profiles
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/EmailNotificationProfile'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/EmailNotificationProfile'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/EmailNotificationProfile'
         required: true
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -349,27 +313,21 @@ paths:
     patch:
       operationId: email_notification_profiles_partial_update
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - email_notification_profiles
+      - email_notification_profiles
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/PatchedEmailNotificationProfile'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedEmailNotificationProfile'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/PatchedEmailNotificationProfile'
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -380,16 +338,16 @@ paths:
     delete:
       operationId: email_notification_profiles_destroy
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - email_notification_profiles
+      - email_notification_profiles
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '204':
           description: No response body
@@ -397,28 +355,22 @@ paths:
     post:
       operationId: email_notification_profiles_clone_create
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - email_notification_profiles
+      - email_notification_profiles
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/EmailNotificationProfile'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/EmailNotificationProfile'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/EmailNotificationProfile'
         required: true
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -430,46 +382,46 @@ paths:
     get:
       operationId: pagerduty_profiles_list
       parameters:
-        - in: query
-          name: created_by_group__id
-          schema:
-            type: integer
-        - name: limit
-          required: false
-          in: query
-          description: Number of results to return per page.
-          schema:
-            type: integer
-        - in: query
-          name: name
-          schema:
-            type: string
-        - name: offset
-          required: false
-          in: query
-          description: The initial index from which to return the results.
-          schema:
-            type: integer
-        - name: ordering
-          required: false
-          in: query
-          description: Which field to use when ordering the results.
-          schema:
-            type: string
-        - in: query
-          name: run_environment__uuid
-          schema:
-            type: string
-        - name: search
-          required: false
-          in: query
-          description: A search term.
-          schema:
-            type: string
+      - in: query
+        name: created_by_group__id
+        schema:
+          type: integer
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - in: query
+        name: name
+        schema:
+          type: string
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - in: query
+        name: run_environment__uuid
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
       tags:
-        - pagerduty_profiles
+      - pagerduty_profiles
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -480,21 +432,15 @@ paths:
     post:
       operationId: pagerduty_profiles_create
       tags:
-        - pagerduty_profiles
+      - pagerduty_profiles
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/PagerDutyProfile'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PagerDutyProfile'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/PagerDutyProfile'
         required: true
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '201':
           content:
@@ -506,16 +452,16 @@ paths:
     get:
       operationId: pagerduty_profiles_retrieve
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - pagerduty_profiles
+      - pagerduty_profiles
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -526,28 +472,22 @@ paths:
     put:
       operationId: pagerduty_profiles_update
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - pagerduty_profiles
+      - pagerduty_profiles
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/PagerDutyProfile'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PagerDutyProfile'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/PagerDutyProfile'
         required: true
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -558,27 +498,21 @@ paths:
     patch:
       operationId: pagerduty_profiles_partial_update
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - pagerduty_profiles
+      - pagerduty_profiles
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/PatchedPagerDutyProfile'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedPagerDutyProfile'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/PatchedPagerDutyProfile'
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -589,16 +523,16 @@ paths:
     delete:
       operationId: pagerduty_profiles_destroy
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - pagerduty_profiles
+      - pagerduty_profiles
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '204':
           description: No response body
@@ -606,28 +540,22 @@ paths:
     post:
       operationId: pagerduty_profiles_clone_create
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - pagerduty_profiles
+      - pagerduty_profiles
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/PagerDutyProfile'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PagerDutyProfile'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/PagerDutyProfile'
         required: true
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -639,42 +567,42 @@ paths:
     get:
       operationId: run_environments_list
       parameters:
-        - in: query
-          name: created_by_group__id
-          schema:
-            type: integer
-        - name: limit
-          required: false
-          in: query
-          description: Number of results to return per page.
-          schema:
-            type: integer
-        - in: query
-          name: name
-          schema:
-            type: string
-        - name: offset
-          required: false
-          in: query
-          description: The initial index from which to return the results.
-          schema:
-            type: integer
-        - name: ordering
-          required: false
-          in: query
-          description: Which field to use when ordering the results.
-          schema:
-            type: string
-        - name: search
-          required: false
-          in: query
-          description: A search term.
-          schema:
-            type: string
+      - in: query
+        name: created_by_group__id
+        schema:
+          type: integer
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - in: query
+        name: name
+        schema:
+          type: string
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
       tags:
-        - run_environments
+      - run_environments
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -685,21 +613,15 @@ paths:
     post:
       operationId: run_environments_create
       tags:
-        - run_environments
+      - run_environments
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/RunEnvironment'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/RunEnvironment'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/RunEnvironment'
         required: true
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '201':
           content:
@@ -711,16 +633,16 @@ paths:
     get:
       operationId: run_environments_retrieve
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - run_environments
+      - run_environments
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -731,28 +653,22 @@ paths:
     put:
       operationId: run_environments_update
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - run_environments
+      - run_environments
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/RunEnvironment'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/RunEnvironment'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/RunEnvironment'
         required: true
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -763,27 +679,21 @@ paths:
     patch:
       operationId: run_environments_partial_update
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - run_environments
+      - run_environments
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/PatchedRunEnvironment'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedRunEnvironment'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/PatchedRunEnvironment'
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -794,16 +704,16 @@ paths:
     delete:
       operationId: run_environments_destroy
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - run_environments
+      - run_environments
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '204':
           description: No response body
@@ -811,28 +721,22 @@ paths:
     post:
       operationId: run_environments_clone_create
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - run_environments
+      - run_environments
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/RunEnvironment'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/RunEnvironment'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/RunEnvironment'
         required: true
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -844,42 +748,42 @@ paths:
     get:
       operationId: task_executions_list
       parameters:
-        - name: limit
-          required: false
-          in: query
-          description: Number of results to return per page.
-          schema:
-            type: integer
-        - name: offset
-          required: false
-          in: query
-          description: The initial index from which to return the results.
-          schema:
-            type: integer
-        - name: ordering
-          required: false
-          in: query
-          description: Which field to use when ordering the results.
-          schema:
-            type: string
-        - name: search
-          required: false
-          in: query
-          description: A search term.
-          schema:
-            type: string
-        - in: query
-          name: task__created_by_group__id
-          schema:
-            type: integer
-        - in: query
-          name: task__uuid
-          schema:
-            type: string
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - in: query
+        name: task__created_by_group__id
+        schema:
+          type: integer
+      - in: query
+        name: task__uuid
+        schema:
+          type: string
       tags:
-        - task_executions
+      - task_executions
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -890,21 +794,15 @@ paths:
     post:
       operationId: task_executions_create
       tags:
-        - task_executions
+      - task_executions
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/TaskExecution'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/TaskExecution'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/TaskExecution'
         required: true
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '201':
           content:
@@ -916,16 +814,16 @@ paths:
     get:
       operationId: task_executions_retrieve
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - task_executions
+      - task_executions
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -936,28 +834,22 @@ paths:
     put:
       operationId: task_executions_update
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - task_executions
+      - task_executions
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/TaskExecution'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/TaskExecution'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/TaskExecution'
         required: true
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -968,27 +860,21 @@ paths:
     patch:
       operationId: task_executions_partial_update
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - task_executions
+      - task_executions
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/PatchedTaskExecution'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedTaskExecution'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/PatchedTaskExecution'
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -999,16 +885,16 @@ paths:
     delete:
       operationId: task_executions_destroy
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - task_executions
+      - task_executions
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '204':
           description: No response body
@@ -1016,47 +902,47 @@ paths:
     get:
       operationId: tasks_list
       parameters:
-        - in: query
-          name: description
-          schema:
-            type: string
-        - name: limit
-          required: false
-          in: query
-          description: Number of results to return per page.
-          schema:
-            type: integer
-        - in: query
-          name: name
-          schema:
-            type: string
-        - name: offset
-          required: false
-          in: query
-          description: The initial index from which to return the results.
-          schema:
-            type: integer
-        - name: ordering
-          required: false
-          in: query
-          description: Which field to use when ordering the results.
-          schema:
-            type: string
-        - in: query
-          name: run_environment__uuid
-          schema:
-            type: string
-            format: uuid
-        - name: search
-          required: false
-          in: query
-          description: A search term.
-          schema:
-            type: string
+      - in: query
+        name: description
+        schema:
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - in: query
+        name: name
+        schema:
+          type: string
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - in: query
+        name: run_environment__uuid
+        schema:
+          type: string
+          format: uuid
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
       tags:
-        - tasks
+      - tasks
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -1067,21 +953,15 @@ paths:
     post:
       operationId: tasks_create
       tags:
-        - tasks
+      - tasks
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/Task'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Task'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Task'
         required: true
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '201':
           content:
@@ -1093,16 +973,16 @@ paths:
     get:
       operationId: tasks_retrieve
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - tasks
+      - tasks
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -1113,28 +993,22 @@ paths:
     put:
       operationId: tasks_update
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - tasks
+      - tasks
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/Task'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Task'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Task'
         required: true
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -1145,27 +1019,21 @@ paths:
     patch:
       operationId: tasks_partial_update
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - tasks
+      - tasks
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/PatchedTask'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedTask'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/PatchedTask'
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -1176,16 +1044,16 @@ paths:
     delete:
       operationId: tasks_destroy
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - tasks
+      - tasks
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '204':
           description: No response body
@@ -1193,42 +1061,42 @@ paths:
     get:
       operationId: workflow_executions_list
       parameters:
-        - name: limit
-          required: false
-          in: query
-          description: Number of results to return per page.
-          schema:
-            type: integer
-        - name: offset
-          required: false
-          in: query
-          description: The initial index from which to return the results.
-          schema:
-            type: integer
-        - name: ordering
-          required: false
-          in: query
-          description: Which field to use when ordering the results.
-          schema:
-            type: string
-        - name: search
-          required: false
-          in: query
-          description: A search term.
-          schema:
-            type: string
-        - in: query
-          name: workflow__created_by_group__id
-          schema:
-            type: string
-        - in: query
-          name: workflow__uuid
-          schema:
-            type: string
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - in: query
+        name: workflow__created_by_group__id
+        schema:
+          type: string
+      - in: query
+        name: workflow__uuid
+        schema:
+          type: string
       tags:
-        - workflow_executions
+      - workflow_executions
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -1239,21 +1107,15 @@ paths:
     post:
       operationId: workflow_executions_create
       tags:
-        - workflow_executions
+      - workflow_executions
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/WorkflowExecution'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/WorkflowExecution'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/WorkflowExecution'
         required: true
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '201':
           content:
@@ -1265,16 +1127,16 @@ paths:
     get:
       operationId: workflow_executions_retrieve
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - workflow_executions
+      - workflow_executions
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -1285,28 +1147,22 @@ paths:
     put:
       operationId: workflow_executions_update
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - workflow_executions
+      - workflow_executions
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/WorkflowExecution'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/WorkflowExecution'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/WorkflowExecution'
         required: true
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -1317,27 +1173,21 @@ paths:
     patch:
       operationId: workflow_executions_partial_update
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - workflow_executions
+      - workflow_executions
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/PatchedWorkflowExecution'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedWorkflowExecution'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/PatchedWorkflowExecution'
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -1348,16 +1198,16 @@ paths:
     delete:
       operationId: workflow_executions_destroy
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - workflow_executions
+      - workflow_executions
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '204':
           description: No response body
@@ -1365,28 +1215,22 @@ paths:
     post:
       operationId: workflow_executions_retry_create
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - workflow_executions
+      - workflow_executions
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/WorkflowExecution'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/WorkflowExecution'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/WorkflowExecution'
         required: true
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -1398,28 +1242,22 @@ paths:
     post:
       operationId: workflow_executions_workflow_task_instance_executions_create
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - workflow_executions
+      - workflow_executions
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/WorkflowExecution'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/WorkflowExecution'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/WorkflowExecution'
         required: true
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -1431,65 +1269,65 @@ paths:
     get:
       operationId: workflow_task_instances_list
       parameters:
-        - in: query
-          name: description
-          schema:
-            type: string
-        - name: limit
-          required: false
-          in: query
-          description: Number of results to return per page.
-          schema:
-            type: integer
-        - in: query
-          name: name
-          schema:
-            type: string
-        - name: offset
-          required: false
-          in: query
-          description: The initial index from which to return the results.
-          schema:
-            type: integer
-        - name: ordering
-          required: false
-          in: query
-          description: Which field to use when ordering the results.
-          schema:
-            type: string
-        - name: search
-          required: false
-          in: query
-          description: A search term.
-          schema:
-            type: string
-        - in: query
-          name: task__name
-          schema:
-            type: string
-        - in: query
-          name: task__uuid
-          schema:
-            type: string
-            format: uuid
-        - in: query
-          name: workflow__created_by_group__id
-          schema:
-            type: integer
-        - in: query
-          name: workflow__run_environment__uuid
-          schema:
-            type: string
-            format: uuid
-        - in: query
-          name: workflow__uuid
-          schema:
-            type: string
-            format: uuid
+      - in: query
+        name: description
+        schema:
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - in: query
+        name: name
+        schema:
+          type: string
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
+      - in: query
+        name: task__name
+        schema:
+          type: string
+      - in: query
+        name: task__uuid
+        schema:
+          type: string
+          format: uuid
+      - in: query
+        name: workflow__created_by_group__id
+        schema:
+          type: integer
+      - in: query
+        name: workflow__run_environment__uuid
+        schema:
+          type: string
+          format: uuid
+      - in: query
+        name: workflow__uuid
+        schema:
+          type: string
+          format: uuid
       tags:
-        - workflow_task_instances
+      - workflow_task_instances
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -1500,21 +1338,15 @@ paths:
     post:
       operationId: workflow_task_instances_create
       tags:
-        - workflow_task_instances
+      - workflow_task_instances
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/WorkflowTaskInstance'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/WorkflowTaskInstance'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/WorkflowTaskInstance'
         required: true
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '201':
           content:
@@ -1526,16 +1358,16 @@ paths:
     get:
       operationId: workflow_task_instances_retrieve
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - workflow_task_instances
+      - workflow_task_instances
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -1546,28 +1378,22 @@ paths:
     put:
       operationId: workflow_task_instances_update
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - workflow_task_instances
+      - workflow_task_instances
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/WorkflowTaskInstance'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/WorkflowTaskInstance'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/WorkflowTaskInstance'
         required: true
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -1578,27 +1404,21 @@ paths:
     patch:
       operationId: workflow_task_instances_partial_update
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - workflow_task_instances
+      - workflow_task_instances
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/PatchedWorkflowTaskInstance'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedWorkflowTaskInstance'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/PatchedWorkflowTaskInstance'
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -1609,16 +1429,16 @@ paths:
     delete:
       operationId: workflow_task_instances_destroy
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - workflow_task_instances
+      - workflow_task_instances
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '204':
           description: No response body
@@ -1626,38 +1446,38 @@ paths:
     get:
       operationId: workflow_transitions_list
       parameters:
-        - in: query
-          name: description
-          schema:
-            type: string
-        - name: limit
-          required: false
-          in: query
-          description: Number of results to return per page.
-          schema:
-            type: integer
-        - name: offset
-          required: false
-          in: query
-          description: The initial index from which to return the results.
-          schema:
-            type: integer
-        - name: ordering
-          required: false
-          in: query
-          description: Which field to use when ordering the results.
-          schema:
-            type: string
-        - name: search
-          required: false
-          in: query
-          description: A search term.
-          schema:
-            type: string
+      - in: query
+        name: description
+        schema:
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
       tags:
-        - workflow_transitions
+      - workflow_transitions
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -1668,21 +1488,15 @@ paths:
     post:
       operationId: workflow_transitions_create
       tags:
-        - workflow_transitions
+      - workflow_transitions
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/WorkflowTransition'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/WorkflowTransition'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/WorkflowTransition'
         required: true
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '201':
           content:
@@ -1694,16 +1508,16 @@ paths:
     get:
       operationId: workflow_transitions_retrieve
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - workflow_transitions
+      - workflow_transitions
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -1714,28 +1528,22 @@ paths:
     put:
       operationId: workflow_transitions_update
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - workflow_transitions
+      - workflow_transitions
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/WorkflowTransition'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/WorkflowTransition'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/WorkflowTransition'
         required: true
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -1746,27 +1554,21 @@ paths:
     patch:
       operationId: workflow_transitions_partial_update
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - workflow_transitions
+      - workflow_transitions
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/PatchedWorkflowTransition'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedWorkflowTransition'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/PatchedWorkflowTransition'
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -1777,16 +1579,16 @@ paths:
     delete:
       operationId: workflow_transitions_destroy
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - workflow_transitions
+      - workflow_transitions
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '204':
           description: No response body
@@ -1794,46 +1596,46 @@ paths:
     get:
       operationId: workflows_list
       parameters:
-        - in: query
-          name: description
-          schema:
-            type: string
-        - name: limit
-          required: false
-          in: query
-          description: Number of results to return per page.
-          schema:
-            type: integer
-        - in: query
-          name: name
-          schema:
-            type: string
-        - name: offset
-          required: false
-          in: query
-          description: The initial index from which to return the results.
-          schema:
-            type: integer
-        - name: ordering
-          required: false
-          in: query
-          description: Which field to use when ordering the results.
-          schema:
-            type: string
-        - in: query
-          name: run_environment__uuid
-          schema:
-            type: string
-        - name: search
-          required: false
-          in: query
-          description: A search term.
-          schema:
-            type: string
+      - in: query
+        name: description
+        schema:
+          type: string
+      - name: limit
+        required: false
+        in: query
+        description: Number of results to return per page.
+        schema:
+          type: integer
+      - in: query
+        name: name
+        schema:
+          type: string
+      - name: offset
+        required: false
+        in: query
+        description: The initial index from which to return the results.
+        schema:
+          type: integer
+      - name: ordering
+        required: false
+        in: query
+        description: Which field to use when ordering the results.
+        schema:
+          type: string
+      - in: query
+        name: run_environment__uuid
+        schema:
+          type: string
+      - name: search
+        required: false
+        in: query
+        description: A search term.
+        schema:
+          type: string
       tags:
-        - workflows
+      - workflows
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -1844,21 +1646,15 @@ paths:
     post:
       operationId: workflows_create
       tags:
-        - workflows
+      - workflows
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/Workflow'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Workflow'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Workflow'
         required: true
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '201':
           content:
@@ -1870,16 +1666,16 @@ paths:
     get:
       operationId: workflows_retrieve
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - workflows
+      - workflows
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -1890,28 +1686,22 @@ paths:
     put:
       operationId: workflows_update
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - workflows
+      - workflows
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/Workflow'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Workflow'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Workflow'
         required: true
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -1922,27 +1712,21 @@ paths:
     patch:
       operationId: workflows_partial_update
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - workflows
+      - workflows
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/PatchedWorkflow'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/PatchedWorkflow'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/PatchedWorkflow'
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -1953,16 +1737,16 @@ paths:
     delete:
       operationId: workflows_destroy
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - workflows
+      - workflows
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '204':
           description: No response body
@@ -1970,28 +1754,22 @@ paths:
     post:
       operationId: workflows_clone_create
       parameters:
-        - in: path
-          name: uuid
-          schema:
-            type: string
-            format: uuid
-          required: true
+      - in: path
+        name: uuid
+        schema:
+          type: string
+          format: uuid
+        required: true
       tags:
-        - workflows
+      - workflows
       requestBody:
         content:
           application/json:
             schema:
               $ref: '#/components/schemas/Workflow'
-          application/x-www-form-urlencoded:
-            schema:
-              $ref: '#/components/schemas/Workflow'
-          multipart/form-data:
-            schema:
-              $ref: '#/components/schemas/Workflow'
         required: true
       security:
-        - tokenAuth: []
+      - tokenAuth: []
       responses:
         '200':
           content:
@@ -2050,11 +1828,11 @@ components:
           readOnly: true
         created_by_group:
           allOf:
-            - $ref: '#/components/schemas/Group'
+          - $ref: '#/components/schemas/Group'
           readOnly: true
         run_environment:
           allOf:
-            - $ref: '#/components/schemas/NameAndUuid'
+          - $ref: '#/components/schemas/NameAndUuid'
           nullable: true
         created_at:
           type: string
@@ -2065,15 +1843,7 @@ components:
           format: date-time
           readOnly: true
       required:
-        - created_at
-        - created_by_group
-        - created_by_user
-        - dashboard_url
-        - method_details
-        - name
-        - updated_at
-        - url
-        - uuid
+      - name
     AwsEcsExecutionMethod:
       type: object
       description: |-
@@ -2130,7 +1900,7 @@ components:
           maxLength: 1000
         launch_type:
           allOf:
-            - $ref: '#/components/schemas/AwsEcsLaunchType'
+          - $ref: '#/components/schemas/AwsEcsLaunchType'
           default: FARGATE
         cluster_arn:
           type: string
@@ -2154,14 +1924,7 @@ components:
           type: string
           maxLength: 10
       required:
-        - cluster_infrastructure_website_url
-        - execution_role_infrastructure_website_url
-        - security_group_infrastructure_website_urls
-        - subnet_infrastructure_website_urls
-        - tags
-        - task_definition_infrastructure_website_url
-        - task_role_infrastructure_website_url
-        - type
+      - tags
     AwsEcsExecutionMethodCapability:
       type: object
       description: |-
@@ -2207,14 +1970,14 @@ components:
           readOnly: true
         default_launch_type:
           allOf:
-            - $ref: '#/components/schemas/AwsEcsLaunchType'
+          - $ref: '#/components/schemas/AwsEcsLaunchType'
           nullable: true
           default: FARGATE
         supported_launch_types:
           type: array
           items:
             allOf:
-              - $ref: '#/components/schemas/AwsEcsLaunchType'
+            - $ref: '#/components/schemas/AwsEcsLaunchType'
             default: FARGATE
           nullable: true
         default_cluster_arn:
@@ -2258,19 +2021,11 @@ components:
         service_options:
           $ref: '#/components/schemas/AwsEcsServiceOptions'
       required:
-        - capabilities
-        - default_cluster_infrastructure_website_url
-        - default_execution_role_infrastructure_website_url
-        - default_security_group_infrastructure_website_urls
-        - default_subnet_infrastructure_website_urls
-        - default_task_role_infrastructure_website_url
-        - tags
-        - task_definition_infrastructure_website_url
-        - type
+      - tags
     AwsEcsLaunchType:
       enum:
-        - FARGATE
-        - EC2
+      - FARGATE
+      - EC2
       type: string
     AwsEcsRunEnvironmentExecutionMethodCapability:
       type: object
@@ -2307,14 +2062,14 @@ components:
           readOnly: true
         default_launch_type:
           allOf:
-            - $ref: '#/components/schemas/AwsEcsLaunchType'
+          - $ref: '#/components/schemas/AwsEcsLaunchType'
           nullable: true
           default: FARGATE
         supported_launch_types:
           type: array
           items:
             allOf:
-              - $ref: '#/components/schemas/AwsEcsLaunchType'
+            - $ref: '#/components/schemas/AwsEcsLaunchType'
             default: FARGATE
           nullable: true
         default_cluster_arn:
@@ -2353,14 +2108,7 @@ components:
           type: string
           maxLength: 10
       required:
-        - capabilities
-        - default_cluster_infrastructure_website_url
-        - default_execution_role_infrastructure_website_url
-        - default_security_group_infrastructure_website_urls
-        - default_subnet_infrastructure_website_urls
-        - default_task_role_infrastructure_website_url
-        - tags
-        - type
+      - tags
     AwsEcsServiceLoadBalancerDetails:
       type: object
       description: |-
@@ -2378,8 +2126,8 @@ components:
           maximum: 2147483647
           minimum: -2147483648
       required:
-        - container_port
-        - target_group_arn
+      - container_port
+      - target_group_arn
     AwsEcsServiceOptions:
       type: object
       description: Options for running a Task as a service in AWS ECS.
@@ -2411,8 +2159,6 @@ components:
             type: string
             nullable: true
           nullable: true
-      required:
-        - load_balancers
     CurrentServiceInfo:
       type: object
       properties:
@@ -2422,6 +2168,7 @@ components:
         service_arn:
           type: string
           readOnly: true
+          nullable: true
         service_infrastructure_website_url:
           type: string
           nullable: true
@@ -2431,11 +2178,6 @@ components:
           format: date-time
           nullable: true
           readOnly: true
-      required:
-        - service_arn
-        - service_arn_updated_at
-        - service_infrastructure_website_url
-        - type
     EmailNotificationProfile:
       type: object
       description: An EmailProfile contains settings for emailing notifications.
@@ -2464,11 +2206,11 @@ components:
           readOnly: true
         created_by_group:
           allOf:
-            - $ref: '#/components/schemas/Group'
+          - $ref: '#/components/schemas/Group'
           readOnly: true
         run_environment:
           allOf:
-            - $ref: '#/components/schemas/NameAndUuid'
+          - $ref: '#/components/schemas/NameAndUuid'
           nullable: true
         created_at:
           type: string
@@ -2506,18 +2248,11 @@ components:
           type: string
           maxLength: 10000
       required:
-        - created_at
-        - created_by_group
-        - created_by_user
-        - dashboard_url
-        - name
-        - updated_at
-        - url
-        - uuid
+      - name
     ExecutionMethodCapability:
       oneOf:
-        - $ref: '#/components/schemas/AwsEcsExecutionMethodCapability'
-        - $ref: '#/components/schemas/UnknownExecutionMethodCapability'
+      - $ref: '#/components/schemas/AwsEcsExecutionMethodCapability'
+      - $ref: '#/components/schemas/UnknownExecutionMethodCapability'
       discriminator:
         propertyName: type
         mapping:
@@ -2525,9 +2260,9 @@ components:
           Unknown: '#/components/schemas/UnknownExecutionMethodCapability'
     FailureBehaviorEnum:
       enum:
-        - always_fail_workflow
-        - fail_workflow_if_unhandled
-        - ignore
+      - always_fail_workflow
+      - fail_workflow_if_unhandled
+      - ignore
       type: string
     Group:
       type: object
@@ -2543,9 +2278,7 @@ components:
           format: uri
           readOnly: true
       required:
-        - id
-        - name
-        - url
+      - name
     Link:
       type: object
       description: Links represent a URL and associated metadata.
@@ -2567,12 +2300,11 @@ components:
         rank:
           type: integer
       required:
-        - icon_url
-        - link_url
-        - link_url_template
-        - name
-        - rank
-        - uuid
+      - icon_url
+      - link_url_template
+      - name
+      - rank
+      - uuid
     NameAndUuid:
       type: object
       description: |-
@@ -2590,14 +2322,12 @@ components:
           readOnly: true
         name:
           type: string
-      required:
-        - url
     NotificationSeverity:
       enum:
-        - critical
-        - error
-        - warning
-        - info
+      - critical
+      - error
+      - warning
+      - info
       type: string
     PagerDutyProfile:
       type: object
@@ -2643,11 +2373,11 @@ components:
           readOnly: true
         created_by_group:
           allOf:
-            - $ref: '#/components/schemas/Group'
+          - $ref: '#/components/schemas/Group'
           readOnly: true
         run_environment:
           allOf:
-            - $ref: '#/components/schemas/NameAndUuid'
+          - $ref: '#/components/schemas/NameAndUuid'
           nullable: true
         created_at:
           type: string
@@ -2658,15 +2388,8 @@ components:
           format: date-time
           readOnly: true
       required:
-        - created_at
-        - created_by_group
-        - created_by_user
-        - dashboard_url
-        - integration_key
-        - name
-        - updated_at
-        - url
-        - uuid
+      - integration_key
+      - name
     PaginatedAlertMethodList:
       type: object
       properties:
@@ -2916,11 +2639,11 @@ components:
           readOnly: true
         created_by_group:
           allOf:
-            - $ref: '#/components/schemas/Group'
+          - $ref: '#/components/schemas/Group'
           readOnly: true
         run_environment:
           allOf:
-            - $ref: '#/components/schemas/NameAndUuid'
+          - $ref: '#/components/schemas/NameAndUuid'
           nullable: true
         created_at:
           type: string
@@ -2958,11 +2681,11 @@ components:
           readOnly: true
         created_by_group:
           allOf:
-            - $ref: '#/components/schemas/Group'
+          - $ref: '#/components/schemas/Group'
           readOnly: true
         run_environment:
           allOf:
-            - $ref: '#/components/schemas/NameAndUuid'
+          - $ref: '#/components/schemas/NameAndUuid'
           nullable: true
         created_at:
           type: string
@@ -3043,11 +2766,11 @@ components:
           readOnly: true
         created_by_group:
           allOf:
-            - $ref: '#/components/schemas/Group'
+          - $ref: '#/components/schemas/Group'
           readOnly: true
         run_environment:
           allOf:
-            - $ref: '#/components/schemas/NameAndUuid'
+          - $ref: '#/components/schemas/NameAndUuid'
           nullable: true
         created_at:
           type: string
@@ -3090,7 +2813,7 @@ components:
           readOnly: true
         created_by_group:
           allOf:
-            - $ref: '#/components/schemas/Group'
+          - $ref: '#/components/schemas/Group'
           readOnly: true
         created_at:
           type: string
@@ -3233,11 +2956,11 @@ components:
             $ref: '#/components/schemas/Link'
         run_environment:
           allOf:
-            - $ref: '#/components/schemas/NameAndUuid'
+          - $ref: '#/components/schemas/NameAndUuid'
           nullable: true
         execution_method_capability:
           allOf:
-            - $ref: '#/components/schemas/ExecutionMethodCapability'
+          - $ref: '#/components/schemas/ExecutionMethodCapability'
           readOnly: true
         alert_methods:
           type: array
@@ -3249,12 +2972,14 @@ components:
           nullable: true
         latest_task_execution:
           allOf:
-            - $ref: '#/components/schemas/TaskExecution'
+          - $ref: '#/components/schemas/TaskExecution'
           readOnly: true
+          nullable: true
         current_service_info:
           allOf:
-            - $ref: '#/components/schemas/CurrentServiceInfo'
+          - $ref: '#/components/schemas/CurrentServiceInfo'
           readOnly: true
+          nullable: true
         created_by_user:
           type: string
           description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
@@ -3262,7 +2987,7 @@ components:
           readOnly: true
         created_by_group:
           allOf:
-            - $ref: '#/components/schemas/Group'
+          - $ref: '#/components/schemas/Group'
           readOnly: true
         was_auto_created:
           type: boolean
@@ -3332,7 +3057,7 @@ components:
           nullable: true
         execution_method:
           allOf:
-            - $ref: '#/components/schemas/AwsEcsExecutionMethod'
+          - $ref: '#/components/schemas/AwsEcsExecutionMethod'
           readOnly: true
         status:
           $ref: '#/components/schemas/TaskExecutionStatus'
@@ -3354,6 +3079,7 @@ components:
           description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
             only.
           readOnly: true
+          nullable: true
         marked_done_at:
           type: string
           format: date-time
@@ -3367,6 +3093,7 @@ components:
           description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
             only.
           readOnly: true
+          nullable: true
         kill_started_at:
           type: string
           format: date-time
@@ -3381,7 +3108,9 @@ components:
           minimum: -2147483648
           nullable: true
         stop_reason:
-          $ref: '#/components/schemas/StopReasonEnum'
+          allOf:
+          - $ref: '#/components/schemas/StopReasonEnum'
+          nullable: true
         last_heartbeat_at:
           type: string
           format: date-time
@@ -3524,8 +3253,9 @@ components:
           nullable: true
         workflow_task_instance_execution:
           allOf:
-            - $ref: '#/components/schemas/WorkflowTaskInstanceExecutionBase'
+          - $ref: '#/components/schemas/WorkflowTaskInstanceExecutionBase'
           readOnly: true
+          nullable: true
         api_base_url:
           type: string
           maxLength: 200
@@ -3645,7 +3375,10 @@ components:
           maximum: 2147483647
           minimum: -2147483648
         latest_workflow_execution:
-          $ref: '#/components/schemas/WorkflowExecutionSummary'
+          allOf:
+          - $ref: '#/components/schemas/WorkflowExecutionSummary'
+          readOnly: true
+          nullable: true
         created_by_user:
           type: string
           description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
@@ -3653,11 +3386,11 @@ components:
           readOnly: true
         created_by_group:
           allOf:
-            - $ref: '#/components/schemas/Group'
+          - $ref: '#/components/schemas/Group'
           readOnly: true
         run_environment:
           allOf:
-            - $ref: '#/components/schemas/NameAndUuid'
+          - $ref: '#/components/schemas/NameAndUuid'
           nullable: true
         enabled:
           type: boolean
@@ -3685,6 +3418,8 @@ components:
           readOnly: true
     PatchedWorkflowExecution:
       type: object
+      description: A WorkflowExecution holds data on a specific execution (run) of
+        a Workflow.
       properties:
         url:
           type: string
@@ -3702,9 +3437,7 @@ components:
         status:
           $ref: '#/components/schemas/WorkflowExecutionStatus'
         run_reason:
-          type: integer
-          maximum: 2147483647
-          minimum: -2147483648
+          $ref: '#/components/schemas/WorkflowExecutionRunReason'
         started_at:
           type: string
           format: date-time
@@ -3714,6 +3447,7 @@ components:
           description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
             only.
           readOnly: true
+          nullable: true
         finished_at:
           type: string
           format: date-time
@@ -3723,10 +3457,7 @@ components:
           format: date-time
           nullable: true
         stop_reason:
-          type: integer
-          maximum: 2147483647
-          minimum: -2147483648
-          nullable: true
+          $ref: '#/components/schemas/WorkflowExecutionStopReason'
         marked_done_at:
           type: string
           format: date-time
@@ -3736,6 +3467,7 @@ components:
           description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
             only.
           readOnly: true
+          nullable: true
         kill_started_at:
           type: string
           format: date-time
@@ -3745,6 +3477,7 @@ components:
           description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
             only.
           readOnly: true
+          nullable: true
         kill_finished_at:
           type: string
           format: date-time
@@ -3824,7 +3557,7 @@ components:
           nullable: true
         condition_ratio_threshold:
           type: number
-          format: float
+          format: double
           nullable: true
         max_age_seconds:
           type: integer
@@ -3867,15 +3600,15 @@ components:
           maxLength: 50
         ui_scale:
           type: number
-          format: float
+          format: double
           nullable: true
         ui_center_margin_top:
           type: number
-          format: float
+          format: double
           nullable: true
         ui_center_margin_left:
           type: number
-          format: float
+          format: double
           nullable: true
         created_at:
           type: string
@@ -3934,7 +3667,7 @@ components:
           maxLength: 50
         ui_scale:
           type: number
-          format: float
+          format: double
           nullable: true
         created_at:
           type: string
@@ -3946,19 +3679,19 @@ components:
           readOnly: true
     PropagateTagsEnum:
       enum:
-        - TASK_DEFINITION
-        - SERVICE
+      - TASK_DEFINITION
+      - SERVICE
       type: string
     RuleTypeEnum:
       enum:
-        - always
-        - success
-        - failure
-        - timeout
-        - exit_code
-        - threshold
-        - custom
-        - default
+      - always
+      - success
+      - failure
+      - timeout
+      - exit_code
+      - threshold
+      - custom
+      - default
       type: string
     RunEnvironment:
       type: object
@@ -3993,7 +3726,7 @@ components:
           readOnly: true
         created_by_group:
           allOf:
-            - $ref: '#/components/schemas/Group'
+          - $ref: '#/components/schemas/Group'
           readOnly: true
         created_at:
           type: string
@@ -4034,31 +3767,23 @@ components:
             $ref: '#/components/schemas/AwsEcsRunEnvironmentExecutionMethodCapability'
           readOnly: true
       required:
-        - created_at
-        - created_by_group
-        - created_by_user
-        - dashboard_url
-        - execution_method_capabilities
-        - name
-        - updated_at
-        - url
-        - uuid
+      - name
     StartTransitionConditionEnum:
       enum:
-        - all
-        - any
-        - count_at_least
-        - ratio_at_least
+      - all
+      - any
+      - count_at_least
+      - ratio_at_least
       type: string
     StopReasonEnum:
       enum:
-        - MANUAL
-        - MAX_EXECUTION_TIME_EXCEEDED
-        - MISSING_HEARTBEAT
-        - FAILED_TO_START
-        - WORKFLOW_EXECUTION_STOPPED
-        - WORKFLOW_EXECUTION_RETRIED
-        - WORKFLOW_EXECUTION_TIMED_OUT
+      - MANUAL
+      - MAX_EXECUTION_TIME_EXCEEDED
+      - MISSING_HEARTBEAT
+      - FAILED_TO_START
+      - WORKFLOW_EXECUTION_STOPPED
+      - WORKFLOW_EXECUTION_RETRIED
+      - WORKFLOW_EXECUTION_TIMED_OUT
       type: string
     Task:
       type: object
@@ -4163,11 +3888,11 @@ components:
             $ref: '#/components/schemas/Link'
         run_environment:
           allOf:
-            - $ref: '#/components/schemas/NameAndUuid'
+          - $ref: '#/components/schemas/NameAndUuid'
           nullable: true
         execution_method_capability:
           allOf:
-            - $ref: '#/components/schemas/ExecutionMethodCapability'
+          - $ref: '#/components/schemas/ExecutionMethodCapability'
           readOnly: true
         alert_methods:
           type: array
@@ -4179,12 +3904,14 @@ components:
           nullable: true
         latest_task_execution:
           allOf:
-            - $ref: '#/components/schemas/TaskExecution'
+          - $ref: '#/components/schemas/TaskExecution'
           readOnly: true
+          nullable: true
         current_service_info:
           allOf:
-            - $ref: '#/components/schemas/CurrentServiceInfo'
+          - $ref: '#/components/schemas/CurrentServiceInfo'
           readOnly: true
+          nullable: true
         created_by_user:
           type: string
           description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
@@ -4192,7 +3919,7 @@ components:
           readOnly: true
         created_by_group:
           allOf:
-            - $ref: '#/components/schemas/Group'
+          - $ref: '#/components/schemas/Group'
           readOnly: true
         was_auto_created:
           type: boolean
@@ -4210,20 +3937,7 @@ components:
           format: date-time
           readOnly: true
       required:
-        - created_at
-        - created_by_group
-        - created_by_user
-        - current_service_info
-        - dashboard_url
-        - execution_method_capability
-        - infrastructure_website_url
-        - is_service
-        - latest_task_execution
-        - logs_url
-        - name
-        - updated_at
-        - url
-        - uuid
+      - name
     TaskExecution:
       type: object
       description: A Task Execution is an execution / run instance of a Task.
@@ -4277,7 +3991,7 @@ components:
           nullable: true
         execution_method:
           allOf:
-            - $ref: '#/components/schemas/AwsEcsExecutionMethod'
+          - $ref: '#/components/schemas/AwsEcsExecutionMethod'
           readOnly: true
         status:
           $ref: '#/components/schemas/TaskExecutionStatus'
@@ -4299,6 +4013,7 @@ components:
           description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
             only.
           readOnly: true
+          nullable: true
         marked_done_at:
           type: string
           format: date-time
@@ -4312,6 +4027,7 @@ components:
           description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
             only.
           readOnly: true
+          nullable: true
         kill_started_at:
           type: string
           format: date-time
@@ -4326,7 +4042,9 @@ components:
           minimum: -2147483648
           nullable: true
         stop_reason:
-          $ref: '#/components/schemas/StopReasonEnum'
+          allOf:
+          - $ref: '#/components/schemas/StopReasonEnum'
+          nullable: true
         last_heartbeat_at:
           type: string
           format: date-time
@@ -4469,8 +4187,9 @@ components:
           nullable: true
         workflow_task_instance_execution:
           allOf:
-            - $ref: '#/components/schemas/WorkflowTaskInstanceExecutionBase'
+          - $ref: '#/components/schemas/WorkflowTaskInstanceExecutionBase'
           readOnly: true
+          nullable: true
         api_base_url:
           type: string
           maxLength: 200
@@ -4549,48 +4268,35 @@ components:
           format: date-time
           readOnly: true
       required:
-        - commit_url
-        - created_at
-        - dashboard_url
-        - execution_method
-        - infrastructure_website_url
-        - killed_by
-        - marked_done_by
-        - started_at
-        - started_by
-        - status
-        - updated_at
-        - url
-        - uuid
-        - workflow_task_instance_execution
+      - status
     TaskExecutionStatus:
       enum:
-        - RUNNING
-        - SUCCEEDED
-        - FAILED
-        - TERMINATED_AFTER_TIME_OUT
-        - MARKED_DONE
-        - EXITED_AFTER_MARKED_DONE
-        - STOPPING
-        - STOPPED
-        - ABANDONED
-        - MANUALLY_STARTED
-        - ABORTED
+      - RUNNING
+      - SUCCEEDED
+      - FAILED
+      - TERMINATED_AFTER_TIME_OUT
+      - MARKED_DONE
+      - EXITED_AFTER_MARKED_DONE
+      - STOPPING
+      - STOPPED
+      - ABANDONED
+      - MANUALLY_STARTED
+      - ABORTED
       type: string
     ThresholdPropertyEnum:
       enum:
-        - execution_time
-        - success_ratio
-        - failure_ratio
-        - skipped_ratio
+      - execution_time
+      - success_ratio
+      - failure_ratio
+      - skipped_ratio
       type: string
     TimeoutBehaviorEnum:
       enum:
-        - always_fail_workflow
-        - always_timeout_workflow
-        - fail_workflow_if_unhandled
-        - timeout_workflow_if_unhandled
-        - ignore
+      - always_fail_workflow
+      - always_timeout_workflow
+      - fail_workflow_if_unhandled
+      - timeout_workflow_if_unhandled
+      - ignore
       type: string
     UnknownExecutionMethodCapability:
       type: object
@@ -4608,9 +4314,6 @@ components:
           items:
             type: string
           readOnly: true
-      required:
-        - capabilities
-        - type
     Workflow:
       type: object
       description: |-
@@ -4653,7 +4356,10 @@ components:
           maximum: 2147483647
           minimum: -2147483648
         latest_workflow_execution:
-          $ref: '#/components/schemas/WorkflowExecutionSummary'
+          allOf:
+          - $ref: '#/components/schemas/WorkflowExecutionSummary'
+          readOnly: true
+          nullable: true
         created_by_user:
           type: string
           description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
@@ -4661,11 +4367,11 @@ components:
           readOnly: true
         created_by_group:
           allOf:
-            - $ref: '#/components/schemas/Group'
+          - $ref: '#/components/schemas/Group'
           readOnly: true
         run_environment:
           allOf:
-            - $ref: '#/components/schemas/NameAndUuid'
+          - $ref: '#/components/schemas/NameAndUuid'
           nullable: true
         enabled:
           type: boolean
@@ -4692,18 +4398,11 @@ components:
             $ref: '#/components/schemas/WorkflowTransition'
           readOnly: true
       required:
-        - created_at
-        - created_by_group
-        - created_by_user
-        - dashboard_url
-        - name
-        - updated_at
-        - url
-        - uuid
-        - workflow_task_instances
-        - workflow_transitions
+      - name
     WorkflowExecution:
       type: object
+      description: A WorkflowExecution holds data on a specific execution (run) of
+        a Workflow.
       properties:
         url:
           type: string
@@ -4721,9 +4420,7 @@ components:
         status:
           $ref: '#/components/schemas/WorkflowExecutionStatus'
         run_reason:
-          type: integer
-          maximum: 2147483647
-          minimum: -2147483648
+          $ref: '#/components/schemas/WorkflowExecutionRunReason'
         started_at:
           type: string
           format: date-time
@@ -4733,6 +4430,7 @@ components:
           description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
             only.
           readOnly: true
+          nullable: true
         finished_at:
           type: string
           format: date-time
@@ -4742,10 +4440,7 @@ components:
           format: date-time
           nullable: true
         stop_reason:
-          type: integer
-          maximum: 2147483647
-          minimum: -2147483648
-          nullable: true
+          $ref: '#/components/schemas/WorkflowExecutionStopReason'
         marked_done_at:
           type: string
           format: date-time
@@ -4755,6 +4450,7 @@ components:
           description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
             only.
           readOnly: true
+          nullable: true
         kill_started_at:
           type: string
           format: date-time
@@ -4764,6 +4460,7 @@ components:
           description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
             only.
           readOnly: true
+          nullable: true
         kill_finished_at:
           type: string
           format: date-time
@@ -4804,34 +4501,34 @@ components:
           format: date-time
           readOnly: true
       required:
-        - created_at
-        - dashboard_url
-        - killed_by
-        - marked_done_by
-        - started_at
-        - started_by
-        - status
-        - updated_at
-        - url
-        - uuid
-        - workflow
-        - workflow_snapshot
-        - workflow_task_instance_executions
-        - workflow_transition_evaluations
+      - status
+      - workflow
+    WorkflowExecutionRunReason:
+      enum:
+      - EXPLICIT_START
+      - SCHEDULED_START
+      - EXPLICIT_RETRY
+      type: string
     WorkflowExecutionStatus:
       enum:
-        - RUNNING
-        - SUCCEEDED
-        - FAILED
-        - TERMINATED_AFTER_TIME_OUT
-        - STOPPING
-        - STOPPED
-        - MANUALLY_STARTED
+      - RUNNING
+      - SUCCEEDED
+      - FAILED
+      - TERMINATED_AFTER_TIME_OUT
+      - STOPPING
+      - STOPPED
+      - MANUALLY_STARTED
+      type: string
+    WorkflowExecutionStopReason:
+      enum:
+      - MANUAL
+      - MAX_EXECUTION_TIME_EXCEEDED
       type: string
     WorkflowExecutionSummary:
       type: object
-      description: A WorkflowExecution holds data on a specific execution (run) of
-        a Workflow.
+      description: |-
+        A WorkflowExecutionSummary contains a subset of the data inside of a
+        WorkflowExecution.
       properties:
         url:
           type: string
@@ -4847,9 +4544,7 @@ components:
         status:
           $ref: '#/components/schemas/WorkflowExecutionStatus'
         run_reason:
-          type: integer
-          maximum: 2147483647
-          minimum: -2147483648
+          $ref: '#/components/schemas/WorkflowExecutionRunReason'
         started_at:
           type: string
           format: date-time
@@ -4863,10 +4558,7 @@ components:
           format: date-time
           nullable: true
         stop_reason:
-          type: integer
-          maximum: 2147483647
-          minimum: -2147483648
-          nullable: true
+          $ref: '#/components/schemas/WorkflowExecutionStopReason'
         marked_done_at:
           type: string
           format: date-time
@@ -4901,13 +4593,7 @@ components:
           format: date-time
           readOnly: true
       required:
-        - created_at
-        - dashboard_url
-        - started_at
-        - status
-        - updated_at
-        - url
-        - uuid
+      - status
     WorkflowSummary:
       type: object
       description: Selected properties of Workflows.
@@ -4947,7 +4633,10 @@ components:
           maximum: 2147483647
           minimum: -2147483648
         latest_workflow_execution:
-          $ref: '#/components/schemas/WorkflowExecutionSummary'
+          allOf:
+          - $ref: '#/components/schemas/WorkflowExecutionSummary'
+          readOnly: true
+          nullable: true
         created_by_user:
           type: string
           description: Required. 150 characters or fewer. Letters, digits and @/./+/-/_
@@ -4955,11 +4644,11 @@ components:
           readOnly: true
         created_by_group:
           allOf:
-            - $ref: '#/components/schemas/Group'
+          - $ref: '#/components/schemas/Group'
           readOnly: true
         run_environment:
           allOf:
-            - $ref: '#/components/schemas/NameAndUuid'
+          - $ref: '#/components/schemas/NameAndUuid'
           nullable: true
         enabled:
           type: boolean
@@ -4972,14 +4661,7 @@ components:
           format: date-time
           readOnly: true
       required:
-        - created_at
-        - created_by_group
-        - created_by_user
-        - dashboard_url
-        - name
-        - updated_at
-        - url
-        - uuid
+      - name
     WorkflowTaskInstance:
       type: object
       description: |-
@@ -5020,7 +4702,7 @@ components:
           nullable: true
         condition_ratio_threshold:
           type: number
-          format: float
+          format: double
           nullable: true
         max_age_seconds:
           type: integer
@@ -5063,15 +4745,15 @@ components:
           maxLength: 50
         ui_scale:
           type: number
-          format: float
+          format: double
           nullable: true
         ui_center_margin_top:
           type: number
-          format: float
+          format: double
           nullable: true
         ui_center_margin_left:
           type: number
-          format: float
+          format: double
           nullable: true
         created_at:
           type: string
@@ -5082,13 +4764,9 @@ components:
           format: date-time
           readOnly: true
       required:
-        - created_at
-        - name
-        - task
-        - updated_at
-        - url
-        - uuid
-        - workflow
+      - name
+      - task
+      - workflow
     WorkflowTaskInstanceExecution:
       type: object
       description: |-
@@ -5102,15 +4780,15 @@ components:
           readOnly: true
         workflow_execution:
           allOf:
-            - $ref: '#/components/schemas/NameAndUuid'
+          - $ref: '#/components/schemas/NameAndUuid'
           readOnly: true
         workflow_task_instance:
           allOf:
-            - $ref: '#/components/schemas/NameAndUuid'
+          - $ref: '#/components/schemas/NameAndUuid'
           readOnly: true
         task_execution:
           allOf:
-            - $ref: '#/components/schemas/TaskExecution'
+          - $ref: '#/components/schemas/TaskExecution'
           readOnly: true
         is_latest:
           type: boolean
@@ -5119,13 +4797,6 @@ components:
           type: string
           format: date-time
           readOnly: true
-      required:
-        - created_at
-        - is_latest
-        - task_execution
-        - uuid
-        - workflow_execution
-        - workflow_task_instance
     WorkflowTaskInstanceExecutionBase:
       type: object
       description: |-
@@ -5139,11 +4810,11 @@ components:
           readOnly: true
         workflow_execution:
           allOf:
-            - $ref: '#/components/schemas/NameAndUuid'
+          - $ref: '#/components/schemas/NameAndUuid'
           readOnly: true
         workflow_task_instance:
           allOf:
-            - $ref: '#/components/schemas/NameAndUuid'
+          - $ref: '#/components/schemas/NameAndUuid'
           readOnly: true
         is_latest:
           type: boolean
@@ -5152,12 +4823,6 @@ components:
           type: string
           format: date-time
           readOnly: true
-      required:
-        - created_at
-        - is_latest
-        - uuid
-        - workflow_execution
-        - workflow_task_instance
     WorkflowTransition:
       type: object
       description: |-
@@ -5207,7 +4872,7 @@ components:
           maxLength: 50
         ui_scale:
           type: number
-          format: float
+          format: double
           nullable: true
         created_at:
           type: string
@@ -5218,13 +4883,9 @@ components:
           format: date-time
           readOnly: true
       required:
-        - created_at
-        - from_workflow_task_instance
-        - rule_type
-        - to_workflow_task_instance
-        - updated_at
-        - url
-        - uuid
+      - from_workflow_task_instance
+      - rule_type
+      - to_workflow_task_instance
     WorkflowTransitionEvaluation:
       type: object
       description: |-
@@ -5240,11 +4901,11 @@ components:
           readOnly: true
         workflow_transition:
           allOf:
-            - $ref: '#/components/schemas/NameAndUuid'
+          - $ref: '#/components/schemas/NameAndUuid'
           readOnly: true
         workflow_execution:
           allOf:
-            - $ref: '#/components/schemas/NameAndUuid'
+          - $ref: '#/components/schemas/NameAndUuid'
           readOnly: true
         from_workflow_task_instance_execution:
           type: string
@@ -5254,22 +4915,13 @@ components:
           type: string
           format: date-time
           readOnly: true
-      required:
-        - evaluated_at
-        - from_workflow_task_instance_execution
-        - result
-        - uuid
-        - workflow_execution
-        - workflow_transition
   securitySchemes:
     tokenAuth:
-      type: apiKey
-      in: header
-      name: Authorization
-      description: Token-based authentication with required prefix "Token"
+      type: http
+      scheme: bearer
 servers:
-  - url: https://api.cloudreactor.io/api/v1
-    description: CloudReactor API server
+- url: https://api.cloudreactor.io/api/v1
+  description: CloudReactor API server
 externalDocs:
   url: https://docs.cloudreactor.io/
   description: CloudReactor Documentation Home

@@ -10,8 +10,6 @@ from ...types import Response
 def _get_kwargs(
     *,
     client: AuthenticatedClient,
-    form_data: WorkflowTransition,
-    multipart_data: WorkflowTransition,
     json_body: WorkflowTransition,
 ) -> Dict[str, Any]:
     url = "{}/workflow_transitions/".format(client.base_url)
@@ -19,9 +17,7 @@ def _get_kwargs(
     headers: Dict[str, str] = client.get_headers()
     cookies: Dict[str, Any] = client.get_cookies()
 
-    json_body.to_dict()
-
-    multipart_data.to_multipart()
+    json_json_body = json_body.to_dict()
 
     return {
         "method": "post",
@@ -29,7 +25,7 @@ def _get_kwargs(
         "headers": headers,
         "cookies": cookies,
         "timeout": client.get_timeout(),
-        "data": form_data.to_dict(),
+        "json": json_json_body,
     }
 
 
@@ -53,17 +49,10 @@ def _build_response(*, response: httpx.Response) -> Response[WorkflowTransition]
 def sync_detailed(
     *,
     client: AuthenticatedClient,
-    form_data: WorkflowTransition,
-    multipart_data: WorkflowTransition,
     json_body: WorkflowTransition,
 ) -> Response[WorkflowTransition]:
     """
     Args:
-        multipart_data (WorkflowTransition): A WorkflowTransition is a directed edge in a
-            Worfklow, which is a directed
-            graph. It contains a source WorkflowTaskInstance, a destination
-            WorkflowTaskInstance, as well as conditions for triggering the destination
-            to execution.
         json_body (WorkflowTransition): A WorkflowTransition is a directed edge in a Worfklow,
             which is a directed
             graph. It contains a source WorkflowTaskInstance, a destination
@@ -76,8 +65,6 @@ def sync_detailed(
 
     kwargs = _get_kwargs(
         client=client,
-        form_data=form_data,
-        multipart_data=multipart_data,
         json_body=json_body,
     )
 
@@ -92,17 +79,10 @@ def sync_detailed(
 def sync(
     *,
     client: AuthenticatedClient,
-    form_data: WorkflowTransition,
-    multipart_data: WorkflowTransition,
     json_body: WorkflowTransition,
 ) -> Optional[WorkflowTransition]:
     """
     Args:
-        multipart_data (WorkflowTransition): A WorkflowTransition is a directed edge in a
-            Worfklow, which is a directed
-            graph. It contains a source WorkflowTaskInstance, a destination
-            WorkflowTaskInstance, as well as conditions for triggering the destination
-            to execution.
         json_body (WorkflowTransition): A WorkflowTransition is a directed edge in a Worfklow,
             which is a directed
             graph. It contains a source WorkflowTaskInstance, a destination
@@ -115,8 +95,6 @@ def sync(
 
     return sync_detailed(
         client=client,
-        form_data=form_data,
-        multipart_data=multipart_data,
         json_body=json_body,
     ).parsed
 
@@ -124,17 +102,10 @@ def sync(
 async def asyncio_detailed(
     *,
     client: AuthenticatedClient,
-    form_data: WorkflowTransition,
-    multipart_data: WorkflowTransition,
     json_body: WorkflowTransition,
 ) -> Response[WorkflowTransition]:
     """
     Args:
-        multipart_data (WorkflowTransition): A WorkflowTransition is a directed edge in a
-            Worfklow, which is a directed
-            graph. It contains a source WorkflowTaskInstance, a destination
-            WorkflowTaskInstance, as well as conditions for triggering the destination
-            to execution.
         json_body (WorkflowTransition): A WorkflowTransition is a directed edge in a Worfklow,
             which is a directed
             graph. It contains a source WorkflowTaskInstance, a destination
@@ -147,8 +118,6 @@ async def asyncio_detailed(
 
     kwargs = _get_kwargs(
         client=client,
-        form_data=form_data,
-        multipart_data=multipart_data,
         json_body=json_body,
     )
 
@@ -161,17 +130,10 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: AuthenticatedClient,
-    form_data: WorkflowTransition,
-    multipart_data: WorkflowTransition,
     json_body: WorkflowTransition,
 ) -> Optional[WorkflowTransition]:
     """
     Args:
-        multipart_data (WorkflowTransition): A WorkflowTransition is a directed edge in a
-            Worfklow, which is a directed
-            graph. It contains a source WorkflowTaskInstance, a destination
-            WorkflowTaskInstance, as well as conditions for triggering the destination
-            to execution.
         json_body (WorkflowTransition): A WorkflowTransition is a directed edge in a Worfklow,
             which is a directed
             graph. It contains a source WorkflowTaskInstance, a destination
@@ -185,8 +147,6 @@ async def asyncio(
     return (
         await asyncio_detailed(
             client=client,
-            form_data=form_data,
-            multipart_data=multipart_data,
             json_body=json_body,
         )
     ).parsed

@@ -1,6 +1,8 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 import attr
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="Group")
 
@@ -9,45 +11,47 @@ T = TypeVar("T", bound="Group")
 class Group:
     """
     Attributes:
-        id (int):
         name (str):
-        url (str):
+        id (Union[Unset, int]):
+        url (Union[Unset, str]):
     """
 
-    id: int
     name: str
-    url: str
+    id: Union[Unset, int] = UNSET
+    url: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = attr.ib(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
-        id = self.id
         name = self.name
+        id = self.id
         url = self.url
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "id": id,
                 "name": name,
-                "url": url,
             }
         )
+        if id is not UNSET:
+            field_dict["id"] = id
+        if url is not UNSET:
+            field_dict["url"] = url
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        id = d.pop("id")
-
         name = d.pop("name")
 
-        url = d.pop("url")
+        id = d.pop("id", UNSET)
+
+        url = d.pop("url", UNSET)
 
         group = cls(
-            id=id,
             name=name,
+            id=id,
             url=url,
         )
 

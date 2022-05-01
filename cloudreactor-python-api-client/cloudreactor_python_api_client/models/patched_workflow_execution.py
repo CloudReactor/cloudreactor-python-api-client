@@ -1,13 +1,14 @@
 import datetime
-import json
-from typing import Any, Dict, List, Tuple, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 import attr
 from dateutil.parser import isoparse
 
 from ..models.name_and_uuid import NameAndUuid
 from ..models.patched_workflow_execution_workflow_snapshot import PatchedWorkflowExecutionWorkflowSnapshot
+from ..models.workflow_execution_run_reason import WorkflowExecutionRunReason
 from ..models.workflow_execution_status import WorkflowExecutionStatus
+from ..models.workflow_execution_stop_reason import WorkflowExecutionStopReason
 from ..models.workflow_task_instance_execution import WorkflowTaskInstanceExecution
 from ..models.workflow_transition_evaluation import WorkflowTransitionEvaluation
 from ..types import UNSET, Unset
@@ -17,7 +18,8 @@ T = TypeVar("T", bound="PatchedWorkflowExecution")
 
 @attr.s(auto_attribs=True)
 class PatchedWorkflowExecution:
-    """
+    """A WorkflowExecution holds data on a specific execution (run) of a Workflow.
+
     Attributes:
         url (Union[Unset, str]):
         uuid (Union[Unset, str]):
@@ -27,16 +29,16 @@ class PatchedWorkflowExecution:
             uuid and name needs to be specified. If both are present, they must
             refer to the same entity or else the response will be a 400 error.
         status (Union[Unset, WorkflowExecutionStatus]):
-        run_reason (Union[Unset, int]):
+        run_reason (Union[Unset, WorkflowExecutionRunReason]):
         started_at (Union[Unset, datetime.datetime]):
-        started_by (Union[Unset, str]): Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
+        started_by (Union[Unset, None, str]): Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
         finished_at (Union[Unset, None, datetime.datetime]):
         last_heartbeat_at (Union[Unset, None, datetime.datetime]):
-        stop_reason (Union[Unset, None, int]):
+        stop_reason (Union[Unset, WorkflowExecutionStopReason]):
         marked_done_at (Union[Unset, None, datetime.datetime]):
-        marked_done_by (Union[Unset, str]): Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
+        marked_done_by (Union[Unset, None, str]): Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
         kill_started_at (Union[Unset, None, datetime.datetime]):
-        killed_by (Union[Unset, str]): Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
+        killed_by (Union[Unset, None, str]): Required. 150 characters or fewer. Letters, digits and @/./+/-/_ only.
         kill_finished_at (Union[Unset, None, datetime.datetime]):
         kill_error_code (Union[Unset, None, int]):
         failed_attempts (Union[Unset, int]):
@@ -53,16 +55,16 @@ class PatchedWorkflowExecution:
     dashboard_url: Union[Unset, str] = UNSET
     workflow: Union[Unset, NameAndUuid] = UNSET
     status: Union[Unset, WorkflowExecutionStatus] = UNSET
-    run_reason: Union[Unset, int] = UNSET
+    run_reason: Union[Unset, WorkflowExecutionRunReason] = UNSET
     started_at: Union[Unset, datetime.datetime] = UNSET
-    started_by: Union[Unset, str] = UNSET
+    started_by: Union[Unset, None, str] = UNSET
     finished_at: Union[Unset, None, datetime.datetime] = UNSET
     last_heartbeat_at: Union[Unset, None, datetime.datetime] = UNSET
-    stop_reason: Union[Unset, None, int] = UNSET
+    stop_reason: Union[Unset, WorkflowExecutionStopReason] = UNSET
     marked_done_at: Union[Unset, None, datetime.datetime] = UNSET
-    marked_done_by: Union[Unset, str] = UNSET
+    marked_done_by: Union[Unset, None, str] = UNSET
     kill_started_at: Union[Unset, None, datetime.datetime] = UNSET
-    killed_by: Union[Unset, str] = UNSET
+    killed_by: Union[Unset, None, str] = UNSET
     kill_finished_at: Union[Unset, None, datetime.datetime] = UNSET
     kill_error_code: Union[Unset, None, int] = UNSET
     failed_attempts: Union[Unset, int] = UNSET
@@ -86,7 +88,10 @@ class PatchedWorkflowExecution:
         if not isinstance(self.status, Unset):
             status = self.status.value
 
-        run_reason = self.run_reason
+        run_reason: Union[Unset, str] = UNSET
+        if not isinstance(self.run_reason, Unset):
+            run_reason = self.run_reason.value
+
         started_at: Union[Unset, str] = UNSET
         if not isinstance(self.started_at, Unset):
             started_at = self.started_at.isoformat()
@@ -100,7 +105,10 @@ class PatchedWorkflowExecution:
         if not isinstance(self.last_heartbeat_at, Unset):
             last_heartbeat_at = self.last_heartbeat_at.isoformat() if self.last_heartbeat_at else None
 
-        stop_reason = self.stop_reason
+        stop_reason: Union[Unset, str] = UNSET
+        if not isinstance(self.stop_reason, Unset):
+            stop_reason = self.stop_reason.value
+
         marked_done_at: Union[Unset, None, str] = UNSET
         if not isinstance(self.marked_done_at, Unset):
             marked_done_at = self.marked_done_at.isoformat() if self.marked_done_at else None
@@ -200,178 +208,6 @@ class PatchedWorkflowExecution:
 
         return field_dict
 
-    def to_multipart(self) -> Dict[str, Any]:
-        url = self.url if isinstance(self.url, Unset) else (None, str(self.url).encode(), "text/plain")
-        uuid = self.uuid if isinstance(self.uuid, Unset) else (None, str(self.uuid).encode(), "text/plain")
-        dashboard_url = (
-            self.dashboard_url
-            if isinstance(self.dashboard_url, Unset)
-            else (None, str(self.dashboard_url).encode(), "text/plain")
-        )
-        workflow: Union[Unset, Tuple[None, bytes, str]] = UNSET
-        if not isinstance(self.workflow, Unset):
-            workflow = (None, json.dumps(self.workflow.to_dict()).encode(), "application/json")
-
-        status: Union[Unset, Tuple[None, bytes, str]] = UNSET
-        if not isinstance(self.status, Unset):
-            status = (None, str(self.status.value).encode(), "text/plain")
-
-        run_reason = (
-            self.run_reason
-            if isinstance(self.run_reason, Unset)
-            else (None, str(self.run_reason).encode(), "text/plain")
-        )
-        started_at: Union[Unset, bytes] = UNSET
-        if not isinstance(self.started_at, Unset):
-            started_at = self.started_at.isoformat().encode()
-
-        started_by = (
-            self.started_by
-            if isinstance(self.started_by, Unset)
-            else (None, str(self.started_by).encode(), "text/plain")
-        )
-        finished_at: Union[Unset, None, bytes] = UNSET
-        if not isinstance(self.finished_at, Unset):
-            finished_at = self.finished_at.isoformat().encode() if self.finished_at else None
-
-        last_heartbeat_at: Union[Unset, None, bytes] = UNSET
-        if not isinstance(self.last_heartbeat_at, Unset):
-            last_heartbeat_at = self.last_heartbeat_at.isoformat().encode() if self.last_heartbeat_at else None
-
-        stop_reason = (
-            self.stop_reason
-            if isinstance(self.stop_reason, Unset)
-            else (None, str(self.stop_reason).encode(), "text/plain")
-        )
-        marked_done_at: Union[Unset, None, bytes] = UNSET
-        if not isinstance(self.marked_done_at, Unset):
-            marked_done_at = self.marked_done_at.isoformat().encode() if self.marked_done_at else None
-
-        marked_done_by = (
-            self.marked_done_by
-            if isinstance(self.marked_done_by, Unset)
-            else (None, str(self.marked_done_by).encode(), "text/plain")
-        )
-        kill_started_at: Union[Unset, None, bytes] = UNSET
-        if not isinstance(self.kill_started_at, Unset):
-            kill_started_at = self.kill_started_at.isoformat().encode() if self.kill_started_at else None
-
-        killed_by = (
-            self.killed_by if isinstance(self.killed_by, Unset) else (None, str(self.killed_by).encode(), "text/plain")
-        )
-        kill_finished_at: Union[Unset, None, bytes] = UNSET
-        if not isinstance(self.kill_finished_at, Unset):
-            kill_finished_at = self.kill_finished_at.isoformat().encode() if self.kill_finished_at else None
-
-        kill_error_code = (
-            self.kill_error_code
-            if isinstance(self.kill_error_code, Unset)
-            else (None, str(self.kill_error_code).encode(), "text/plain")
-        )
-        failed_attempts = (
-            self.failed_attempts
-            if isinstance(self.failed_attempts, Unset)
-            else (None, str(self.failed_attempts).encode(), "text/plain")
-        )
-        timed_out_attempts = (
-            self.timed_out_attempts
-            if isinstance(self.timed_out_attempts, Unset)
-            else (None, str(self.timed_out_attempts).encode(), "text/plain")
-        )
-        workflow_snapshot: Union[Unset, Tuple[None, bytes, str]] = UNSET
-        if not isinstance(self.workflow_snapshot, Unset):
-            workflow_snapshot = (None, json.dumps(self.workflow_snapshot.to_dict()).encode(), "application/json")
-
-        workflow_task_instance_executions: Union[Unset, Tuple[None, bytes, str]] = UNSET
-        if not isinstance(self.workflow_task_instance_executions, Unset):
-            _temp_workflow_task_instance_executions = []
-            for workflow_task_instance_executions_item_data in self.workflow_task_instance_executions:
-                workflow_task_instance_executions_item = workflow_task_instance_executions_item_data.to_dict()
-
-                _temp_workflow_task_instance_executions.append(workflow_task_instance_executions_item)
-            workflow_task_instance_executions = (
-                None,
-                json.dumps(_temp_workflow_task_instance_executions).encode(),
-                "application/json",
-            )
-
-        workflow_transition_evaluations: Union[Unset, Tuple[None, bytes, str]] = UNSET
-        if not isinstance(self.workflow_transition_evaluations, Unset):
-            _temp_workflow_transition_evaluations = []
-            for workflow_transition_evaluations_item_data in self.workflow_transition_evaluations:
-                workflow_transition_evaluations_item = workflow_transition_evaluations_item_data.to_dict()
-
-                _temp_workflow_transition_evaluations.append(workflow_transition_evaluations_item)
-            workflow_transition_evaluations = (
-                None,
-                json.dumps(_temp_workflow_transition_evaluations).encode(),
-                "application/json",
-            )
-
-        created_at: Union[Unset, bytes] = UNSET
-        if not isinstance(self.created_at, Unset):
-            created_at = self.created_at.isoformat().encode()
-
-        updated_at: Union[Unset, bytes] = UNSET
-        if not isinstance(self.updated_at, Unset):
-            updated_at = self.updated_at.isoformat().encode()
-
-        field_dict: Dict[str, Any] = {}
-        field_dict.update(
-            {key: (None, str(value).encode(), "text/plain") for key, value in self.additional_properties.items()}
-        )
-        field_dict.update({})
-        if url is not UNSET:
-            field_dict["url"] = url
-        if uuid is not UNSET:
-            field_dict["uuid"] = uuid
-        if dashboard_url is not UNSET:
-            field_dict["dashboard_url"] = dashboard_url
-        if workflow is not UNSET:
-            field_dict["workflow"] = workflow
-        if status is not UNSET:
-            field_dict["status"] = status
-        if run_reason is not UNSET:
-            field_dict["run_reason"] = run_reason
-        if started_at is not UNSET:
-            field_dict["started_at"] = started_at
-        if started_by is not UNSET:
-            field_dict["started_by"] = started_by
-        if finished_at is not UNSET:
-            field_dict["finished_at"] = finished_at
-        if last_heartbeat_at is not UNSET:
-            field_dict["last_heartbeat_at"] = last_heartbeat_at
-        if stop_reason is not UNSET:
-            field_dict["stop_reason"] = stop_reason
-        if marked_done_at is not UNSET:
-            field_dict["marked_done_at"] = marked_done_at
-        if marked_done_by is not UNSET:
-            field_dict["marked_done_by"] = marked_done_by
-        if kill_started_at is not UNSET:
-            field_dict["kill_started_at"] = kill_started_at
-        if killed_by is not UNSET:
-            field_dict["killed_by"] = killed_by
-        if kill_finished_at is not UNSET:
-            field_dict["kill_finished_at"] = kill_finished_at
-        if kill_error_code is not UNSET:
-            field_dict["kill_error_code"] = kill_error_code
-        if failed_attempts is not UNSET:
-            field_dict["failed_attempts"] = failed_attempts
-        if timed_out_attempts is not UNSET:
-            field_dict["timed_out_attempts"] = timed_out_attempts
-        if workflow_snapshot is not UNSET:
-            field_dict["workflow_snapshot"] = workflow_snapshot
-        if workflow_task_instance_executions is not UNSET:
-            field_dict["workflow_task_instance_executions"] = workflow_task_instance_executions
-        if workflow_transition_evaluations is not UNSET:
-            field_dict["workflow_transition_evaluations"] = workflow_transition_evaluations
-        if created_at is not UNSET:
-            field_dict["created_at"] = created_at
-        if updated_at is not UNSET:
-            field_dict["updated_at"] = updated_at
-
-        return field_dict
-
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
@@ -395,7 +231,12 @@ class PatchedWorkflowExecution:
         else:
             status = WorkflowExecutionStatus(_status)
 
-        run_reason = d.pop("run_reason", UNSET)
+        _run_reason = d.pop("run_reason", UNSET)
+        run_reason: Union[Unset, WorkflowExecutionRunReason]
+        if isinstance(_run_reason, Unset):
+            run_reason = UNSET
+        else:
+            run_reason = WorkflowExecutionRunReason(_run_reason)
 
         _started_at = d.pop("started_at", UNSET)
         started_at: Union[Unset, datetime.datetime]
@@ -424,7 +265,12 @@ class PatchedWorkflowExecution:
         else:
             last_heartbeat_at = isoparse(_last_heartbeat_at)
 
-        stop_reason = d.pop("stop_reason", UNSET)
+        _stop_reason = d.pop("stop_reason", UNSET)
+        stop_reason: Union[Unset, WorkflowExecutionStopReason]
+        if isinstance(_stop_reason, Unset):
+            stop_reason = UNSET
+        else:
+            stop_reason = WorkflowExecutionStopReason(_stop_reason)
 
         _marked_done_at = d.pop("marked_done_at", UNSET)
         marked_done_at: Union[Unset, None, datetime.datetime]

@@ -1,6 +1,5 @@
 import datetime
-import json
-from typing import Any, Dict, List, Tuple, Type, TypeVar, Union, cast
+from typing import Any, Dict, List, Type, TypeVar, Union, cast
 
 import attr
 from dateutil.parser import isoparse
@@ -21,8 +20,6 @@ class WorkflowTransition:
     to execution.
 
         Attributes:
-            url (str):
-            uuid (str):
             from_workflow_task_instance (NameAndUuid): Identifies an entity in three ways: 1. UUID; 2. Name; and 3. URL.
                 When used to indentify an entity in a request method body, only one of
                 uuid and name needs to be specified. If both are present, they must
@@ -32,8 +29,8 @@ class WorkflowTransition:
                 uuid and name needs to be specified. If both are present, they must
                 refer to the same entity or else the response will be a 400 error.
             rule_type (RuleTypeEnum):
-            created_at (datetime.datetime):
-            updated_at (datetime.datetime):
+            url (Union[Unset, str]):
+            uuid (Union[Unset, str]):
             description (Union[Unset, str]):
             exit_codes (Union[Unset, None, List[str]]):
             threshold_property (Union[Unset, ThresholdPropertyEnum]):
@@ -42,15 +39,15 @@ class WorkflowTransition:
             ui_color (Union[Unset, str]):
             ui_line_style (Union[Unset, str]):
             ui_scale (Union[Unset, None, float]):
+            created_at (Union[Unset, datetime.datetime]):
+            updated_at (Union[Unset, datetime.datetime]):
     """
 
-    url: str
-    uuid: str
     from_workflow_task_instance: NameAndUuid
     to_workflow_task_instance: NameAndUuid
     rule_type: RuleTypeEnum
-    created_at: datetime.datetime
-    updated_at: datetime.datetime
+    url: Union[Unset, str] = UNSET
+    uuid: Union[Unset, str] = UNSET
     description: Union[Unset, str] = UNSET
     exit_codes: Union[Unset, None, List[str]] = UNSET
     threshold_property: Union[Unset, ThresholdPropertyEnum] = UNSET
@@ -59,21 +56,19 @@ class WorkflowTransition:
     ui_color: Union[Unset, str] = UNSET
     ui_line_style: Union[Unset, str] = UNSET
     ui_scale: Union[Unset, None, float] = UNSET
+    created_at: Union[Unset, datetime.datetime] = UNSET
+    updated_at: Union[Unset, datetime.datetime] = UNSET
     additional_properties: Dict[str, Any] = attr.ib(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
-        url = self.url
-        uuid = self.uuid
         from_workflow_task_instance = self.from_workflow_task_instance.to_dict()
 
         to_workflow_task_instance = self.to_workflow_task_instance.to_dict()
 
         rule_type = self.rule_type.value
 
-        created_at = self.created_at.isoformat()
-
-        updated_at = self.updated_at.isoformat()
-
+        url = self.url
+        uuid = self.uuid
         description = self.description
         exit_codes: Union[Unset, None, List[str]] = UNSET
         if not isinstance(self.exit_codes, Unset):
@@ -91,20 +86,27 @@ class WorkflowTransition:
         ui_color = self.ui_color
         ui_line_style = self.ui_line_style
         ui_scale = self.ui_scale
+        created_at: Union[Unset, str] = UNSET
+        if not isinstance(self.created_at, Unset):
+            created_at = self.created_at.isoformat()
+
+        updated_at: Union[Unset, str] = UNSET
+        if not isinstance(self.updated_at, Unset):
+            updated_at = self.updated_at.isoformat()
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "url": url,
-                "uuid": uuid,
                 "from_workflow_task_instance": from_workflow_task_instance,
                 "to_workflow_task_instance": to_workflow_task_instance,
                 "rule_type": rule_type,
-                "created_at": created_at,
-                "updated_at": updated_at,
             }
         )
+        if url is not UNSET:
+            field_dict["url"] = url
+        if uuid is not UNSET:
+            field_dict["uuid"] = uuid
         if description is not UNSET:
             field_dict["description"] = description
         if exit_codes is not UNSET:
@@ -121,117 +123,25 @@ class WorkflowTransition:
             field_dict["ui_line_style"] = ui_line_style
         if ui_scale is not UNSET:
             field_dict["ui_scale"] = ui_scale
-
-        return field_dict
-
-    def to_multipart(self) -> Dict[str, Any]:
-        url = self.url if isinstance(self.url, Unset) else (None, str(self.url).encode(), "text/plain")
-        uuid = self.uuid if isinstance(self.uuid, Unset) else (None, str(self.uuid).encode(), "text/plain")
-        from_workflow_task_instance = (
-            None,
-            json.dumps(self.from_workflow_task_instance.to_dict()).encode(),
-            "application/json",
-        )
-
-        to_workflow_task_instance = (
-            None,
-            json.dumps(self.to_workflow_task_instance.to_dict()).encode(),
-            "application/json",
-        )
-
-        rule_type = (None, str(self.rule_type.value).encode(), "text/plain")
-
-        created_at = self.created_at.isoformat().encode()
-
-        updated_at = self.updated_at.isoformat().encode()
-
-        description = (
-            self.description
-            if isinstance(self.description, Unset)
-            else (None, str(self.description).encode(), "text/plain")
-        )
-        exit_codes: Union[Unset, Tuple[None, bytes, str]] = UNSET
-        if not isinstance(self.exit_codes, Unset):
-            if self.exit_codes is None:
-                exit_codes = None
-            else:
-                _temp_exit_codes = self.exit_codes
-                exit_codes = (None, json.dumps(_temp_exit_codes).encode(), "application/json")
-
-        threshold_property: Union[Unset, Tuple[None, bytes, str]] = UNSET
-        if not isinstance(self.threshold_property, Unset):
-            threshold_property = (None, str(self.threshold_property.value).encode(), "text/plain")
-
-        custom_expression = (
-            self.custom_expression
-            if isinstance(self.custom_expression, Unset)
-            else (None, str(self.custom_expression).encode(), "text/plain")
-        )
-        priority = (
-            self.priority if isinstance(self.priority, Unset) else (None, str(self.priority).encode(), "text/plain")
-        )
-        ui_color = (
-            self.ui_color if isinstance(self.ui_color, Unset) else (None, str(self.ui_color).encode(), "text/plain")
-        )
-        ui_line_style = (
-            self.ui_line_style
-            if isinstance(self.ui_line_style, Unset)
-            else (None, str(self.ui_line_style).encode(), "text/plain")
-        )
-        ui_scale = (
-            self.ui_scale if isinstance(self.ui_scale, Unset) else (None, str(self.ui_scale).encode(), "text/plain")
-        )
-
-        field_dict: Dict[str, Any] = {}
-        field_dict.update(
-            {key: (None, str(value).encode(), "text/plain") for key, value in self.additional_properties.items()}
-        )
-        field_dict.update(
-            {
-                "url": url,
-                "uuid": uuid,
-                "from_workflow_task_instance": from_workflow_task_instance,
-                "to_workflow_task_instance": to_workflow_task_instance,
-                "rule_type": rule_type,
-                "created_at": created_at,
-                "updated_at": updated_at,
-            }
-        )
-        if description is not UNSET:
-            field_dict["description"] = description
-        if exit_codes is not UNSET:
-            field_dict["exit_codes"] = exit_codes
-        if threshold_property is not UNSET:
-            field_dict["threshold_property"] = threshold_property
-        if custom_expression is not UNSET:
-            field_dict["custom_expression"] = custom_expression
-        if priority is not UNSET:
-            field_dict["priority"] = priority
-        if ui_color is not UNSET:
-            field_dict["ui_color"] = ui_color
-        if ui_line_style is not UNSET:
-            field_dict["ui_line_style"] = ui_line_style
-        if ui_scale is not UNSET:
-            field_dict["ui_scale"] = ui_scale
+        if created_at is not UNSET:
+            field_dict["created_at"] = created_at
+        if updated_at is not UNSET:
+            field_dict["updated_at"] = updated_at
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        url = d.pop("url")
-
-        uuid = d.pop("uuid")
-
         from_workflow_task_instance = NameAndUuid.from_dict(d.pop("from_workflow_task_instance"))
 
         to_workflow_task_instance = NameAndUuid.from_dict(d.pop("to_workflow_task_instance"))
 
         rule_type = RuleTypeEnum(d.pop("rule_type"))
 
-        created_at = isoparse(d.pop("created_at"))
+        url = d.pop("url", UNSET)
 
-        updated_at = isoparse(d.pop("updated_at"))
+        uuid = d.pop("uuid", UNSET)
 
         description = d.pop("description", UNSET)
 
@@ -254,14 +164,26 @@ class WorkflowTransition:
 
         ui_scale = d.pop("ui_scale", UNSET)
 
+        _created_at = d.pop("created_at", UNSET)
+        created_at: Union[Unset, datetime.datetime]
+        if isinstance(_created_at, Unset):
+            created_at = UNSET
+        else:
+            created_at = isoparse(_created_at)
+
+        _updated_at = d.pop("updated_at", UNSET)
+        updated_at: Union[Unset, datetime.datetime]
+        if isinstance(_updated_at, Unset):
+            updated_at = UNSET
+        else:
+            updated_at = isoparse(_updated_at)
+
         workflow_transition = cls(
-            url=url,
-            uuid=uuid,
             from_workflow_task_instance=from_workflow_task_instance,
             to_workflow_task_instance=to_workflow_task_instance,
             rule_type=rule_type,
-            created_at=created_at,
-            updated_at=updated_at,
+            url=url,
+            uuid=uuid,
             description=description,
             exit_codes=exit_codes,
             threshold_property=threshold_property,
@@ -270,6 +192,8 @@ class WorkflowTransition:
             ui_color=ui_color,
             ui_line_style=ui_line_style,
             ui_scale=ui_scale,
+            created_at=created_at,
+            updated_at=updated_at,
         )
 
         workflow_transition.additional_properties = d

@@ -1,6 +1,5 @@
 import datetime
-import json
-from typing import Any, Dict, List, Tuple, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 import attr
 from dateutil.parser import isoparse
@@ -23,8 +22,6 @@ class WorkflowTaskInstance:
     a Workflow.
 
         Attributes:
-            url (str):
-            uuid (str):
             name (str):
             workflow (NameAndUuid): Identifies an entity in three ways: 1. UUID; 2. Name; and 3. URL.
                 When used to indentify an entity in a request method body, only one of
@@ -34,8 +31,8 @@ class WorkflowTaskInstance:
                 When used to indentify an entity in a request method body, only one of
                 uuid and name needs to be specified. If both are present, they must
                 refer to the same entity or else the response will be a 400 error.
-            created_at (datetime.datetime):
-            updated_at (datetime.datetime):
+            url (Union[Unset, str]):
+            uuid (Union[Unset, str]):
             description (Union[Unset, str]):
             start_transition_condition (Union[Unset, StartTransitionConditionEnum]):
             max_complete_executions (Union[Unset, None, int]):
@@ -57,15 +54,15 @@ class WorkflowTaskInstance:
             ui_scale (Union[Unset, None, float]):
             ui_center_margin_top (Union[Unset, None, float]):
             ui_center_margin_left (Union[Unset, None, float]):
+            created_at (Union[Unset, datetime.datetime]):
+            updated_at (Union[Unset, datetime.datetime]):
     """
 
-    url: str
-    uuid: str
     name: str
     workflow: NameAndUuid
     task: NameAndUuid
-    created_at: datetime.datetime
-    updated_at: datetime.datetime
+    url: Union[Unset, str] = UNSET
+    uuid: Union[Unset, str] = UNSET
     description: Union[Unset, str] = UNSET
     start_transition_condition: Union[Unset, StartTransitionConditionEnum] = UNSET
     max_complete_executions: Union[Unset, None, int] = UNSET
@@ -87,20 +84,18 @@ class WorkflowTaskInstance:
     ui_scale: Union[Unset, None, float] = UNSET
     ui_center_margin_top: Union[Unset, None, float] = UNSET
     ui_center_margin_left: Union[Unset, None, float] = UNSET
+    created_at: Union[Unset, datetime.datetime] = UNSET
+    updated_at: Union[Unset, datetime.datetime] = UNSET
     additional_properties: Dict[str, Any] = attr.ib(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
-        url = self.url
-        uuid = self.uuid
         name = self.name
         workflow = self.workflow.to_dict()
 
         task = self.task.to_dict()
 
-        created_at = self.created_at.isoformat()
-
-        updated_at = self.updated_at.isoformat()
-
+        url = self.url
+        uuid = self.uuid
         description = self.description
         start_transition_condition: Union[Unset, str] = UNSET
         if not isinstance(self.start_transition_condition, Unset):
@@ -136,20 +131,27 @@ class WorkflowTaskInstance:
         ui_scale = self.ui_scale
         ui_center_margin_top = self.ui_center_margin_top
         ui_center_margin_left = self.ui_center_margin_left
+        created_at: Union[Unset, str] = UNSET
+        if not isinstance(self.created_at, Unset):
+            created_at = self.created_at.isoformat()
+
+        updated_at: Union[Unset, str] = UNSET
+        if not isinstance(self.updated_at, Unset):
+            updated_at = self.updated_at.isoformat()
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
-                "url": url,
-                "uuid": uuid,
                 "name": name,
                 "workflow": workflow,
                 "task": task,
-                "created_at": created_at,
-                "updated_at": updated_at,
             }
         )
+        if url is not UNSET:
+            field_dict["url"] = url
+        if uuid is not UNSET:
+            field_dict["uuid"] = uuid
         if description is not UNSET:
             field_dict["description"] = description
         if start_transition_condition is not UNSET:
@@ -192,199 +194,25 @@ class WorkflowTaskInstance:
             field_dict["ui_center_margin_top"] = ui_center_margin_top
         if ui_center_margin_left is not UNSET:
             field_dict["ui_center_margin_left"] = ui_center_margin_left
-
-        return field_dict
-
-    def to_multipart(self) -> Dict[str, Any]:
-        url = self.url if isinstance(self.url, Unset) else (None, str(self.url).encode(), "text/plain")
-        uuid = self.uuid if isinstance(self.uuid, Unset) else (None, str(self.uuid).encode(), "text/plain")
-        name = self.name if isinstance(self.name, Unset) else (None, str(self.name).encode(), "text/plain")
-        workflow = (None, json.dumps(self.workflow.to_dict()).encode(), "application/json")
-
-        task = (None, json.dumps(self.task.to_dict()).encode(), "application/json")
-
-        created_at = self.created_at.isoformat().encode()
-
-        updated_at = self.updated_at.isoformat().encode()
-
-        description = (
-            self.description
-            if isinstance(self.description, Unset)
-            else (None, str(self.description).encode(), "text/plain")
-        )
-        start_transition_condition: Union[Unset, Tuple[None, bytes, str]] = UNSET
-        if not isinstance(self.start_transition_condition, Unset):
-            start_transition_condition = (None, str(self.start_transition_condition.value).encode(), "text/plain")
-
-        max_complete_executions = (
-            self.max_complete_executions
-            if isinstance(self.max_complete_executions, Unset)
-            else (None, str(self.max_complete_executions).encode(), "text/plain")
-        )
-        should_eval_transitions_after_first_execution = (
-            self.should_eval_transitions_after_first_execution
-            if isinstance(self.should_eval_transitions_after_first_execution, Unset)
-            else (None, str(self.should_eval_transitions_after_first_execution).encode(), "text/plain")
-        )
-        condition_count_threshold = (
-            self.condition_count_threshold
-            if isinstance(self.condition_count_threshold, Unset)
-            else (None, str(self.condition_count_threshold).encode(), "text/plain")
-        )
-        condition_ratio_threshold = (
-            self.condition_ratio_threshold
-            if isinstance(self.condition_ratio_threshold, Unset)
-            else (None, str(self.condition_ratio_threshold).encode(), "text/plain")
-        )
-        max_age_seconds = (
-            self.max_age_seconds
-            if isinstance(self.max_age_seconds, Unset)
-            else (None, str(self.max_age_seconds).encode(), "text/plain")
-        )
-        default_max_retries = (
-            self.default_max_retries
-            if isinstance(self.default_max_retries, Unset)
-            else (None, str(self.default_max_retries).encode(), "text/plain")
-        )
-        failure_behavior: Union[Unset, Tuple[None, bytes, str]] = UNSET
-        if not isinstance(self.failure_behavior, Unset):
-            failure_behavior = (None, str(self.failure_behavior.value).encode(), "text/plain")
-
-        allow_workflow_execution_after_failure = (
-            self.allow_workflow_execution_after_failure
-            if isinstance(self.allow_workflow_execution_after_failure, Unset)
-            else (None, str(self.allow_workflow_execution_after_failure).encode(), "text/plain")
-        )
-        timeout_behavior: Union[Unset, Tuple[None, bytes, str]] = UNSET
-        if not isinstance(self.timeout_behavior, Unset):
-            timeout_behavior = (None, str(self.timeout_behavior.value).encode(), "text/plain")
-
-        allow_workflow_execution_after_timeout = (
-            self.allow_workflow_execution_after_timeout
-            if isinstance(self.allow_workflow_execution_after_timeout, Unset)
-            else (None, str(self.allow_workflow_execution_after_timeout).encode(), "text/plain")
-        )
-        environment_variables_overrides: Union[Unset, Tuple[None, bytes, str]] = UNSET
-        if not isinstance(self.environment_variables_overrides, Unset):
-            environment_variables_overrides = (
-                (None, json.dumps(self.environment_variables_overrides.to_dict()).encode(), "application/json")
-                if self.environment_variables_overrides
-                else None
-            )
-
-        allocated_cpu_units = (
-            self.allocated_cpu_units
-            if isinstance(self.allocated_cpu_units, Unset)
-            else (None, str(self.allocated_cpu_units).encode(), "text/plain")
-        )
-        allocated_memory_mb = (
-            self.allocated_memory_mb
-            if isinstance(self.allocated_memory_mb, Unset)
-            else (None, str(self.allocated_memory_mb).encode(), "text/plain")
-        )
-        use_task_alert_methods = (
-            self.use_task_alert_methods
-            if isinstance(self.use_task_alert_methods, Unset)
-            else (None, str(self.use_task_alert_methods).encode(), "text/plain")
-        )
-        ui_color = (
-            self.ui_color if isinstance(self.ui_color, Unset) else (None, str(self.ui_color).encode(), "text/plain")
-        )
-        ui_icon_type = (
-            self.ui_icon_type
-            if isinstance(self.ui_icon_type, Unset)
-            else (None, str(self.ui_icon_type).encode(), "text/plain")
-        )
-        ui_scale = (
-            self.ui_scale if isinstance(self.ui_scale, Unset) else (None, str(self.ui_scale).encode(), "text/plain")
-        )
-        ui_center_margin_top = (
-            self.ui_center_margin_top
-            if isinstance(self.ui_center_margin_top, Unset)
-            else (None, str(self.ui_center_margin_top).encode(), "text/plain")
-        )
-        ui_center_margin_left = (
-            self.ui_center_margin_left
-            if isinstance(self.ui_center_margin_left, Unset)
-            else (None, str(self.ui_center_margin_left).encode(), "text/plain")
-        )
-
-        field_dict: Dict[str, Any] = {}
-        field_dict.update(
-            {key: (None, str(value).encode(), "text/plain") for key, value in self.additional_properties.items()}
-        )
-        field_dict.update(
-            {
-                "url": url,
-                "uuid": uuid,
-                "name": name,
-                "workflow": workflow,
-                "task": task,
-                "created_at": created_at,
-                "updated_at": updated_at,
-            }
-        )
-        if description is not UNSET:
-            field_dict["description"] = description
-        if start_transition_condition is not UNSET:
-            field_dict["start_transition_condition"] = start_transition_condition
-        if max_complete_executions is not UNSET:
-            field_dict["max_complete_executions"] = max_complete_executions
-        if should_eval_transitions_after_first_execution is not UNSET:
-            field_dict["should_eval_transitions_after_first_execution"] = should_eval_transitions_after_first_execution
-        if condition_count_threshold is not UNSET:
-            field_dict["condition_count_threshold"] = condition_count_threshold
-        if condition_ratio_threshold is not UNSET:
-            field_dict["condition_ratio_threshold"] = condition_ratio_threshold
-        if max_age_seconds is not UNSET:
-            field_dict["max_age_seconds"] = max_age_seconds
-        if default_max_retries is not UNSET:
-            field_dict["default_max_retries"] = default_max_retries
-        if failure_behavior is not UNSET:
-            field_dict["failure_behavior"] = failure_behavior
-        if allow_workflow_execution_after_failure is not UNSET:
-            field_dict["allow_workflow_execution_after_failure"] = allow_workflow_execution_after_failure
-        if timeout_behavior is not UNSET:
-            field_dict["timeout_behavior"] = timeout_behavior
-        if allow_workflow_execution_after_timeout is not UNSET:
-            field_dict["allow_workflow_execution_after_timeout"] = allow_workflow_execution_after_timeout
-        if environment_variables_overrides is not UNSET:
-            field_dict["environment_variables_overrides"] = environment_variables_overrides
-        if allocated_cpu_units is not UNSET:
-            field_dict["allocated_cpu_units"] = allocated_cpu_units
-        if allocated_memory_mb is not UNSET:
-            field_dict["allocated_memory_mb"] = allocated_memory_mb
-        if use_task_alert_methods is not UNSET:
-            field_dict["use_task_alert_methods"] = use_task_alert_methods
-        if ui_color is not UNSET:
-            field_dict["ui_color"] = ui_color
-        if ui_icon_type is not UNSET:
-            field_dict["ui_icon_type"] = ui_icon_type
-        if ui_scale is not UNSET:
-            field_dict["ui_scale"] = ui_scale
-        if ui_center_margin_top is not UNSET:
-            field_dict["ui_center_margin_top"] = ui_center_margin_top
-        if ui_center_margin_left is not UNSET:
-            field_dict["ui_center_margin_left"] = ui_center_margin_left
+        if created_at is not UNSET:
+            field_dict["created_at"] = created_at
+        if updated_at is not UNSET:
+            field_dict["updated_at"] = updated_at
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        url = d.pop("url")
-
-        uuid = d.pop("uuid")
-
         name = d.pop("name")
 
         workflow = NameAndUuid.from_dict(d.pop("workflow"))
 
         task = NameAndUuid.from_dict(d.pop("task"))
 
-        created_at = isoparse(d.pop("created_at"))
+        url = d.pop("url", UNSET)
 
-        updated_at = isoparse(d.pop("updated_at"))
+        uuid = d.pop("uuid", UNSET)
 
         description = d.pop("description", UNSET)
 
@@ -452,14 +280,26 @@ class WorkflowTaskInstance:
 
         ui_center_margin_left = d.pop("ui_center_margin_left", UNSET)
 
+        _created_at = d.pop("created_at", UNSET)
+        created_at: Union[Unset, datetime.datetime]
+        if isinstance(_created_at, Unset):
+            created_at = UNSET
+        else:
+            created_at = isoparse(_created_at)
+
+        _updated_at = d.pop("updated_at", UNSET)
+        updated_at: Union[Unset, datetime.datetime]
+        if isinstance(_updated_at, Unset):
+            updated_at = UNSET
+        else:
+            updated_at = isoparse(_updated_at)
+
         workflow_task_instance = cls(
-            url=url,
-            uuid=uuid,
             name=name,
             workflow=workflow,
             task=task,
-            created_at=created_at,
-            updated_at=updated_at,
+            url=url,
+            uuid=uuid,
             description=description,
             start_transition_condition=start_transition_condition,
             max_complete_executions=max_complete_executions,
@@ -481,6 +321,8 @@ class WorkflowTaskInstance:
             ui_scale=ui_scale,
             ui_center_margin_top=ui_center_margin_top,
             ui_center_margin_left=ui_center_margin_left,
+            created_at=created_at,
+            updated_at=updated_at,
         )
 
         workflow_task_instance.additional_properties = d

@@ -11,8 +11,6 @@ def _get_kwargs(
     uuid: str,
     *,
     client: AuthenticatedClient,
-    form_data: WorkflowTaskInstance,
-    multipart_data: WorkflowTaskInstance,
     json_body: WorkflowTaskInstance,
 ) -> Dict[str, Any]:
     url = "{}/workflow_task_instances/{uuid}/".format(client.base_url, uuid=uuid)
@@ -20,9 +18,7 @@ def _get_kwargs(
     headers: Dict[str, str] = client.get_headers()
     cookies: Dict[str, Any] = client.get_cookies()
 
-    json_body.to_dict()
-
-    multipart_data.to_multipart()
+    json_json_body = json_body.to_dict()
 
     return {
         "method": "put",
@@ -30,7 +26,7 @@ def _get_kwargs(
         "headers": headers,
         "cookies": cookies,
         "timeout": client.get_timeout(),
-        "data": form_data.to_dict(),
+        "json": json_json_body,
     }
 
 
@@ -55,16 +51,11 @@ def sync_detailed(
     uuid: str,
     *,
     client: AuthenticatedClient,
-    form_data: WorkflowTaskInstance,
-    multipart_data: WorkflowTaskInstance,
     json_body: WorkflowTaskInstance,
 ) -> Response[WorkflowTaskInstance]:
     """
     Args:
         uuid (str):
-        multipart_data (WorkflowTaskInstance): A WorkflowTaskInstance contains a Task that is
-            configured to run in
-            a Workflow.
         json_body (WorkflowTaskInstance): A WorkflowTaskInstance contains a Task that is
             configured to run in
             a Workflow.
@@ -76,8 +67,6 @@ def sync_detailed(
     kwargs = _get_kwargs(
         uuid=uuid,
         client=client,
-        form_data=form_data,
-        multipart_data=multipart_data,
         json_body=json_body,
     )
 
@@ -93,16 +82,11 @@ def sync(
     uuid: str,
     *,
     client: AuthenticatedClient,
-    form_data: WorkflowTaskInstance,
-    multipart_data: WorkflowTaskInstance,
     json_body: WorkflowTaskInstance,
 ) -> Optional[WorkflowTaskInstance]:
     """
     Args:
         uuid (str):
-        multipart_data (WorkflowTaskInstance): A WorkflowTaskInstance contains a Task that is
-            configured to run in
-            a Workflow.
         json_body (WorkflowTaskInstance): A WorkflowTaskInstance contains a Task that is
             configured to run in
             a Workflow.
@@ -114,8 +98,6 @@ def sync(
     return sync_detailed(
         uuid=uuid,
         client=client,
-        form_data=form_data,
-        multipart_data=multipart_data,
         json_body=json_body,
     ).parsed
 
@@ -124,16 +106,11 @@ async def asyncio_detailed(
     uuid: str,
     *,
     client: AuthenticatedClient,
-    form_data: WorkflowTaskInstance,
-    multipart_data: WorkflowTaskInstance,
     json_body: WorkflowTaskInstance,
 ) -> Response[WorkflowTaskInstance]:
     """
     Args:
         uuid (str):
-        multipart_data (WorkflowTaskInstance): A WorkflowTaskInstance contains a Task that is
-            configured to run in
-            a Workflow.
         json_body (WorkflowTaskInstance): A WorkflowTaskInstance contains a Task that is
             configured to run in
             a Workflow.
@@ -145,8 +122,6 @@ async def asyncio_detailed(
     kwargs = _get_kwargs(
         uuid=uuid,
         client=client,
-        form_data=form_data,
-        multipart_data=multipart_data,
         json_body=json_body,
     )
 
@@ -160,16 +135,11 @@ async def asyncio(
     uuid: str,
     *,
     client: AuthenticatedClient,
-    form_data: WorkflowTaskInstance,
-    multipart_data: WorkflowTaskInstance,
     json_body: WorkflowTaskInstance,
 ) -> Optional[WorkflowTaskInstance]:
     """
     Args:
         uuid (str):
-        multipart_data (WorkflowTaskInstance): A WorkflowTaskInstance contains a Task that is
-            configured to run in
-            a Workflow.
         json_body (WorkflowTaskInstance): A WorkflowTaskInstance contains a Task that is
             configured to run in
             a Workflow.
@@ -182,8 +152,6 @@ async def asyncio(
         await asyncio_detailed(
             uuid=uuid,
             client=client,
-            form_data=form_data,
-            multipart_data=multipart_data,
             json_body=json_body,
         )
     ).parsed

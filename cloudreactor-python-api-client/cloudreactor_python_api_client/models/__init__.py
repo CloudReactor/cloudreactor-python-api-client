@@ -66,7 +66,9 @@ from .timeout_behavior_enum import TimeoutBehaviorEnum
 from .unknown_execution_method_capability import UnknownExecutionMethodCapability
 from .workflow import Workflow
 from .workflow_execution import WorkflowExecution
+from .workflow_execution_run_reason import WorkflowExecutionRunReason
 from .workflow_execution_status import WorkflowExecutionStatus
+from .workflow_execution_stop_reason import WorkflowExecutionStopReason
 from .workflow_execution_summary import WorkflowExecutionSummary
 from .workflow_execution_workflow_snapshot import WorkflowExecutionWorkflowSnapshot
 from .workflow_summary import WorkflowSummary
