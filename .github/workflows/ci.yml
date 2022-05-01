@@ -70,9 +70,9 @@ jobs:
           CLOUDREACTOR_SAMPLE_TASK_NAME: aws-ecs-cloudreactor-deployer-sample_smoke_staging
 
       - name: Upload coverage to Codecov
-        uses: codecov/codecov-action@v1
-        working-directory: ${{ env.working-directory }}
+        uses: codecov/codecov-action@v2
         with:
+          directory: ${{ env.working-directory }}
           verbose: true
 
   docs:
