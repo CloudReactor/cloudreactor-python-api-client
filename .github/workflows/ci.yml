@@ -49,7 +49,7 @@ jobs:
           - macOS-latest
     runs-on: ${{ matrix.os }}
     env:
-      working-directory: ${{ env.working-directory }}
+      working-directory: cloudreactor-python-api-client
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python
