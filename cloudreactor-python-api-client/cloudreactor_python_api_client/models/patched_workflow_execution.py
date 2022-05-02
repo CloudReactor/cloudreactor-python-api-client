@@ -5,7 +5,9 @@ import attr
 from dateutil.parser import isoparse
 
 from ..models.name_and_uuid import NameAndUuid
-from ..models.patched_workflow_execution_workflow_snapshot import PatchedWorkflowExecutionWorkflowSnapshot
+from ..models.patched_workflow_execution_workflow_snapshot import (
+    PatchedWorkflowExecutionWorkflowSnapshot,
+)
 from ..models.workflow_execution_run_reason import WorkflowExecutionRunReason
 from ..models.workflow_execution_status import WorkflowExecutionStatus
 from ..models.workflow_execution_stop_reason import WorkflowExecutionStopReason

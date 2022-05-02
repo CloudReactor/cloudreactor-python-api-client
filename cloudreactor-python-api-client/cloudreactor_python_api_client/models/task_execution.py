@@ -7,11 +7,19 @@ from dateutil.parser import isoparse
 from ..models.aws_ecs_execution_method import AwsEcsExecutionMethod
 from ..models.name_and_uuid import NameAndUuid
 from ..models.stop_reason_enum import StopReasonEnum
-from ..models.task_execution_environment_variables_overrides import TaskExecutionEnvironmentVariablesOverrides
-from ..models.task_execution_other_instance_metadata import TaskExecutionOtherInstanceMetadata
-from ..models.task_execution_other_runtime_metadata import TaskExecutionOtherRuntimeMetadata
+from ..models.task_execution_environment_variables_overrides import (
+    TaskExecutionEnvironmentVariablesOverrides,
+)
+from ..models.task_execution_other_instance_metadata import (
+    TaskExecutionOtherInstanceMetadata,
+)
+from ..models.task_execution_other_runtime_metadata import (
+    TaskExecutionOtherRuntimeMetadata,
+)
 from ..models.task_execution_status import TaskExecutionStatus
-from ..models.workflow_task_instance_execution_base import WorkflowTaskInstanceExecutionBase
+from ..models.workflow_task_instance_execution_base import (
+    WorkflowTaskInstanceExecutionBase,
+)
 from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="TaskExecution")

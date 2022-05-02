@@ -3,7 +3,9 @@ from typing import Any, Dict, Optional, Union
 import httpx
 
 from ...client import AuthenticatedClient
-from ...models.paginated_email_notification_profile_list import PaginatedEmailNotificationProfileList
+from ...models.paginated_email_notification_profile_list import (
+    PaginatedEmailNotificationProfileList,
+)
 from ...types import UNSET, Response, Unset
 
 

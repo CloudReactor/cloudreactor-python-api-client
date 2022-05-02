@@ -2,7 +2,9 @@ from typing import Any, Dict, List, Optional, Type, TypeVar, Union, cast
 
 import attr
 
-from ..models.aws_ecs_execution_method_capability_tags import AwsEcsExecutionMethodCapabilityTags
+from ..models.aws_ecs_execution_method_capability_tags import (
+    AwsEcsExecutionMethodCapabilityTags,
+)
 from ..models.aws_ecs_launch_type import AwsEcsLaunchType
 from ..models.aws_ecs_service_options import AwsEcsServiceOptions
 from ..types import UNSET, Unset
@@ -239,7 +241,8 @@ class AwsEcsExecutionMethodCapability:
         default_security_groups = cast(List[str], d.pop("default_security_groups", UNSET))
 
         default_security_group_infrastructure_website_urls = cast(
-            List[str], d.pop("default_security_group_infrastructure_website_urls", UNSET)
+            List[str],
+            d.pop("default_security_group_infrastructure_website_urls", UNSET),
         )
 
         default_assign_public_ip = d.pop("default_assign_public_ip", UNSET)

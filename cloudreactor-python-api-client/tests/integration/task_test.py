@@ -2,8 +2,17 @@ import logging
 from datetime import datetime
 
 from cloudreactor_python_api_client import AuthenticatedClient
-from cloudreactor_python_api_client.api.tasks import tasks_create, tasks_destroy, tasks_partial_update
-from cloudreactor_python_api_client.models import NameAndUuid, PatchedTask, Task, UnknownExecutionMethodCapability
+from cloudreactor_python_api_client.api.tasks import (
+    tasks_create,
+    tasks_destroy,
+    tasks_partial_update,
+)
+from cloudreactor_python_api_client.models import (
+    NameAndUuid,
+    PatchedTask,
+    Task,
+    UnknownExecutionMethodCapability,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -39,7 +48,11 @@ def test_task_manipulation(api_client: AuthenticatedClient, sample_run_environme
         assert created_task.enabled
         assert created_task.execution_method_capability.type == "Unknown"
 
-        patched_task = PatchedTask(name=task_name + "-patched", description=description + "-patched", enabled=False)
+        patched_task = PatchedTask(
+            name=task_name + "-patched",
+            description=description + "-patched",
+            enabled=False,
+        )
 
         patch_response = tasks_partial_update.sync_detailed(
             uuid=created_task.uuid, client=api_client, json_body=patched_task

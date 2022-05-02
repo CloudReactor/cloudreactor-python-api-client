@@ -180,7 +180,8 @@ class AwsEcsExecutionMethod:
         security_groups = cast(List[str], d.pop("security_groups", UNSET))
 
         security_group_infrastructure_website_urls = cast(
-            List[Optional[str]], d.pop("security_group_infrastructure_website_urls", UNSET)
+            List[Optional[str]],
+            d.pop("security_group_infrastructure_website_urls", UNSET),
         )
 
         assign_public_ip = d.pop("assign_public_ip", UNSET)

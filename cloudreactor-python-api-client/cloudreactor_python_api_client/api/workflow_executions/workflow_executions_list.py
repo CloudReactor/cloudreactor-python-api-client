@@ -3,7 +3,9 @@ from typing import Any, Dict, Optional, Union
 import httpx
 
 from ...client import AuthenticatedClient
-from ...models.paginated_workflow_execution_summary_list import PaginatedWorkflowExecutionSummaryList
+from ...models.paginated_workflow_execution_summary_list import (
+    PaginatedWorkflowExecutionSummaryList,
+)
 from ...types import UNSET, Response, Unset
 
 

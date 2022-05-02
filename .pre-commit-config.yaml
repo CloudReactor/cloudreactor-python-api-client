@@ -1,0 +1,31 @@
+# See https://pre-commit.com for more information
+# See https://pre-commit.com/hooks.html for more hooks
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v4.2.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-json
+      - id: debug-statements
+
+  - repo: https://github.com/ambv/black
+    rev: 22.3.0
+    hooks:
+      - id: black
+
+  - repo: https://gitlab.com/pycqa/flake8
+    rev: 3.9.2
+    hooks:
+      - id: flake8
+        exclude: "cloudreactor-python-api-client/cloudreactor_python_api_client/.+"
+        args:
+          - "--config"
+          - "cloudreactor-python-api-client/.flake8"
+
+  # - repo: https://github.com/commitizen-tools/commitizen
+  #   rev: v2.16.0
+  #   hooks:
+  #     - id: commitizen
+  #       stages: [commit-msg]

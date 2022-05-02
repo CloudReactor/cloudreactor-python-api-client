@@ -2,7 +2,9 @@ from typing import Any, Dict, List, Type, TypeVar, Union
 
 import attr
 
-from ..models.aws_ecs_service_load_balancer_details import AwsEcsServiceLoadBalancerDetails
+from ..models.aws_ecs_service_load_balancer_details import (
+    AwsEcsServiceLoadBalancerDetails,
+)
 from ..models.aws_ecs_service_options_tags import AwsEcsServiceOptionsTags
 from ..models.propagate_tags_enum import PropagateTagsEnum
 from ..types import UNSET, Unset

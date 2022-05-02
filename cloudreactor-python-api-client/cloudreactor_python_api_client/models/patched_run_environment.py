@@ -4,7 +4,9 @@ from typing import Any, Dict, List, Type, TypeVar, Union
 import attr
 from dateutil.parser import isoparse
 
-from ..models.aws_ecs_run_environment_execution_method_capability import AwsEcsRunEnvironmentExecutionMethodCapability
+from ..models.aws_ecs_run_environment_execution_method_capability import (
+    AwsEcsRunEnvironmentExecutionMethodCapability,
+)
 from ..models.group import Group
 from ..models.name_and_uuid import NameAndUuid
 from ..types import UNSET, Unset

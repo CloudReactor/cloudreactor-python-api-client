@@ -11,18 +11,14 @@ from cloudreactor_python_api_client.models import TaskExecution, TaskExecutionSt
 logger = logging.getLogger(__name__)
 
 
-def test_start_task_execution(api_client: AuthenticatedClient,
-        sample_task_name: str):
+def test_start_task_execution(api_client: AuthenticatedClient, sample_task_name: str):
     task_name = sample_task_name
 
-    task_dict = {'name': task_name}
+    task_dict = {"name": task_name}
 
-    te = TaskExecution.from_dict({
-        'task': task_dict, 'status': TaskExecutionStatus.MANUALLY_STARTED
-    })
+    te = TaskExecution.from_dict({"task": task_dict, "status": TaskExecutionStatus.MANUALLY_STARTED})
 
-    response_te = task_executions_create.sync_detailed(client=api_client,
-            json_body=te)
+    response_te = task_executions_create.sync_detailed(client=api_client, json_body=te)
 
     assert response_te.status_code == 201
 
@@ -54,8 +50,8 @@ def test_start_task_execution(api_client: AuthenticatedClient,
     assert parsed_te.updated_at
 
     list_response = task_executions_list.sync_detailed(
-            client=api_client, task_uuid=parsed_te.task.uuid,
-            ordering='-started_at')
+        client=api_client, task_uuid=parsed_te.task.uuid, ordering="-started_at"
+    )
 
     assert list_response.status_code == 200
 

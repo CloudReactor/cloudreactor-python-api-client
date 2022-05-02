@@ -11,7 +11,9 @@ from ..models.link import Link
 from ..models.name_and_uuid import NameAndUuid
 from ..models.task_execution import TaskExecution
 from ..models.task_other_metadata import TaskOtherMetadata
-from ..models.unknown_execution_method_capability import UnknownExecutionMethodCapability
+from ..models.unknown_execution_method_capability import (
+    UnknownExecutionMethodCapability,
+)
 from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="Task")

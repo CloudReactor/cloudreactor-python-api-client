@@ -8,7 +8,9 @@ from ..models.name_and_uuid import NameAndUuid
 from ..models.workflow_execution_run_reason import WorkflowExecutionRunReason
 from ..models.workflow_execution_status import WorkflowExecutionStatus
 from ..models.workflow_execution_stop_reason import WorkflowExecutionStopReason
-from ..models.workflow_execution_workflow_snapshot import WorkflowExecutionWorkflowSnapshot
+from ..models.workflow_execution_workflow_snapshot import (
+    WorkflowExecutionWorkflowSnapshot,
+)
 from ..models.workflow_task_instance_execution import WorkflowTaskInstanceExecution
 from ..models.workflow_transition_evaluation import WorkflowTransitionEvaluation
 from ..types import UNSET, Unset

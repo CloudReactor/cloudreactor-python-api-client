@@ -200,7 +200,8 @@ class AwsEcsRunEnvironmentExecutionMethodCapability:
         default_security_groups = cast(List[str], d.pop("default_security_groups", UNSET))
 
         default_security_group_infrastructure_website_urls = cast(
-            List[str], d.pop("default_security_group_infrastructure_website_urls", UNSET)
+            List[str],
+            d.pop("default_security_group_infrastructure_website_urls", UNSET),
         )
 
         default_assign_public_ip = d.pop("default_assign_public_ip", UNSET)
