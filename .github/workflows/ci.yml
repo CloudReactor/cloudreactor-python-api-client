@@ -17,10 +17,10 @@ jobs:
           - name: isort
             run: isort --color --verbose --ignore-whitespace .
           - name: mypy
-            run: mypy -p cloudreactor_python_api_client
+            run: mypy -p cloudreactor_api_client
     runs-on: ubuntu-latest
     env:
-      working-directory: cloudreactor-python-api-client
+      working-directory: cloudreactor-api-client
     steps:
       - uses: actions/checkout@v3
       - name: Set up Python
@@ -49,7 +49,7 @@ jobs:
           - macOS-latest
     runs-on: ${{ matrix.os }}
     env:
-      working-directory: cloudreactor-python-api-client
+      working-directory: cloudreactor-api-client
     steps:
       - uses: actions/checkout@v2
       - name: Set up Python
@@ -87,7 +87,7 @@ jobs:
   #     - uses: abatilo/actions-poetry@v2.1.0
   #     - name: Install Dependencies
   #       run: poetry install -E docs
-  #       working-directory: cloudreactor-python-api-client
+  #       working-directory: cloudreactor-api-client
   #     - name: Build docs
-  #       working-directory: cloudreactor-python-api-client/docs
+  #       working-directory: cloudreactor-api-client/docs
   #       run: poetry run make html

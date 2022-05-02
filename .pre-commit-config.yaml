@@ -19,10 +19,10 @@ repos:
     rev: 3.9.2
     hooks:
       - id: flake8
-        exclude: "cloudreactor-python-api-client/cloudreactor_python_api_client/.+"
+        exclude: "cloudreactor-api-client/cloudreactor_api_client/.+"
         args:
           - "--config"
-          - "cloudreactor-python-api-client/.flake8"
+          - "cloudreactor-api-client/.flake8"
 
   # - repo: https://github.com/commitizen-tools/commitizen
   #   rev: v2.16.0
