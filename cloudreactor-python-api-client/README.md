@@ -1,6 +1,8 @@
 # cloudreactor-python-api-client
 A client library for accessing CloudReactor API
 
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
+
 ## Usage
 First, create a client:
 
@@ -45,7 +47,7 @@ By default, when you're calling an HTTPS API it will attempt to verify that SSL 
 
 ```python
 client = AuthenticatedClient(
-    base_url="https://internal_api.example.com", 
+    base_url="https://internal_api.example.com",
     token="SuperSecretToken",
     verify_ssl="/path/to/certificate_bundle.pem",
 )
@@ -55,8 +57,8 @@ You can also disable certificate validation altogether, but beware that **this i
 
 ```python
 client = AuthenticatedClient(
-    base_url="https://internal_api.example.com", 
-    token="SuperSecretToken", 
+    base_url="https://internal_api.example.com",
+    token="SuperSecretToken",
     verify_ssl=False
 )
 ```

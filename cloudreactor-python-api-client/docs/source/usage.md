@@ -6,5 +6,5 @@ To use this package, import it:
 import cloudreactor_python_api_client
 ```
 
-```{include} ../../cloudreactor-python-api-client/README.md
+```{include} ../../README.md
 ```
