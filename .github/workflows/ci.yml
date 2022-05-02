@@ -88,5 +88,5 @@ jobs:
         run: poetry install -E docs
         working-directory: cloudreactor-python-api-client
       - name: Build docs
-        working-directory: cloudreactor-python-api-client/docs
+        working-directory: docs
         run: poetry run make html
