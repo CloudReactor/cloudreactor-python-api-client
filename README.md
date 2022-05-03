@@ -31,9 +31,10 @@ pip install cloudreactor_api_client
 First, create a client:
 
 ```python
-from cloudreactor-python_api_client import AuthenticatedClient
+from cloudreactor_api_client import AuthenticatedClient
 
-client = AuthenticatedClient(base_url="https://api.cloudreactor.io", token="YOUR_API_KEY")
+client = AuthenticatedClient(base_url="https://api.cloudreactor.io/api/v1",
+    token="YOUR_API_KEY")
 
 ```
 
@@ -43,14 +44,21 @@ To start a Task, create a Task Execution:
 from cloudreactor_api_client.api.task_executions import (
     task_executions_create
 )
-from cloudreactor_api_client.models import TaskExecution, TaskExecutionStatus
+from cloudreactor_api_client.models import (
+    TaskExecution,
+    TaskExecutionStatus
+)
 
 # Identify the Task by name. Alternatively, you can specifiy the "uuid".
-task_dict = {"name": task_name}
+task_dict = {"name": "HappyTask"}
 
-task_execution = TaskExecution.from_dict({"task": task_dict, "status": TaskExecutionStatus.MANUALLY_STARTED})
+task_execution = TaskExecution.from_dict({
+    "task": task_dict,
+    "status": TaskExecutionStatus.MANUALLY_STARTED
+})
 
-response = task_executions_create.sync_detailed(client=client, json_body=task_execution)
+response = task_executions_create.sync_detailed(client=client,
+    json_body=task_execution)
 
 parsed_task_execution = response.parsed
 
