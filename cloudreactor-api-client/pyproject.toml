@@ -1,7 +1,7 @@
 [tool.poetry]
 name = "cloudreactor-api-client"
-version = "0.3.0"
-description = "A client library for accessing CloudReactor API"
+version = "0.3.0.1"
+description = "A client library for accessing the CloudReactor API, which monitors and manages Tasks and Workflows."
 
 authors = [
     "Jeff Tsay <jeff@cloudreactor.io>"
@@ -9,7 +9,7 @@ authors = [
 license = "BSD 2-Clause"
 readme = "README.md"
 repository = "https://github.com/CloudReactor/cloudreactor-python-api-client/cloudreactor-api-client"
-documentation = "https://cloudreactor-procwrapper.readthedocs.io"
+#documentation = "https://cloudreactor-procwrapper.readthedocs.io"
 homepage = "https://cloudreactor.io"
 classifiers = [
     "Development Status :: 4 - Beta",
@@ -22,7 +22,7 @@ classifiers = [
 packages = [
     {include = "cloudreactor_api_client"},
 ]
-include = ["CHANGELOG.md", "cloudreactor_api_client/py.typed"]
+include = ["CHANGELOG.md", "README-generated.md", "cloudreactor_api_client/py.typed"]
 
 [tool.poetry.urls]
 "Bug Tracker" = "https://github.com/CloudReactor/cloudreactor-python-api-client/issues"
