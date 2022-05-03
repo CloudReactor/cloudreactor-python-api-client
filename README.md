@@ -14,9 +14,13 @@ Python client for the CloudReactor API
 ## Overview
 
 This python package allows python applications to programmatically
-create, monitor, and manage Tasks and Workflows in CloudReactor. Most
+create, monitor, and manage Tasks and Workflows in
+[CloudReactor](https://cloudreactor.io/). Most
 notably, you can start and stop Tasks and Workflows by creating Task
 Executions and Workflow Executions.
+
+See the [CloudReactor landing page](https://www.cloudreactor.io/) to see the
+benefits of monitoring and managing your tasks with CloudReactor.
 
 ## Installation
 
@@ -67,8 +71,33 @@ print(f"Task Execution {parsed_task_execution.uuid} started!")
 ```
 
 More details on how to use API clients in general (async mode, disabling SSL)
-can be found in the generated [README](cloudreactor-api-client/README.md).
+can be found in the generated [README](https://github.com/CloudReactor/cloudreactor-python-api-client/blob/master/cloudreactor-api-client/README-generated.md).
 
+
+## License
+
+This software is licensed under the BSD 2-Clause License.
+See `LICENSE` for details.
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/jtsay362"><img src="https://avatars0.githubusercontent.com/u/1079646?s=460&v=4?s=80" width="80px;" alt=""/><br /><sub><b>Jeff Tsay</b></sub></a><br /><a href="https://github.com/CloudReactor/cloudreactor-api-client/commits?author=jtsay362" title="Code">💻</a> <a href="https://github.com/CloudReactor/cloudreactor-procwrapper/commits?author=jtsay362" title="Documentation">📖</a> <a href="#infra-jtsay362" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#maintenance-jtsay362" title="Maintenance">🚧</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
 
 ## Credits
 

@@ -1,87 +1,104 @@
 # cloudreactor-python-api-client
-A client library for accessing CloudReactor API
 
-## Usage
-First, create a client:
+[![GitHub Workflow Status](https://img.shields.io/github/workflow/status/CloudReactor/cloudreactor-python-api-client/CI)](https://github.com/CloudReactor/cloudreactor-python-api-client/actions/workflows/ci.yml)
+[![Codecov](https://img.shields.io/codecov/c/github/CloudReactor/cloudreactor-python-api-client)](https://app.codecov.io/github/CloudReactor/cloudreactor-python-api-client)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit&logoColor=white)](https://github.com/pre-commit/pre-commit)
+[![PyPI](https://img.shields.io/pypi/v/cloudreactor-api-client)](https://pypi.org/project/cloudreactor-api-client/)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/cloudreactor-api-client)
+[![PyPI - License](https://img.shields.io/pypi/l/cloudreactor-api-client)](https://opensource.org/licenses/BSD-2-Clause)
+![Snyk Vulnerabilities for GitHub Repo](https://img.shields.io/snyk/vulnerabilities/github/CloudReactor/cloudreactor-python-api-client)
 
-```python
-from cloudreactor_api_client import Client
 
-client = Client(base_url="https://api.example.com")
+Python client for the CloudReactor API
+
+## Overview
+
+This python package allows python applications to programmatically
+create, monitor, and manage Tasks and Workflows in
+[CloudReactor](https://cloudreactor.io/). Most
+notably, you can start and stop Tasks and Workflows by creating Task
+Executions and Workflow Executions.
+
+See the [CloudReactor landing page](https://www.cloudreactor.io/) to see the
+benefits of monitoring and managing your tasks with CloudReactor.
+
+## Installation
+
+Get this package from PyPI:
+
+```bash
+pip install cloudreactor_api_client
 ```
 
-If the endpoints you're going to hit require authentication, use `AuthenticatedClient` instead:
+## Usage
+
+First, create a client:
 
 ```python
 from cloudreactor_api_client import AuthenticatedClient
 
-client = AuthenticatedClient(base_url="https://api.example.com", token="SuperSecretToken")
+client = AuthenticatedClient(base_url="https://api.cloudreactor.io/api/v1",
+    token="YOUR_API_KEY")
+
 ```
 
-Now call your endpoint and use your models:
+To start a Task, create a Task Execution:
 
 ```python
-from cloudreactor_api_client.models import MyDataModel
-from cloudreactor_api_client.api.my_tag import get_my_data_model
-from cloudreactor_api_client.types import Response
-
-my_data: MyDataModel = get_my_data_model.sync(client=client)
-# or if you need more info (e.g. status_code)
-response: Response[MyDataModel] = get_my_data_model.sync_detailed(client=client)
-```
-
-Or do the same thing with an async version:
-
-```python
-from cloudreactor_api_client.models import MyDataModel
-from cloudreactor_api_client.api.my_tag import get_my_data_model
-from cloudreactor_api_client.types import Response
-
-my_data: MyDataModel = await get_my_data_model.asyncio(client=client)
-response: Response[MyDataModel] = await get_my_data_model.asyncio_detailed(client=client)
-```
-
-By default, when you're calling an HTTPS API it will attempt to verify that SSL is working correctly. Using certificate verification is highly recommended most of the time, but sometimes you may need to authenticate to a server (especially an internal server) using a custom certificate bundle.
-
-```python
-client = AuthenticatedClient(
-    base_url="https://internal_api.example.com",
-    token="SuperSecretToken",
-    verify_ssl="/path/to/certificate_bundle.pem",
+from cloudreactor_api_client.api.task_executions import (
+    task_executions_create
 )
-```
-
-You can also disable certificate validation altogether, but beware that **this is a security risk**.
-
-```python
-client = AuthenticatedClient(
-    base_url="https://internal_api.example.com",
-    token="SuperSecretToken",
-    verify_ssl=False
+from cloudreactor_api_client.models import (
+    TaskExecution,
+    TaskExecutionStatus
 )
+
+# Identify the Task by name. Alternatively, you can specifiy the "uuid".
+task_dict = {"name": "HappyTask"}
+
+task_execution = TaskExecution.from_dict({
+    "task": task_dict,
+    "status": TaskExecutionStatus.MANUALLY_STARTED
+})
+
+response = task_executions_create.sync_detailed(client=client,
+    json_body=task_execution)
+
+parsed_task_execution = response.parsed
+
+print(f"Task Execution {parsed_task_execution.uuid} started!")
+
 ```
 
-Things to know:
-1. Every path/method combo becomes a Python module with four functions:
-    1. `sync`: Blocking request that returns parsed data (if successful) or `None`
-    1. `sync_detailed`: Blocking request that always returns a `Request`, optionally with `parsed` set if the request was successful.
-    1. `asyncio`: Like `sync` but the async instead of blocking
-    1. `asyncio_detailed`: Like `sync_detailed` by async instead of blocking
+More details on how to use API clients in general (async mode, disabling SSL)
+can be found in the generated [README](https://github.com/CloudReactor/cloudreactor-python-api-client/blob/master/cloudreactor-api-client/README-generated.md).
 
-1. All path/query params, and bodies become method arguments.
-1. If your endpoint had any tags on it, the first tag will be used as a module name for the function (my_tag above)
-1. Any endpoint which did not have a tag will be in `cloudreactor_api_client.api.default`
 
-## Building / publishing this Client
-This project uses [Poetry](https://python-poetry.org/) to manage dependencies  and packaging.  Here are the basics:
-1. Update the metadata in pyproject.toml (e.g. authors, version)
-1. If you're using a private repository, configure it with Poetry
-    1. `poetry config repositories.<your-repository-name> <url-to-your-repository>`
-    1. `poetry config http-basic.<your-repository-name> <username> <password>`
-1. Publish the client with `poetry publish --build -r <your-repository-name>` or, if for public PyPI, just `poetry publish --build`
+## License
 
-If you want to install this client into another project without publishing it (e.g. for development) then:
-1. If that project **is using Poetry**, you can simply do `poetry add <path-to-this-client>` from that project
-1. If that project is not using Poetry:
-    1. Build a wheel with `poetry build -f wheel`
-    1. Install that wheel from the other project `pip install <path-to-wheel>`
+This software is licensed under the BSD 2-Clause License.
+See `LICENSE` for details.
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/jtsay362"><img src="https://avatars0.githubusercontent.com/u/1079646?s=460&v=4?s=80" width="80px;" alt=""/><br /><sub><b>Jeff Tsay</b></sub></a><br /><a href="https://github.com/CloudReactor/cloudreactor-api-client/commits?author=jtsay362" title="Code">💻</a> <a href="https://github.com/CloudReactor/cloudreactor-procwrapper/commits?author=jtsay362" title="Documentation">📖</a> <a href="#infra-jtsay362" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#maintenance-jtsay362" title="Maintenance">🚧</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
+
+## Credits
+
+Code generated by [openapi-python-client](https://github.com/openapi-generators/openapi-python-client)
