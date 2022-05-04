@@ -68,7 +68,10 @@ jobs:
           CLOUDREACTOR_API_KEY: ${{ secrets.CLOUDREACTOR_API_KEY }}
           CLOUDREACTOR_SAMPLE_RUN_ENVIRONMENT_NAME:  ${{ secrets.CLOUDREACTOR_SAMPLE_RUN_ENVIRONMENT_NAME }}
           CLOUDREACTOR_SAMPLE_TASK_NAME: aws-ecs-cloudreactor-deployer-sample_smoke_staging
-
+        # The test suite only includes integration tests which shouldn't run
+        # in cloned repositories, since the home repository secrets won't be
+        # available.
+        if: github.repository_owner	== 'CloudReactor'
       - name: Upload coverage to Codecov
         uses: codecov/codecov-action@v2
         with:
