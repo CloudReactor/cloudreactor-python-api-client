@@ -1,10 +1,9 @@
-from typing import Optional
-
 import logging
 from datetime import datetime
+from typing import Optional
 
 from cloudreactor_api_client import AuthenticatedClient
-from cloudreactor_api_client.api.tasks import tasks_list, tasks_create, tasks_destroy, tasks_partial_update
+from cloudreactor_api_client.api.tasks import tasks_create, tasks_destroy, tasks_list, tasks_partial_update
 from cloudreactor_api_client.models import NameAndUuid, PatchedTask, Task, UnknownExecutionMethodCapability
 
 logger = logging.getLogger(__name__)

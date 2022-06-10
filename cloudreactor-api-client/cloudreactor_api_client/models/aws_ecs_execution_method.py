@@ -20,7 +20,7 @@ class AwsEcsExecutionMethod:
             task_definition_infrastructure_website_url (Union[Unset, str]):
             allocated_cpu_units (Union[Unset, int]):
             allocated_memory_mb (Union[Unset, int]):
-            tags (Optional[AwsEcsExecutionMethodTags]):
+            tags (Union[Unset, None, AwsEcsExecutionMethodTags]):
             subnets (Union[Unset, List[str]]):
             subnet_infrastructure_website_urls (Union[Unset, None, List[Optional[str]]]):
             security_groups (Union[Unset, List[str]]):
@@ -37,12 +37,12 @@ class AwsEcsExecutionMethod:
             platform_version (Union[Unset, str]):
     """
 
-    tags: Optional[AwsEcsExecutionMethodTags]
     type: Union[Unset, str] = UNSET
     task_definition_arn: Union[Unset, str] = UNSET
     task_definition_infrastructure_website_url: Union[Unset, str] = UNSET
     allocated_cpu_units: Union[Unset, int] = UNSET
     allocated_memory_mb: Union[Unset, int] = UNSET
+    tags: Union[Unset, None, AwsEcsExecutionMethodTags] = UNSET
     subnets: Union[Unset, List[str]] = UNSET
     subnet_infrastructure_website_urls: Union[Unset, None, List[Optional[str]]] = UNSET
     security_groups: Union[Unset, List[str]] = UNSET
@@ -65,7 +65,9 @@ class AwsEcsExecutionMethod:
         task_definition_infrastructure_website_url = self.task_definition_infrastructure_website_url
         allocated_cpu_units = self.allocated_cpu_units
         allocated_memory_mb = self.allocated_memory_mb
-        tags = self.tags.to_dict() if self.tags else None
+        tags: Union[Unset, None, Dict[str, Any]] = UNSET
+        if not isinstance(self.tags, Unset):
+            tags = self.tags.to_dict() if self.tags else None
 
         subnets: Union[Unset, List[str]] = UNSET
         if not isinstance(self.subnets, Unset):
@@ -105,11 +107,7 @@ class AwsEcsExecutionMethod:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "tags": tags,
-            }
-        )
+        field_dict.update({})
         if type is not UNSET:
             field_dict["type"] = type
         if task_definition_arn is not UNSET:
@@ -120,6 +118,8 @@ class AwsEcsExecutionMethod:
             field_dict["allocated_cpu_units"] = allocated_cpu_units
         if allocated_memory_mb is not UNSET:
             field_dict["allocated_memory_mb"] = allocated_memory_mb
+        if tags is not UNSET:
+            field_dict["tags"] = tags
         if subnets is not UNSET:
             field_dict["subnets"] = subnets
         if subnet_infrastructure_website_urls is not UNSET:
@@ -164,10 +164,12 @@ class AwsEcsExecutionMethod:
 
         allocated_memory_mb = d.pop("allocated_memory_mb", UNSET)
 
-        _tags = d.pop("tags")
-        tags: Optional[AwsEcsExecutionMethodTags]
+        _tags = d.pop("tags", UNSET)
+        tags: Union[Unset, None, AwsEcsExecutionMethodTags]
         if _tags is None:
             tags = None
+        elif isinstance(_tags, Unset):
+            tags = UNSET
         else:
             tags = AwsEcsExecutionMethodTags.from_dict(_tags)
 

@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: CloudReactor API
-  version: 0.3.1
+  version: 0.3.0
   description: CloudReactor API Documentation
   contact:
     name: Jeff Tsay
@@ -1927,8 +1927,6 @@ components:
         platform_version:
           type: string
           maxLength: 10
-      required:
-      - tags
     AwsEcsExecutionMethodCapability:
       type: object
       description: |-

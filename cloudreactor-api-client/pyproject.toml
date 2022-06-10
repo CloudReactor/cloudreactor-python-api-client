@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "cloudreactor-api-client"
-version = "0.3.1.1"
+version = "0.3.1.2"
 description = "A client library for accessing the CloudReactor API, which monitors and manages Tasks and Workflows."
 
 authors = [
