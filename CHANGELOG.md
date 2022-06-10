@@ -15,4 +15,8 @@
 ## v0.3.1.2 (2022-06-10)
 * Handle missing tags property of serialized ECS Task Executions
 
+## v0.3.1.3 (2022-06-11)
+* Hack the Open API 3 definition to allow for an empty Launch Type in an AWS ECS
+Task Execution
+
 <!--next-version-placeholder-->

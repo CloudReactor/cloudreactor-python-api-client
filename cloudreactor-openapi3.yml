@@ -2026,6 +2026,7 @@ components:
       enum:
       - FARGATE
       - EC2
+      - ''
       type: string
     AwsEcsRunEnvironmentExecutionMethodCapability:
       type: object
