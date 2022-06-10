@@ -23,9 +23,9 @@ class PatchedTask:
     run the task and how often the task is supposed to run.
 
         Attributes:
-            url (Union[Unset, str]):
             uuid (Union[Unset, str]):
             name (Union[Unset, str]):
+            url (Union[Unset, str]):
             description (Union[Unset, str]):
             dashboard_url (Union[Unset, str]):
             infrastructure_website_url (Union[Unset, None, str]):
@@ -42,13 +42,22 @@ class PatchedTask:
             max_concurrency (Union[Unset, None, int]):
             max_age_seconds (Union[Unset, None, int]):
             default_max_retries (Union[Unset, int]):
+            max_postponed_failure_count (Union[Unset, None, int]):
+            max_postponed_missing_execution_count (Union[Unset, None, int]):
+            max_postponed_timeout_count (Union[Unset, None, int]):
+            min_missing_execution_delay_seconds (Union[Unset, None, int]):
+            postponed_failure_before_success_seconds (Union[Unset, None, int]):
+            postponed_missing_execution_before_start_seconds (Union[Unset, None, int]):
+            postponed_timeout_before_success_seconds (Union[Unset, None, int]):
+            should_clear_failure_alerts_on_success (Union[Unset, bool]):
+            should_clear_timeout_alerts_on_success (Union[Unset, bool]):
             project_url (Union[Unset, str]):
             log_query (Union[Unset, str]):
             logs_url (Union[Unset, None, str]):
             links (Union[Unset, List[Link]]):
             run_environment (Union[Unset, None, NameAndUuid]): Identifies an entity in three ways: 1. UUID; 2. Name; and 3.
                 URL.
-                When used to indentify an entity in a request method body, only one of
+                When used to identify an entity in a request method body, only one of
                 uuid and name needs to be specified. If both are present, they must
                 refer to the same entity or else the response will be a 400 error.
             execution_method_capability (Union[AwsEcsExecutionMethodCapability, UnknownExecutionMethodCapability, Unset]):
@@ -66,9 +75,9 @@ class PatchedTask:
             updated_at (Union[Unset, datetime.datetime]):
     """
 
-    url: Union[Unset, str] = UNSET
     uuid: Union[Unset, str] = UNSET
     name: Union[Unset, str] = UNSET
+    url: Union[Unset, str] = UNSET
     description: Union[Unset, str] = UNSET
     dashboard_url: Union[Unset, str] = UNSET
     infrastructure_website_url: Union[Unset, None, str] = UNSET
@@ -85,6 +94,15 @@ class PatchedTask:
     max_concurrency: Union[Unset, None, int] = UNSET
     max_age_seconds: Union[Unset, None, int] = UNSET
     default_max_retries: Union[Unset, int] = UNSET
+    max_postponed_failure_count: Union[Unset, None, int] = UNSET
+    max_postponed_missing_execution_count: Union[Unset, None, int] = UNSET
+    max_postponed_timeout_count: Union[Unset, None, int] = UNSET
+    min_missing_execution_delay_seconds: Union[Unset, None, int] = UNSET
+    postponed_failure_before_success_seconds: Union[Unset, None, int] = UNSET
+    postponed_missing_execution_before_start_seconds: Union[Unset, None, int] = UNSET
+    postponed_timeout_before_success_seconds: Union[Unset, None, int] = UNSET
+    should_clear_failure_alerts_on_success: Union[Unset, bool] = UNSET
+    should_clear_timeout_alerts_on_success: Union[Unset, bool] = UNSET
     project_url: Union[Unset, str] = UNSET
     log_query: Union[Unset, str] = UNSET
     logs_url: Union[Unset, None, str] = UNSET
@@ -105,9 +123,9 @@ class PatchedTask:
     additional_properties: Dict[str, Any] = attr.ib(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
-        url = self.url
         uuid = self.uuid
         name = self.name
+        url = self.url
         description = self.description
         dashboard_url = self.dashboard_url
         infrastructure_website_url = self.infrastructure_website_url
@@ -124,6 +142,15 @@ class PatchedTask:
         max_concurrency = self.max_concurrency
         max_age_seconds = self.max_age_seconds
         default_max_retries = self.default_max_retries
+        max_postponed_failure_count = self.max_postponed_failure_count
+        max_postponed_missing_execution_count = self.max_postponed_missing_execution_count
+        max_postponed_timeout_count = self.max_postponed_timeout_count
+        min_missing_execution_delay_seconds = self.min_missing_execution_delay_seconds
+        postponed_failure_before_success_seconds = self.postponed_failure_before_success_seconds
+        postponed_missing_execution_before_start_seconds = self.postponed_missing_execution_before_start_seconds
+        postponed_timeout_before_success_seconds = self.postponed_timeout_before_success_seconds
+        should_clear_failure_alerts_on_success = self.should_clear_failure_alerts_on_success
+        should_clear_timeout_alerts_on_success = self.should_clear_timeout_alerts_on_success
         project_url = self.project_url
         log_query = self.log_query
         logs_url = self.logs_url
@@ -188,12 +215,12 @@ class PatchedTask:
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
-        if url is not UNSET:
-            field_dict["url"] = url
         if uuid is not UNSET:
             field_dict["uuid"] = uuid
         if name is not UNSET:
             field_dict["name"] = name
+        if url is not UNSET:
+            field_dict["url"] = url
         if description is not UNSET:
             field_dict["description"] = description
         if dashboard_url is not UNSET:
@@ -230,6 +257,26 @@ class PatchedTask:
             field_dict["max_age_seconds"] = max_age_seconds
         if default_max_retries is not UNSET:
             field_dict["default_max_retries"] = default_max_retries
+        if max_postponed_failure_count is not UNSET:
+            field_dict["max_postponed_failure_count"] = max_postponed_failure_count
+        if max_postponed_missing_execution_count is not UNSET:
+            field_dict["max_postponed_missing_execution_count"] = max_postponed_missing_execution_count
+        if max_postponed_timeout_count is not UNSET:
+            field_dict["max_postponed_timeout_count"] = max_postponed_timeout_count
+        if min_missing_execution_delay_seconds is not UNSET:
+            field_dict["min_missing_execution_delay_seconds"] = min_missing_execution_delay_seconds
+        if postponed_failure_before_success_seconds is not UNSET:
+            field_dict["postponed_failure_before_success_seconds"] = postponed_failure_before_success_seconds
+        if postponed_missing_execution_before_start_seconds is not UNSET:
+            field_dict[
+                "postponed_missing_execution_before_start_seconds"
+            ] = postponed_missing_execution_before_start_seconds
+        if postponed_timeout_before_success_seconds is not UNSET:
+            field_dict["postponed_timeout_before_success_seconds"] = postponed_timeout_before_success_seconds
+        if should_clear_failure_alerts_on_success is not UNSET:
+            field_dict["should_clear_failure_alerts_on_success"] = should_clear_failure_alerts_on_success
+        if should_clear_timeout_alerts_on_success is not UNSET:
+            field_dict["should_clear_timeout_alerts_on_success"] = should_clear_timeout_alerts_on_success
         if project_url is not UNSET:
             field_dict["project_url"] = project_url
         if log_query is not UNSET:
@@ -270,11 +317,11 @@ class PatchedTask:
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        url = d.pop("url", UNSET)
-
         uuid = d.pop("uuid", UNSET)
 
         name = d.pop("name", UNSET)
+
+        url = d.pop("url", UNSET)
 
         description = d.pop("description", UNSET)
 
@@ -311,6 +358,26 @@ class PatchedTask:
         max_age_seconds = d.pop("max_age_seconds", UNSET)
 
         default_max_retries = d.pop("default_max_retries", UNSET)
+
+        max_postponed_failure_count = d.pop("max_postponed_failure_count", UNSET)
+
+        max_postponed_missing_execution_count = d.pop("max_postponed_missing_execution_count", UNSET)
+
+        max_postponed_timeout_count = d.pop("max_postponed_timeout_count", UNSET)
+
+        min_missing_execution_delay_seconds = d.pop("min_missing_execution_delay_seconds", UNSET)
+
+        postponed_failure_before_success_seconds = d.pop("postponed_failure_before_success_seconds", UNSET)
+
+        postponed_missing_execution_before_start_seconds = d.pop(
+            "postponed_missing_execution_before_start_seconds", UNSET
+        )
+
+        postponed_timeout_before_success_seconds = d.pop("postponed_timeout_before_success_seconds", UNSET)
+
+        should_clear_failure_alerts_on_success = d.pop("should_clear_failure_alerts_on_success", UNSET)
+
+        should_clear_timeout_alerts_on_success = d.pop("should_clear_timeout_alerts_on_success", UNSET)
 
         project_url = d.pop("project_url", UNSET)
 
@@ -419,9 +486,9 @@ class PatchedTask:
             updated_at = isoparse(_updated_at)
 
         patched_task = cls(
-            url=url,
             uuid=uuid,
             name=name,
+            url=url,
             description=description,
             dashboard_url=dashboard_url,
             infrastructure_website_url=infrastructure_website_url,
@@ -438,6 +505,15 @@ class PatchedTask:
             max_concurrency=max_concurrency,
             max_age_seconds=max_age_seconds,
             default_max_retries=default_max_retries,
+            max_postponed_failure_count=max_postponed_failure_count,
+            max_postponed_missing_execution_count=max_postponed_missing_execution_count,
+            max_postponed_timeout_count=max_postponed_timeout_count,
+            min_missing_execution_delay_seconds=min_missing_execution_delay_seconds,
+            postponed_failure_before_success_seconds=postponed_failure_before_success_seconds,
+            postponed_missing_execution_before_start_seconds=postponed_missing_execution_before_start_seconds,
+            postponed_timeout_before_success_seconds=postponed_timeout_before_success_seconds,
+            should_clear_failure_alerts_on_success=should_clear_failure_alerts_on_success,
+            should_clear_timeout_alerts_on_success=should_clear_timeout_alerts_on_success,
             project_url=project_url,
             log_query=log_query,
             logs_url=logs_url,

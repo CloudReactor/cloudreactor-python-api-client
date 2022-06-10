@@ -15,6 +15,7 @@ def _get_kwargs(
     name: Union[Unset, None, str] = UNSET,
     offset: Union[Unset, None, int] = UNSET,
     ordering: Union[Unset, None, str] = UNSET,
+    passive: Union[Unset, None, bool] = UNSET,
     run_environment_uuid: Union[Unset, None, str] = UNSET,
     search: Union[Unset, None, str] = UNSET,
 ) -> Dict[str, Any]:
@@ -33,6 +34,8 @@ def _get_kwargs(
     params["offset"] = offset
 
     params["ordering"] = ordering
+
+    params["passive"] = passive
 
     params["run_environment__uuid"] = run_environment_uuid
 
@@ -75,6 +78,7 @@ def sync_detailed(
     name: Union[Unset, None, str] = UNSET,
     offset: Union[Unset, None, int] = UNSET,
     ordering: Union[Unset, None, str] = UNSET,
+    passive: Union[Unset, None, bool] = UNSET,
     run_environment_uuid: Union[Unset, None, str] = UNSET,
     search: Union[Unset, None, str] = UNSET,
 ) -> Response[PaginatedTaskList]:
@@ -85,6 +89,7 @@ def sync_detailed(
         name (Union[Unset, None, str]):
         offset (Union[Unset, None, int]):
         ordering (Union[Unset, None, str]):
+        passive (Union[Unset, None, bool]):
         run_environment_uuid (Union[Unset, None, str]):
         search (Union[Unset, None, str]):
 
@@ -99,6 +104,7 @@ def sync_detailed(
         name=name,
         offset=offset,
         ordering=ordering,
+        passive=passive,
         run_environment_uuid=run_environment_uuid,
         search=search,
     )
@@ -119,6 +125,7 @@ def sync(
     name: Union[Unset, None, str] = UNSET,
     offset: Union[Unset, None, int] = UNSET,
     ordering: Union[Unset, None, str] = UNSET,
+    passive: Union[Unset, None, bool] = UNSET,
     run_environment_uuid: Union[Unset, None, str] = UNSET,
     search: Union[Unset, None, str] = UNSET,
 ) -> Optional[PaginatedTaskList]:
@@ -129,6 +136,7 @@ def sync(
         name (Union[Unset, None, str]):
         offset (Union[Unset, None, int]):
         ordering (Union[Unset, None, str]):
+        passive (Union[Unset, None, bool]):
         run_environment_uuid (Union[Unset, None, str]):
         search (Union[Unset, None, str]):
 
@@ -143,6 +151,7 @@ def sync(
         name=name,
         offset=offset,
         ordering=ordering,
+        passive=passive,
         run_environment_uuid=run_environment_uuid,
         search=search,
     ).parsed
@@ -156,6 +165,7 @@ async def asyncio_detailed(
     name: Union[Unset, None, str] = UNSET,
     offset: Union[Unset, None, int] = UNSET,
     ordering: Union[Unset, None, str] = UNSET,
+    passive: Union[Unset, None, bool] = UNSET,
     run_environment_uuid: Union[Unset, None, str] = UNSET,
     search: Union[Unset, None, str] = UNSET,
 ) -> Response[PaginatedTaskList]:
@@ -166,6 +176,7 @@ async def asyncio_detailed(
         name (Union[Unset, None, str]):
         offset (Union[Unset, None, int]):
         ordering (Union[Unset, None, str]):
+        passive (Union[Unset, None, bool]):
         run_environment_uuid (Union[Unset, None, str]):
         search (Union[Unset, None, str]):
 
@@ -180,6 +191,7 @@ async def asyncio_detailed(
         name=name,
         offset=offset,
         ordering=ordering,
+        passive=passive,
         run_environment_uuid=run_environment_uuid,
         search=search,
     )
@@ -198,6 +210,7 @@ async def asyncio(
     name: Union[Unset, None, str] = UNSET,
     offset: Union[Unset, None, int] = UNSET,
     ordering: Union[Unset, None, str] = UNSET,
+    passive: Union[Unset, None, bool] = UNSET,
     run_environment_uuid: Union[Unset, None, str] = UNSET,
     search: Union[Unset, None, str] = UNSET,
 ) -> Optional[PaginatedTaskList]:
@@ -208,6 +221,7 @@ async def asyncio(
         name (Union[Unset, None, str]):
         offset (Union[Unset, None, int]):
         ordering (Union[Unset, None, str]):
+        passive (Union[Unset, None, bool]):
         run_environment_uuid (Union[Unset, None, str]):
         search (Union[Unset, None, str]):
 
@@ -223,6 +237,7 @@ async def asyncio(
             name=name,
             offset=offset,
             ordering=ordering,
+            passive=passive,
             run_environment_uuid=run_environment_uuid,
             search=search,
         )

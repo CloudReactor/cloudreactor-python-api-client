@@ -1,11 +1,23 @@
+from typing import Optional
+
 import logging
 from datetime import datetime
 
 from cloudreactor_api_client import AuthenticatedClient
-from cloudreactor_api_client.api.tasks import tasks_create, tasks_destroy, tasks_partial_update
+from cloudreactor_api_client.api.tasks import tasks_list, tasks_create, tasks_destroy, tasks_partial_update
 from cloudreactor_api_client.models import NameAndUuid, PatchedTask, Task, UnknownExecutionMethodCapability
 
 logger = logging.getLogger(__name__)
+
+
+def test_task_list(api_client: AuthenticatedClient, sample_task_name: str):
+    list_response = tasks_list.sync_detailed(client=api_client, name=sample_task_name)
+
+    assert list_response.status_code == 200
+    assert list_response.parsed.count == 1
+
+    task = list_response.parsed.results[0]
+    assert task.name == sample_task_name
 
 
 def test_task_manipulation(api_client: AuthenticatedClient, sample_run_environment_name: str):
@@ -24,6 +36,8 @@ def test_task_manipulation(api_client: AuthenticatedClient, sample_run_environme
         enabled=True,
         execution_method_capability=emc,
     )
+
+    created_task: Optional[Task] = None
 
     try:
         create_response = tasks_create.sync_detailed(client=api_client, json_body=task)
@@ -55,6 +69,6 @@ def test_task_manipulation(api_client: AuthenticatedClient, sample_run_environme
         assert updated_task.description == patched_task.description
         assert not updated_task.enabled
     finally:
-        destroy_response = tasks_destroy.sync_detailed(uuid=created_task.uuid, client=api_client)
-
-        assert destroy_response.status_code == 204
+        if created_task:
+            destroy_response = tasks_destroy.sync_detailed(uuid=created_task.uuid, client=api_client)
+            assert destroy_response.status_code == 204

@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
   title: CloudReactor API
-  version: 0.3.0
+  version: 0.3.1
   description: CloudReactor API Documentation
   contact:
     name: Jeff Tsay
@@ -928,6 +928,10 @@ paths:
         description: Which field to use when ordering the results.
         schema:
           type: string
+      - in: query
+        name: passive
+        schema:
+          type: boolean
       - in: query
         name: run_environment__uuid
         schema:
@@ -2020,8 +2024,6 @@ components:
           maxLength: 1000
         service_options:
           $ref: '#/components/schemas/AwsEcsServiceOptions'
-      required:
-      - tags
     AwsEcsLaunchType:
       enum:
       - FARGATE
@@ -2107,8 +2109,6 @@ components:
         default_platform_version:
           type: string
           maxLength: 10
-      required:
-      - tags
     AwsEcsServiceLoadBalancerDetails:
       type: object
       description: |-
@@ -2309,7 +2309,7 @@ components:
       type: object
       description: |-
         Identifies an entity in three ways: 1. UUID; 2. Name; and 3. URL.
-        When used to indentify an entity in a request method body, only one of
+        When used to identify an entity in a request method body, only one of
         uuid and name needs to be specified. If both are present, they must
         refer to the same entity or else the response will be a 400 error.
       properties:
@@ -2859,10 +2859,6 @@ components:
         A Task is a specification for a runnable job, including details on how to
         run the task and how often the task is supposed to run.
       properties:
-        url:
-          type: string
-          format: uri
-          readOnly: true
         uuid:
           type: string
           format: uuid
@@ -2870,6 +2866,10 @@ components:
         name:
           type: string
           maxLength: 200
+        url:
+          type: string
+          format: uri
+          readOnly: true
         description:
           type: string
           maxLength: 5000
@@ -2940,6 +2940,45 @@ components:
           type: integer
           maximum: 2147483647
           minimum: 0
+        max_postponed_failure_count:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        max_postponed_missing_execution_count:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        max_postponed_timeout_count:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        min_missing_execution_delay_seconds:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        postponed_failure_before_success_seconds:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        postponed_missing_execution_before_start_seconds:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        postponed_timeout_before_success_seconds:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        should_clear_failure_alerts_on_success:
+          type: boolean
+        should_clear_timeout_alerts_on_success:
+          type: boolean
         project_url:
           type: string
           maxLength: 1000
@@ -3368,12 +3407,56 @@ components:
         max_age_seconds:
           type: integer
           maximum: 2147483647
-          minimum: -2147483648
+          minimum: 0
           nullable: true
         default_max_retries:
           type: integer
           maximum: 2147483647
-          minimum: -2147483648
+          minimum: 0
+        max_postponed_failure_count:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        max_postponed_missing_execution_count:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        max_postponed_timeout_count:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        min_missing_execution_delay_seconds:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        postponed_failure_before_success_seconds:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        postponed_missing_execution_before_start_seconds:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        postponed_timeout_before_success_seconds:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        scheduled_instance_count:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        should_clear_failure_alerts_on_success:
+          type: boolean
+        should_clear_timeout_alerts_on_success:
+          type: boolean
         latest_workflow_execution:
           allOf:
           - $ref: '#/components/schemas/WorkflowExecutionSummary'
@@ -3791,10 +3874,6 @@ components:
         A Task is a specification for a runnable job, including details on how to
         run the task and how often the task is supposed to run.
       properties:
-        url:
-          type: string
-          format: uri
-          readOnly: true
         uuid:
           type: string
           format: uuid
@@ -3802,6 +3881,10 @@ components:
         name:
           type: string
           maxLength: 200
+        url:
+          type: string
+          format: uri
+          readOnly: true
         description:
           type: string
           maxLength: 5000
@@ -3872,6 +3955,45 @@ components:
           type: integer
           maximum: 2147483647
           minimum: 0
+        max_postponed_failure_count:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        max_postponed_missing_execution_count:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        max_postponed_timeout_count:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        min_missing_execution_delay_seconds:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        postponed_failure_before_success_seconds:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        postponed_missing_execution_before_start_seconds:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        postponed_timeout_before_success_seconds:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        should_clear_failure_alerts_on_success:
+          type: boolean
+        should_clear_timeout_alerts_on_success:
+          type: boolean
         project_url:
           type: string
           maxLength: 1000
@@ -4349,12 +4471,56 @@ components:
         max_age_seconds:
           type: integer
           maximum: 2147483647
-          minimum: -2147483648
+          minimum: 0
           nullable: true
         default_max_retries:
           type: integer
           maximum: 2147483647
-          minimum: -2147483648
+          minimum: 0
+        max_postponed_failure_count:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        max_postponed_missing_execution_count:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        max_postponed_timeout_count:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        min_missing_execution_delay_seconds:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        postponed_failure_before_success_seconds:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        postponed_missing_execution_before_start_seconds:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        postponed_timeout_before_success_seconds:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        scheduled_instance_count:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        should_clear_failure_alerts_on_success:
+          type: boolean
+        should_clear_timeout_alerts_on_success:
+          type: boolean
         latest_workflow_execution:
           allOf:
           - $ref: '#/components/schemas/WorkflowExecutionSummary'
@@ -4626,12 +4792,56 @@ components:
         max_age_seconds:
           type: integer
           maximum: 2147483647
-          minimum: -2147483648
+          minimum: 0
           nullable: true
         default_max_retries:
           type: integer
           maximum: 2147483647
-          minimum: -2147483648
+          minimum: 0
+        max_postponed_failure_count:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        max_postponed_missing_execution_count:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        max_postponed_timeout_count:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        min_missing_execution_delay_seconds:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        postponed_failure_before_success_seconds:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        postponed_missing_execution_before_start_seconds:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        postponed_timeout_before_success_seconds:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        scheduled_instance_count:
+          type: integer
+          maximum: 2147483647
+          minimum: 0
+          nullable: true
+        should_clear_failure_alerts_on_success:
+          type: boolean
+        should_clear_timeout_alerts_on_success:
+          type: boolean
         latest_workflow_execution:
           allOf:
           - $ref: '#/components/schemas/WorkflowExecutionSummary'

@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Optional, Type, TypeVar, Union, cast
+from typing import Any, Dict, List, Type, TypeVar, Union, cast
 
 import attr
 
@@ -24,7 +24,7 @@ class AwsEcsExecutionMethodCapability:
             allocated_memory_mb (Union[Unset, int]):
             type (Union[Unset, str]):
             capabilities (Union[Unset, List[str]]):
-            tags (Optional[AwsEcsExecutionMethodCapabilityTags]):
+            tags (Union[Unset, None, AwsEcsExecutionMethodCapabilityTags]):
             default_subnets (Union[Unset, None, List[str]]):
             default_subnet_infrastructure_website_urls (Union[Unset, List[str]]):
             default_launch_type (Union[Unset, None, AwsEcsLaunchType]):  Default: AwsEcsLaunchType.FARGATE.
@@ -43,13 +43,13 @@ class AwsEcsExecutionMethodCapability:
             service_options (Union[Unset, AwsEcsServiceOptions]): Options for running a Task as a service in AWS ECS.
     """
 
-    tags: Optional[AwsEcsExecutionMethodCapabilityTags]
     task_definition_arn: Union[Unset, str] = UNSET
     task_definition_infrastructure_website_url: Union[Unset, str] = UNSET
     allocated_cpu_units: Union[Unset, int] = UNSET
     allocated_memory_mb: Union[Unset, int] = UNSET
     type: Union[Unset, str] = UNSET
     capabilities: Union[Unset, List[str]] = UNSET
+    tags: Union[Unset, None, AwsEcsExecutionMethodCapabilityTags] = UNSET
     default_subnets: Union[Unset, None, List[str]] = UNSET
     default_subnet_infrastructure_website_urls: Union[Unset, List[str]] = UNSET
     default_launch_type: Union[Unset, None, AwsEcsLaunchType] = AwsEcsLaunchType.FARGATE
@@ -78,7 +78,9 @@ class AwsEcsExecutionMethodCapability:
         if not isinstance(self.capabilities, Unset):
             capabilities = self.capabilities
 
-        tags = self.tags.to_dict() if self.tags else None
+        tags: Union[Unset, None, Dict[str, Any]] = UNSET
+        if not isinstance(self.tags, Unset):
+            tags = self.tags.to_dict() if self.tags else None
 
         default_subnets: Union[Unset, None, List[str]] = UNSET
         if not isinstance(self.default_subnets, Unset):
@@ -132,11 +134,7 @@ class AwsEcsExecutionMethodCapability:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "tags": tags,
-            }
-        )
+        field_dict.update({})
         if task_definition_arn is not UNSET:
             field_dict["task_definition_arn"] = task_definition_arn
         if task_definition_infrastructure_website_url is not UNSET:
@@ -149,6 +147,8 @@ class AwsEcsExecutionMethodCapability:
             field_dict["type"] = type
         if capabilities is not UNSET:
             field_dict["capabilities"] = capabilities
+        if tags is not UNSET:
+            field_dict["tags"] = tags
         if default_subnets is not UNSET:
             field_dict["default_subnets"] = default_subnets
         if default_subnet_infrastructure_website_urls is not UNSET:
@@ -203,10 +203,12 @@ class AwsEcsExecutionMethodCapability:
 
         capabilities = cast(List[str], d.pop("capabilities", UNSET))
 
-        _tags = d.pop("tags")
-        tags: Optional[AwsEcsExecutionMethodCapabilityTags]
+        _tags = d.pop("tags", UNSET)
+        tags: Union[Unset, None, AwsEcsExecutionMethodCapabilityTags]
         if _tags is None:
             tags = None
+        elif isinstance(_tags, Unset):
+            tags = UNSET
         else:
             tags = AwsEcsExecutionMethodCapabilityTags.from_dict(_tags)
 

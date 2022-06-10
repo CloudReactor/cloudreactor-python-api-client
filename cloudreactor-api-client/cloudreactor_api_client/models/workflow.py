@@ -30,6 +30,16 @@ class Workflow:
             max_concurrency (Union[Unset, None, int]):
             max_age_seconds (Union[Unset, None, int]):
             default_max_retries (Union[Unset, int]):
+            max_postponed_failure_count (Union[Unset, None, int]):
+            max_postponed_missing_execution_count (Union[Unset, None, int]):
+            max_postponed_timeout_count (Union[Unset, None, int]):
+            min_missing_execution_delay_seconds (Union[Unset, None, int]):
+            postponed_failure_before_success_seconds (Union[Unset, None, int]):
+            postponed_missing_execution_before_start_seconds (Union[Unset, None, int]):
+            postponed_timeout_before_success_seconds (Union[Unset, None, int]):
+            scheduled_instance_count (Union[Unset, None, int]):
+            should_clear_failure_alerts_on_success (Union[Unset, bool]):
+            should_clear_timeout_alerts_on_success (Union[Unset, bool]):
             latest_workflow_execution (Union[Unset, None, WorkflowExecutionSummary]): A WorkflowExecutionSummary contains a
                 subset of the data inside of a
                 WorkflowExecution.
@@ -37,7 +47,7 @@ class Workflow:
             created_by_group (Union[Unset, Group]):
             run_environment (Union[Unset, None, NameAndUuid]): Identifies an entity in three ways: 1. UUID; 2. Name; and 3.
                 URL.
-                When used to indentify an entity in a request method body, only one of
+                When used to identify an entity in a request method body, only one of
                 uuid and name needs to be specified. If both are present, they must
                 refer to the same entity or else the response will be a 400 error.
             enabled (Union[Unset, bool]):
@@ -57,6 +67,16 @@ class Workflow:
     max_concurrency: Union[Unset, None, int] = UNSET
     max_age_seconds: Union[Unset, None, int] = UNSET
     default_max_retries: Union[Unset, int] = UNSET
+    max_postponed_failure_count: Union[Unset, None, int] = UNSET
+    max_postponed_missing_execution_count: Union[Unset, None, int] = UNSET
+    max_postponed_timeout_count: Union[Unset, None, int] = UNSET
+    min_missing_execution_delay_seconds: Union[Unset, None, int] = UNSET
+    postponed_failure_before_success_seconds: Union[Unset, None, int] = UNSET
+    postponed_missing_execution_before_start_seconds: Union[Unset, None, int] = UNSET
+    postponed_timeout_before_success_seconds: Union[Unset, None, int] = UNSET
+    scheduled_instance_count: Union[Unset, None, int] = UNSET
+    should_clear_failure_alerts_on_success: Union[Unset, bool] = UNSET
+    should_clear_timeout_alerts_on_success: Union[Unset, bool] = UNSET
     latest_workflow_execution: Union[Unset, None, WorkflowExecutionSummary] = UNSET
     created_by_user: Union[Unset, str] = UNSET
     created_by_group: Union[Unset, Group] = UNSET
@@ -79,6 +99,16 @@ class Workflow:
         max_concurrency = self.max_concurrency
         max_age_seconds = self.max_age_seconds
         default_max_retries = self.default_max_retries
+        max_postponed_failure_count = self.max_postponed_failure_count
+        max_postponed_missing_execution_count = self.max_postponed_missing_execution_count
+        max_postponed_timeout_count = self.max_postponed_timeout_count
+        min_missing_execution_delay_seconds = self.min_missing_execution_delay_seconds
+        postponed_failure_before_success_seconds = self.postponed_failure_before_success_seconds
+        postponed_missing_execution_before_start_seconds = self.postponed_missing_execution_before_start_seconds
+        postponed_timeout_before_success_seconds = self.postponed_timeout_before_success_seconds
+        scheduled_instance_count = self.scheduled_instance_count
+        should_clear_failure_alerts_on_success = self.should_clear_failure_alerts_on_success
+        should_clear_timeout_alerts_on_success = self.should_clear_timeout_alerts_on_success
         latest_workflow_execution: Union[Unset, None, Dict[str, Any]] = UNSET
         if not isinstance(self.latest_workflow_execution, Unset):
             latest_workflow_execution = (
@@ -150,6 +180,28 @@ class Workflow:
             field_dict["max_age_seconds"] = max_age_seconds
         if default_max_retries is not UNSET:
             field_dict["default_max_retries"] = default_max_retries
+        if max_postponed_failure_count is not UNSET:
+            field_dict["max_postponed_failure_count"] = max_postponed_failure_count
+        if max_postponed_missing_execution_count is not UNSET:
+            field_dict["max_postponed_missing_execution_count"] = max_postponed_missing_execution_count
+        if max_postponed_timeout_count is not UNSET:
+            field_dict["max_postponed_timeout_count"] = max_postponed_timeout_count
+        if min_missing_execution_delay_seconds is not UNSET:
+            field_dict["min_missing_execution_delay_seconds"] = min_missing_execution_delay_seconds
+        if postponed_failure_before_success_seconds is not UNSET:
+            field_dict["postponed_failure_before_success_seconds"] = postponed_failure_before_success_seconds
+        if postponed_missing_execution_before_start_seconds is not UNSET:
+            field_dict[
+                "postponed_missing_execution_before_start_seconds"
+            ] = postponed_missing_execution_before_start_seconds
+        if postponed_timeout_before_success_seconds is not UNSET:
+            field_dict["postponed_timeout_before_success_seconds"] = postponed_timeout_before_success_seconds
+        if scheduled_instance_count is not UNSET:
+            field_dict["scheduled_instance_count"] = scheduled_instance_count
+        if should_clear_failure_alerts_on_success is not UNSET:
+            field_dict["should_clear_failure_alerts_on_success"] = should_clear_failure_alerts_on_success
+        if should_clear_timeout_alerts_on_success is not UNSET:
+            field_dict["should_clear_timeout_alerts_on_success"] = should_clear_timeout_alerts_on_success
         if latest_workflow_execution is not UNSET:
             field_dict["latest_workflow_execution"] = latest_workflow_execution
         if created_by_user is not UNSET:
@@ -193,6 +245,28 @@ class Workflow:
         max_age_seconds = d.pop("max_age_seconds", UNSET)
 
         default_max_retries = d.pop("default_max_retries", UNSET)
+
+        max_postponed_failure_count = d.pop("max_postponed_failure_count", UNSET)
+
+        max_postponed_missing_execution_count = d.pop("max_postponed_missing_execution_count", UNSET)
+
+        max_postponed_timeout_count = d.pop("max_postponed_timeout_count", UNSET)
+
+        min_missing_execution_delay_seconds = d.pop("min_missing_execution_delay_seconds", UNSET)
+
+        postponed_failure_before_success_seconds = d.pop("postponed_failure_before_success_seconds", UNSET)
+
+        postponed_missing_execution_before_start_seconds = d.pop(
+            "postponed_missing_execution_before_start_seconds", UNSET
+        )
+
+        postponed_timeout_before_success_seconds = d.pop("postponed_timeout_before_success_seconds", UNSET)
+
+        scheduled_instance_count = d.pop("scheduled_instance_count", UNSET)
+
+        should_clear_failure_alerts_on_success = d.pop("should_clear_failure_alerts_on_success", UNSET)
+
+        should_clear_timeout_alerts_on_success = d.pop("should_clear_timeout_alerts_on_success", UNSET)
 
         _latest_workflow_execution = d.pop("latest_workflow_execution", UNSET)
         latest_workflow_execution: Union[Unset, None, WorkflowExecutionSummary]
@@ -268,6 +342,16 @@ class Workflow:
             max_concurrency=max_concurrency,
             max_age_seconds=max_age_seconds,
             default_max_retries=default_max_retries,
+            max_postponed_failure_count=max_postponed_failure_count,
+            max_postponed_missing_execution_count=max_postponed_missing_execution_count,
+            max_postponed_timeout_count=max_postponed_timeout_count,
+            min_missing_execution_delay_seconds=min_missing_execution_delay_seconds,
+            postponed_failure_before_success_seconds=postponed_failure_before_success_seconds,
+            postponed_missing_execution_before_start_seconds=postponed_missing_execution_before_start_seconds,
+            postponed_timeout_before_success_seconds=postponed_timeout_before_success_seconds,
+            scheduled_instance_count=scheduled_instance_count,
+            should_clear_failure_alerts_on_success=should_clear_failure_alerts_on_success,
+            should_clear_timeout_alerts_on_success=should_clear_timeout_alerts_on_success,
             latest_workflow_execution=latest_workflow_execution,
             created_by_user=created_by_user,
             created_by_group=created_by_group,

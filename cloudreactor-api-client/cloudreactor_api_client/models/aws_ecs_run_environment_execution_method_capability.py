@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Optional, Type, TypeVar, Union, cast
+from typing import Any, Dict, List, Type, TypeVar, Union, cast
 
 import attr
 
@@ -21,7 +21,7 @@ class AwsEcsRunEnvironmentExecutionMethodCapability:
         Attributes:
             type (Union[Unset, str]):
             capabilities (Union[Unset, List[str]]):
-            tags (Optional[AwsEcsRunEnvironmentExecutionMethodCapabilityTags]):
+            tags (Union[Unset, None, AwsEcsRunEnvironmentExecutionMethodCapabilityTags]):
             default_subnets (Union[Unset, None, List[str]]):
             default_subnet_infrastructure_website_urls (Union[Unset, List[str]]):
             default_launch_type (Union[Unset, None, AwsEcsLaunchType]):  Default: AwsEcsLaunchType.FARGATE.
@@ -38,9 +38,9 @@ class AwsEcsRunEnvironmentExecutionMethodCapability:
             default_platform_version (Union[Unset, str]):
     """
 
-    tags: Optional[AwsEcsRunEnvironmentExecutionMethodCapabilityTags]
     type: Union[Unset, str] = UNSET
     capabilities: Union[Unset, List[str]] = UNSET
+    tags: Union[Unset, None, AwsEcsRunEnvironmentExecutionMethodCapabilityTags] = UNSET
     default_subnets: Union[Unset, None, List[str]] = UNSET
     default_subnet_infrastructure_website_urls: Union[Unset, List[str]] = UNSET
     default_launch_type: Union[Unset, None, AwsEcsLaunchType] = AwsEcsLaunchType.FARGATE
@@ -63,7 +63,9 @@ class AwsEcsRunEnvironmentExecutionMethodCapability:
         if not isinstance(self.capabilities, Unset):
             capabilities = self.capabilities
 
-        tags = self.tags.to_dict() if self.tags else None
+        tags: Union[Unset, None, Dict[str, Any]] = UNSET
+        if not isinstance(self.tags, Unset):
+            tags = self.tags.to_dict() if self.tags else None
 
         default_subnets: Union[Unset, None, List[str]] = UNSET
         if not isinstance(self.default_subnets, Unset):
@@ -113,15 +115,13 @@ class AwsEcsRunEnvironmentExecutionMethodCapability:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "tags": tags,
-            }
-        )
+        field_dict.update({})
         if type is not UNSET:
             field_dict["type"] = type
         if capabilities is not UNSET:
             field_dict["capabilities"] = capabilities
+        if tags is not UNSET:
+            field_dict["tags"] = tags
         if default_subnets is not UNSET:
             field_dict["default_subnets"] = default_subnets
         if default_subnet_infrastructure_website_urls is not UNSET:
@@ -164,10 +164,12 @@ class AwsEcsRunEnvironmentExecutionMethodCapability:
 
         capabilities = cast(List[str], d.pop("capabilities", UNSET))
 
-        _tags = d.pop("tags")
-        tags: Optional[AwsEcsRunEnvironmentExecutionMethodCapabilityTags]
+        _tags = d.pop("tags", UNSET)
+        tags: Union[Unset, None, AwsEcsRunEnvironmentExecutionMethodCapabilityTags]
         if _tags is None:
             tags = None
+        elif isinstance(_tags, Unset):
+            tags = UNSET
         else:
             tags = AwsEcsRunEnvironmentExecutionMethodCapabilityTags.from_dict(_tags)
 
