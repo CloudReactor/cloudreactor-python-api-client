@@ -9,4 +9,7 @@
 ## v0.3.0.1 (2022-05-03)
 * Include more documentation in the package
 
+## v0.3.1.1 (2022-06-10)
+* Handle missing tags property of serialized ECS Tasks
+
 <!--next-version-placeholder-->
