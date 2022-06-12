@@ -43,7 +43,7 @@ class PatchedWorkflowExecution:
         kill_error_code (Union[Unset, None, int]):
         failed_attempts (Union[Unset, int]):
         timed_out_attempts (Union[Unset, int]):
-        workflow_snapshot (Union[Unset, PatchedWorkflowExecutionWorkflowSnapshot]):
+        workflow_snapshot (Union[Unset, None, PatchedWorkflowExecutionWorkflowSnapshot]):
         workflow_task_instance_executions (Union[Unset, List[WorkflowTaskInstanceExecution]]):
         workflow_transition_evaluations (Union[Unset, List[WorkflowTransitionEvaluation]]):
         created_at (Union[Unset, datetime.datetime]):
@@ -69,7 +69,7 @@ class PatchedWorkflowExecution:
     kill_error_code: Union[Unset, None, int] = UNSET
     failed_attempts: Union[Unset, int] = UNSET
     timed_out_attempts: Union[Unset, int] = UNSET
-    workflow_snapshot: Union[Unset, PatchedWorkflowExecutionWorkflowSnapshot] = UNSET
+    workflow_snapshot: Union[Unset, None, PatchedWorkflowExecutionWorkflowSnapshot] = UNSET
     workflow_task_instance_executions: Union[Unset, List[WorkflowTaskInstanceExecution]] = UNSET
     workflow_transition_evaluations: Union[Unset, List[WorkflowTransitionEvaluation]] = UNSET
     created_at: Union[Unset, datetime.datetime] = UNSET
@@ -126,9 +126,9 @@ class PatchedWorkflowExecution:
         kill_error_code = self.kill_error_code
         failed_attempts = self.failed_attempts
         timed_out_attempts = self.timed_out_attempts
-        workflow_snapshot: Union[Unset, Dict[str, Any]] = UNSET
+        workflow_snapshot: Union[Unset, None, Dict[str, Any]] = UNSET
         if not isinstance(self.workflow_snapshot, Unset):
-            workflow_snapshot = self.workflow_snapshot.to_dict()
+            workflow_snapshot = self.workflow_snapshot.to_dict() if self.workflow_snapshot else None
 
         workflow_task_instance_executions: Union[Unset, List[Dict[str, Any]]] = UNSET
         if not isinstance(self.workflow_task_instance_executions, Unset):
@@ -310,8 +310,10 @@ class PatchedWorkflowExecution:
         timed_out_attempts = d.pop("timed_out_attempts", UNSET)
 
         _workflow_snapshot = d.pop("workflow_snapshot", UNSET)
-        workflow_snapshot: Union[Unset, PatchedWorkflowExecutionWorkflowSnapshot]
-        if isinstance(_workflow_snapshot, Unset):
+        workflow_snapshot: Union[Unset, None, PatchedWorkflowExecutionWorkflowSnapshot]
+        if _workflow_snapshot is None:
+            workflow_snapshot = None
+        elif isinstance(_workflow_snapshot, Unset):
             workflow_snapshot = UNSET
         else:
             workflow_snapshot = PatchedWorkflowExecutionWorkflowSnapshot.from_dict(_workflow_snapshot)

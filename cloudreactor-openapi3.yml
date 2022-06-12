@@ -1973,7 +1973,6 @@ components:
         default_launch_type:
           allOf:
           - $ref: '#/components/schemas/AwsEcsLaunchType'
-          nullable: true
           default: FARGATE
         supported_launch_types:
           type: array
@@ -2064,7 +2063,6 @@ components:
         default_launch_type:
           allOf:
           - $ref: '#/components/schemas/AwsEcsLaunchType'
-          nullable: true
           default: FARGATE
         supported_launch_types:
           type: array
@@ -3581,6 +3579,7 @@ components:
           type: object
           additionalProperties: {}
           readOnly: true
+          nullable: true
         workflow_task_instance_executions:
           type: array
           items:
@@ -4647,6 +4646,7 @@ components:
           type: object
           additionalProperties: {}
           readOnly: true
+          nullable: true
         workflow_task_instance_executions:
           type: array
           items:
@@ -4688,6 +4688,7 @@ components:
       enum:
       - MANUAL
       - MAX_EXECUTION_TIME_EXCEEDED
+      - ''
       type: string
     WorkflowExecutionSummary:
       type: object

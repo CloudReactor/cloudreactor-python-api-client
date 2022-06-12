@@ -27,7 +27,7 @@ class AwsEcsExecutionMethodCapability:
             tags (Union[Unset, None, AwsEcsExecutionMethodCapabilityTags]):
             default_subnets (Union[Unset, None, List[str]]):
             default_subnet_infrastructure_website_urls (Union[Unset, List[str]]):
-            default_launch_type (Union[Unset, None, AwsEcsLaunchType]):  Default: AwsEcsLaunchType.FARGATE.
+            default_launch_type (Union[Unset, AwsEcsLaunchType]):  Default: AwsEcsLaunchType.FARGATE.
             supported_launch_types (Union[Unset, None, List[AwsEcsLaunchType]]):
             default_cluster_arn (Union[Unset, str]):
             default_cluster_infrastructure_website_url (Union[Unset, str]):
@@ -52,7 +52,7 @@ class AwsEcsExecutionMethodCapability:
     tags: Union[Unset, None, AwsEcsExecutionMethodCapabilityTags] = UNSET
     default_subnets: Union[Unset, None, List[str]] = UNSET
     default_subnet_infrastructure_website_urls: Union[Unset, List[str]] = UNSET
-    default_launch_type: Union[Unset, None, AwsEcsLaunchType] = AwsEcsLaunchType.FARGATE
+    default_launch_type: Union[Unset, AwsEcsLaunchType] = AwsEcsLaunchType.FARGATE
     supported_launch_types: Union[Unset, None, List[AwsEcsLaunchType]] = UNSET
     default_cluster_arn: Union[Unset, str] = UNSET
     default_cluster_infrastructure_website_url: Union[Unset, str] = UNSET
@@ -93,9 +93,9 @@ class AwsEcsExecutionMethodCapability:
         if not isinstance(self.default_subnet_infrastructure_website_urls, Unset):
             default_subnet_infrastructure_website_urls = self.default_subnet_infrastructure_website_urls
 
-        default_launch_type: Union[Unset, None, str] = UNSET
+        default_launch_type: Union[Unset, str] = UNSET
         if not isinstance(self.default_launch_type, Unset):
-            default_launch_type = self.default_launch_type.value if self.default_launch_type else None
+            default_launch_type = self.default_launch_type.value
 
         supported_launch_types: Union[Unset, None, List[str]] = UNSET
         if not isinstance(self.supported_launch_types, Unset):
@@ -219,10 +219,8 @@ class AwsEcsExecutionMethodCapability:
         )
 
         _default_launch_type = d.pop("default_launch_type", UNSET)
-        default_launch_type: Union[Unset, None, AwsEcsLaunchType]
-        if _default_launch_type is None:
-            default_launch_type = None
-        elif isinstance(_default_launch_type, Unset):
+        default_launch_type: Union[Unset, AwsEcsLaunchType]
+        if isinstance(_default_launch_type, Unset):
             default_launch_type = UNSET
         else:
             default_launch_type = AwsEcsLaunchType(_default_launch_type)
